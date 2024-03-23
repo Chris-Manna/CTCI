@@ -90,6 +90,49 @@ class LinkedList:
                 ascii_list[ord(current_node.value)] = True
             current_node = current_node.next
         return self.head
+    
+
+    # if we can change the order of the elements we can use sort (binary sort)
+    # to sort the array and then remove those items that are duplicates
+    # O(n log n) time complexity
+    def remove_dups_binary_sort(self):
+        sorted_list = merge_sort_linked_list(self)
+
+
+    def merge_sort_linked_list(self):
+        current_node = self.head
+        
+        r_partition = Node(None, None, None)
+        r_partition_head = r_partition
+        right_list = LinkedList(r_partition_head, r_partition)
+
+        l_partition = Node(None, None, None)
+        l_partition_head = l_partition
+        left_list = LinkedList(l_partition_head, l_partition)
+        
+        # choosing partition as head is not optimal time complexity, 
+        # we normally want to get three nodes at random and choose the median value
+        while current_node != None:
+            # using the objects location in memory
+            if r_partition.value == None: 
+                r_partition.value = current_node.value
+            elif current_node >= r_partition:
+                r_partition.next = Node(r_partition, None, current_node.value)
+                r_partition = r_partition.next
+            elif l_partition.value == None:
+                l_partition.value = current_node.value
+            else:
+                l_partition.next = Node(l_partition, None, current_node.value)
+                l_partition = l_partition.next
+            
+            current_node = current_node.next
+        left_list.merge_sort_linked_list()
+        right_list.merge_sort_linked_list()
+
+        left_list.union_linked_lists(right_list)
+        
+    def union_linked_lists(self, right_list):
+        left_head = self.head
 
 
     # if we can include more space complexity
@@ -142,27 +185,31 @@ class LinkedList:
         second_trailing_node.next = second_trailing_node.next.next
         
     def partition(self, partition):
+        # assume both lists are not empty
         current_node = self.head
-        left_node = None
-        right_node = None
+        left_head = None
+        left_tail = None
+        right_head = None
+        right_tail = None
         while current_node != None:
-            if current_node.value < partition and left_node == None:
-                left_node = Node(None, None, current_node.value)
-                left_head = left_node
+            if current_node.value < partition and left_head == None:
+                left_head = Node(None, None, current_node.value)
+                left_head = left_tail
             elif current_node.value < partition:
-                left_node = Node(left_node, None, current_node.value)
-                left_node = left_node.next
+                left_tail.next = Node(left_tail, None, current_node.value)
+                left_tail = left_tail.next
             
-            if current_node.value >= partition and right_node == None:
-                right_node = Node(None, None, current_node.value)
-                right_head = right_node
+            if current_node.value >= partition and right_head == None:
+                right_head = Node(None, None, current_node.value)
+                right_tail = right_head
             elif current_node.value >= partition:
-                right_node.next = Node(right_node, None, current_node.value)
-                right_node = right_node.next
+                right_tail.next = Node(right_tail, None, current_node.value)
+                right_tail = right_tail.next
 
             current_node = current_node.next
-        left_node.next = right_head
-        self.head = left_node
+        left_tail.next = right_head
+        union_list = LinkedList(left_head, right_tail)
+        return union_list
     
 
     def sum_lists_forward(self, second_head):
