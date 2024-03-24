@@ -185,7 +185,6 @@ class LinkedList:
         second_trailing_node.next = second_trailing_node.next.next
         
     def partition(self, val):
-        # assume both lists are not empty
         current_node = self.head
         left_head = None
         left_tail = None
@@ -207,8 +206,13 @@ class LinkedList:
                 right_tail = right_tail.next
 
             current_node = current_node.next
-        left_tail.next = right_head
-        union_list = LinkedList(left_head, right_tail)
+        if right_head == None: 
+            union_list = LinkedList(left_head, left_tail)
+        elif left_head == None: 
+            union_list = LinkedList(right_head, right_tail)
+        else:
+            left_tail.next = right_head
+            union_list = LinkedList(right_head, left_tail)
         return union_list
     
 
@@ -457,7 +461,7 @@ print(f"{test_link}")
 test_link.delete_middle_node()
 print(f"{test_link}")
 
-print("QUESTION 2.4")
+print("QUESTION 2.4 partition")
 # Partition: 
 # Write code to partition a linked list around 
 # a value x, such that all nodes less than x 
@@ -489,7 +493,8 @@ node5.next = node6
 
 test_list = LinkedList(node0, node6)
 test_list.partition(5)
-print(f'test_list: {test_list}')
+
+print(f"test_list: {test_list}")
 
 print("")
 print(f"TEST: sum_list, forwards")
