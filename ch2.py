@@ -184,7 +184,7 @@ class LinkedList:
         print(f"trailing_node.value {trailing_node.value}")
         second_trailing_node.next = second_trailing_node.next.next
         
-    def partition(self, partition):
+    def partition(self, val):
         # assume both lists are not empty
         current_node = self.head
         left_head = None
@@ -192,17 +192,17 @@ class LinkedList:
         right_head = None
         right_tail = None
         while current_node != None:
-            if current_node.value < partition and left_head == None:
+            if current_node.value < val and left_head == None:
                 left_head = Node(None, None, current_node.value)
                 left_head = left_tail
-            elif current_node.value < partition:
+            elif current_node.value < val:
                 left_tail.next = Node(left_tail, None, current_node.value)
                 left_tail = left_tail.next
             
-            if current_node.value >= partition and right_head == None:
+            if current_node.value >= val and right_head == None:
                 right_head = Node(None, None, current_node.value)
                 right_tail = right_head
-            elif current_node.value >= partition:
+            elif current_node.value >= val:
                 right_tail.next = Node(right_tail, None, current_node.value)
                 right_tail = right_tail.next
 
