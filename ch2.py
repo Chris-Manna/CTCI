@@ -192,27 +192,34 @@ class LinkedList:
         right_tail = None
         while current_node != None:
             if current_node.value < val and left_head == None:
+                print(f"0 current_node.value < val and left_head == None: {current_node.value}")
                 left_head = Node(None, None, current_node.value)
-                left_head = left_tail
+                left_tail = left_head
             elif current_node.value < val:
+                print(f"1 current_node.value < val: {current_node.value}")
                 left_tail.next = Node(left_tail, None, current_node.value)
                 left_tail = left_tail.next
             
             if current_node.value >= val and right_head == None:
+                print(f"2 current_node.value >= val and right_head == None: {current_node.value}")
                 right_head = Node(None, None, current_node.value)
                 right_tail = right_head
             elif current_node.value >= val:
+                print(f"3 current_node.value >= val: {current_node.value}")
                 right_tail.next = Node(right_tail, None, current_node.value)
                 right_tail = right_tail.next
 
             current_node = current_node.next
         if right_head == None: 
             union_list = LinkedList(left_head, left_tail)
+            print(f"0 union_list: {union_list}")
         elif left_head == None: 
             union_list = LinkedList(right_head, right_tail)
+            print(f"1 union_list: {union_list}")
         else:
             left_tail.next = right_head
-            union_list = LinkedList(right_head, left_tail)
+            union_list = LinkedList(left_head, right_tail)
+            print(f"2 union_list: {union_list}")
         return union_list
     
 
@@ -343,45 +350,45 @@ class LinkedList:
         return s
 
 
-node0 = Node(None, None, 0)
-node1 = Node(node0, None, 1)
-node_dup = Node(node1, None, 0)
-node0.next = node1
-node1.prev = node0
-node1.next = node_dup
-node_dup.prev = node1
-test_link = LinkedList(node0, node_dup)
+# node0 = Node(None, None, 0)
+# node1 = Node(node0, None, 1)
+# node_dup = Node(node1, None, 0)
+# node0.next = node1
+# node1.prev = node0
+# node1.next = node_dup
+# node_dup.prev = node1
+# test_link = LinkedList(node0, node_dup)
 
-print(f"test_link 0: {test_link}")
-test_link.remove_dups()
-print(f"test_link 1: {test_link}")
-
-
-
-node0 = Node(None, None, "0")
-node1 = Node(node0, None, "1")
-node_dup = Node(node1, None, "0")
-node0.next = node1
-node1.prev = node0
-node1.next = node_dup
-node_dup.prev = node1
-test_link = LinkedList(node0, node_dup)
-print(f"test_link 2: {test_link}")
-test_link.remove_dups_ascii()
-print(f"test_link 3: {test_link}")
+# print(f"test_link 0: {test_link}")
+# test_link.remove_dups()
+# print(f"test_link 1: {test_link}")
 
 
-node0 = Node(None, None, "0")
-node1 = Node(node0, None, "1")
-node_dup = Node(node1, None, "0")
-node0.next = node1
-node1.prev = node0
-node1.next = node_dup
-node_dup.prev = node1
-test_link = LinkedList(node0, node_dup)
-print(f"test_link 4: {test_link}")
-test_link.remove_dups_no_space()
-print(f"test_link 5: {test_link}")
+
+# node0 = Node(None, None, "0")
+# node1 = Node(node0, None, "1")
+# node_dup = Node(node1, None, "0")
+# node0.next = node1
+# node1.prev = node0
+# node1.next = node_dup
+# node_dup.prev = node1
+# test_link = LinkedList(node0, node_dup)
+# print(f"test_link 2: {test_link}")
+# test_link.remove_dups_ascii()
+# print(f"test_link 3: {test_link}")
+
+
+# node0 = Node(None, None, "0")
+# node1 = Node(node0, None, "1")
+# node_dup = Node(node1, None, "0")
+# node0.next = node1
+# node1.prev = node0
+# node1.next = node_dup
+# node_dup.prev = node1
+# test_link = LinkedList(node0, node_dup)
+# print(f"test_link 4: {test_link}")
+# test_link.remove_dups_no_space()
+# print(f"test_link 5: {test_link}")
 
 
 # RYANS CODE
@@ -492,9 +499,10 @@ node4.next = node5
 node5.next = node6
 
 test_list = LinkedList(node0, node6)
-test_list.partition(5)
+# test_list.partition(5)
 
 print(f"test_list: {test_list}")
+print(f"test_list.partition(5): {test_list.partition(5)}")
 
 print("")
 print(f"TEST: sum_list, forwards")
