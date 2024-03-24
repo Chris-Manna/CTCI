@@ -434,151 +434,151 @@ class LinkedList:
 
 
 
-print("QUESTION 2.2")
-node0 = Node(None, None, "0")
-node1 = Node(node0, None, "1")
-node_dup = Node(node1, None, "2")
-node2 = Node(None, None, "3")
-node_dup2 = Node(None, None, "4")
+# print("QUESTION 2.2")
+# node0 = Node(None, None, "0")
+# node1 = Node(node0, None, "1")
+# node_dup = Node(node1, None, "2")
+# node2 = Node(None, None, "3")
+# node_dup2 = Node(None, None, "4")
 
-node0.next = node1
-# node1.prev = node0
-node1.next = node_dup
-node_dup.next = node2
-node2.next = node_dup2
-
-
-test_link = LinkedList(node0, node_dup2)
-
-print(f"test_link 2.2: {test_link}")
-print(f"{test_link.get_kth_to_last_val(2)} == 2")
-print(f"{test_link.get_kth_to_last_val(1)} == 3")
-print(f"{test_link.get_kth_to_last_val(0)} == 4")
-print("")
-print("QUESTION 2.3 delete middle node")
-print(f"{test_link}")
-test_link.delete_middle_node()
-print(f"{test_link}")
-print("QUESTION 2.3 delete middle node")
-print(f"{test_link}")
-test_link.delete_middle_node()
-print(f"{test_link}")
-test_link.delete_middle_node()
-print(f"{test_link}")
-test_link.delete_middle_node()
-print(f"{test_link}")
-
-print("QUESTION 2.4 partition")
-# Partition: 
-# Write code to partition a linked list around 
-# a value x, such that all nodes less than x 
-# come before all nodes greater than or equal to
-# x. If x is contained within the list, the 
-# values of x only need to be after the elements 
-# less than x (see below). The partition element 
-# x can appear anywhere in the "right partition"; 
-# it does not need to appear between the left and right partitions.
-# EXAMPLE
-# Input: 3 -> 5 -> 8 -> 5 -> 10 -> 2 -> 1[partition=5] 
-# Output: 3 -> 1 -> 2 -> 10 -> 5 -> 5 -> 8
-# Hints: #3, #24
-
-node0 = Node(None, None, 3)
-node1 = Node(node0, None, 5)
-node2 = Node(node1, None, 8)
-node3 = Node(node2, None, 5)
-node4 = Node(node3, None, 10)
-node5 = Node(node4, None, 2)
-node6 = Node(node5, None, 1)
-
-node0.next = node1
-node1.next = node2
-node2.next = node3
-node3.next = node4
-node4.next = node5
-node5.next = node6
-
-test_list = LinkedList(node0, node6)
-# test_list.partition(5)
-
-print(f"test_list: {test_list}")
-print(f"test_list.partition(5): {test_list.partition(5)}")
-
-print("")
-print(f"TEST: sum_list, forwards")
-node0 = Node(None, None, 3)
-node1 = Node(node0, None, 5)
-node2 = Node(node1, None, 8)
-print("853")
-
-node3 = Node(None, None, 5)
-node4 = Node(node3, None, 1)
-node5 = Node(node4, None, 2)
-node6 = Node(node5, None, 1)
-print("1215")
-
-node0.next = node1
-node1.next = node2
-
-node3.next = node4
-node4.next = node5
-node5.next = node6
+# node0.next = node1
+# # node1.prev = node0
+# node1.next = node_dup
+# node_dup.next = node2
+# node2.next = node_dup2
 
 
-test_list_1 = LinkedList(node0, node2)
-test_list_2 = LinkedList(node3, node6)
-print(f"test_list.sum_lists_backward(test_list_2) {test_list_1.sum_lists_backward(test_list_2)}")
-print(f"test_list.sum_lists_forward(test_list_2) {test_list_1.sum_lists_forward(test_list_2)}")
+# test_link = LinkedList(node0, node_dup2)
 
-# print(f'test_list: {test_list}')
+# print(f"test_link 2.2: {test_link}")
+# print(f"{test_link.get_kth_to_last_val(2)} == 2")
+# print(f"{test_link.get_kth_to_last_val(1)} == 3")
+# print(f"{test_link.get_kth_to_last_val(0)} == 4")
+# print("")
+# print("QUESTION 2.3 delete middle node")
+# print(f"{test_link}")
+# test_link.delete_middle_node()
+# print(f"{test_link}")
+# print("QUESTION 2.3 delete middle node")
+# print(f"{test_link}")
+# test_link.delete_middle_node()
+# print(f"{test_link}")
+# test_link.delete_middle_node()
+# print(f"{test_link}")
+# test_link.delete_middle_node()
+# print(f"{test_link}")
 
-print("QUESTION 2.6 is_palindrome_simple: ")
-node0 = Node(None, None, "")
-node_a0 = Node(None, None, "a")
-node_b1 = Node(None, None, "b")
-node_a2 = Node(None, None, "a")
-node_a0.next = node_b1
-node_b1.next = node_a2
+# print("QUESTION 2.4 partition")
+# # Partition: 
+# # Write code to partition a linked list around 
+# # a value x, such that all nodes less than x 
+# # come before all nodes greater than or equal to
+# # x. If x is contained within the list, the 
+# # values of x only need to be after the elements 
+# # less than x (see below). The partition element 
+# # x can appear anywhere in the "right partition"; 
+# # it does not need to appear between the left and right partitions.
+# # EXAMPLE
+# # Input: 3 -> 5 -> 8 -> 5 -> 10 -> 2 -> 1[partition=5] 
+# # Output: 3 -> 1 -> 2 -> 10 -> 5 -> 5 -> 8
+# # Hints: #3, #24
 
-node_a3 = Node(None, None, "a")
-node_b4 = Node(None, None, "b")
-node_a3.next = node_b4
+# node0 = Node(None, None, 3)
+# node1 = Node(node0, None, 5)
+# node2 = Node(node1, None, 8)
+# node3 = Node(node2, None, 5)
+# node4 = Node(node3, None, 10)
+# node5 = Node(node4, None, 2)
+# node6 = Node(node5, None, 1)
+
+# node0.next = node1
+# node1.next = node2
+# node2.next = node3
+# node3.next = node4
+# node4.next = node5
+# node5.next = node6
+
+# test_list = LinkedList(node0, node6)
+# # test_list.partition(5)
+
+# print(f"test_list: {test_list}")
+# print(f"test_list.partition(5): {test_list.partition(5)}")
+
+# print("")
+# print(f"TEST: sum_list, forwards")
+# node0 = Node(None, None, 3)
+# node1 = Node(node0, None, 5)
+# node2 = Node(node1, None, 8)
+# print("853")
+
+# node3 = Node(None, None, 5)
+# node4 = Node(node3, None, 1)
+# node5 = Node(node4, None, 2)
+# node6 = Node(node5, None, 1)
+# print("1215")
+
+# node0.next = node1
+# node1.next = node2
+
+# node3.next = node4
+# node4.next = node5
+# node5.next = node6
+
+
+# test_list_1 = LinkedList(node0, node2)
+# test_list_2 = LinkedList(node3, node6)
+# print(f"test_list.sum_lists_backward(test_list_2) {test_list_1.sum_lists_backward(test_list_2)}")
+# print(f"test_list.sum_lists_forward(test_list_2) {test_list_1.sum_lists_forward(test_list_2)}")
+
+# # print(f'test_list: {test_list}')
+
+# print("QUESTION 2.6 is_palindrome_simple: ")
+# node0 = Node(None, None, "")
+# node_a0 = Node(None, None, "a")
+# node_b1 = Node(None, None, "b")
+# node_a2 = Node(None, None, "a")
+# node_a0.next = node_b1
+# node_b1.next = node_a2
+
+# node_a3 = Node(None, None, "a")
+# node_b4 = Node(None, None, "b")
+# node_a3.next = node_b4
 
 
 
-print(f"word: {node0}; {LinkedList(node0).is_palindrome_simple()}")
-print(f"word: {LinkedList(node_a0, node_a2)}; {LinkedList(node_a0, node_a2).is_palindrome_simple()}")
-print(f"word: {LinkedList(node_a3, node_b4)}; {LinkedList(node_a3, node_b4).is_palindrome_simple()}")
+# print(f"word: {node0}; {LinkedList(node0).is_palindrome_simple()}")
+# print(f"word: {LinkedList(node_a0, node_a2)}; {LinkedList(node_a0, node_a2).is_palindrome_simple()}")
+# print(f"word: {LinkedList(node_a3, node_b4)}; {LinkedList(node_a3, node_b4).is_palindrome_simple()}")
 
-print("QUESTION 2.7 Intersection")
-print("Given two (singly) linked lists, determine if the two lists intersect.")
-print("Return the intersecting node. Note that the intersection is defined ")
-print("based on reference, not value.That is, if the kth node of the first ")
-print("linked list is the exact same node (by reference) as the jth node of ")
-print("the second linked list, then they are intersecting.")
+# print("QUESTION 2.7 Intersection")
+# print("Given two (singly) linked lists, determine if the two lists intersect.")
+# print("Return the intersecting node. Note that the intersection is defined ")
+# print("based on reference, not value.That is, if the kth node of the first ")
+# print("linked list is the exact same node (by reference) as the jth node of ")
+# print("the second linked list, then they are intersecting.")
 
-node_b4.next = node_a2
-list_1 = LinkedList(node_a0, node_a2)
-list_2 = LinkedList(node_a3, node_a2)
-print(f"node0.is_intersecting(node_a3): {list_1.is_intersecting(list_2)}")
-print("")
-print("")
+# node_b4.next = node_a2
+# list_1 = LinkedList(node_a0, node_a2)
+# list_2 = LinkedList(node_a3, node_a2)
+# print(f"node0.is_intersecting(node_a3): {list_1.is_intersecting(list_2)}")
+# print("")
+# print("")
 
 
-print("QUESTION 2.8 Loop Detection")
-print("Given a circular linked list, implement an algorithm that returns the node at the")
-print("beginning of the loop.")
-print("DEFINITION")
-print("Circular linked list: A (corrupt) linked list in which a node's next pointer points to an earlier node, so as to make a loop in the linked list.")
-print("EXAMPLE")
-print("Input: A -> B -> C -> D -> E -> C[thesameCasearlier]")
-print("Output: C")
+# print("QUESTION 2.8 Loop Detection")
+# print("Given a circular linked list, implement an algorithm that returns the node at the")
+# print("beginning of the loop.")
+# print("DEFINITION")
+# print("Circular linked list: A (corrupt) linked list in which a node's next pointer points to an earlier node, so as to make a loop in the linked list.")
+# print("EXAMPLE")
+# print("Input: A -> B -> C -> D -> E -> C[thesameCasearlier]")
+# print("Output: C")
 
-node0 = Node(None, None, 'a')
-node1 = Node(None, None, 'b')
-node2 = Node(None, None, 'c')
-node0.next = node1
-node1.next = node2
-node2.next = node0
-test_0 = LinkedList(node0, node2)
-print(test_0.loop_detection())
+# node0 = Node(None, None, 'a')
+# node1 = Node(None, None, 'b')
+# node2 = Node(None, None, 'c')
+# node0.next = node1
+# node1.next = node2
+# node2.next = node0
+# test_0 = LinkedList(node0, node2)
+# print(test_0.loop_detection())
