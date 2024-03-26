@@ -26,29 +26,28 @@ class EmptyStackException(Exception):
 class StackNode:
     def __init__(self, data):
         self.data = data
+        self.min_val = None
         self.next = None
 
 class MyStack:
     def __init__(self):
         self.top = None
-        self.min_list = []
 
     def pop(self):
         if self.top is None:
             raise EmptyStackException("Stack is empty")
         item = self.top.data
-        if len(self.min_list) == 0: 
-            raise EmptyStackException("Stack is empty")
-        if item == self.min_list[-1]:
-            self.min_list.pop()
         self.top = self.top.next
         return item
 
     def push(self, item):
         t = StackNode(item)
-        if len(self.min_list) == 0 or t.data < self.min_list[-1].data:
-            self.min_list.append(t)
         t.next = self.top
+        if self.top == None: # nothing in the stack yet
+            t.min_val = t.data
+        
+        elif t.next.min_val < t.data: # check top before assigning val
+            t.min_val = t.next.min_val
         self.top = t
 
     def peek(self):
@@ -57,9 +56,9 @@ class MyStack:
         return self.top.data
     
     def min(self):
-        if len(self.min_list) == 0:
+        if self.top is None:
             raise EmptyStackException("Stack is empty")
-        return self.min_list[-1].data
+        return self.top.min_val
 
     def is_empty(self):
         return self.top is None
