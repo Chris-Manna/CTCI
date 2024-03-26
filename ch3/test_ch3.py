@@ -22,20 +22,14 @@ class TestStack(unittest.TestCase):
     
     def test_set_of_stacks_lists_pop(self):
         self.assertEqual(self.new_stack_set.pop(), 19)
-        # self.assertEqual(self.new_stack_set.pop(), 18)
-        # self.assertEqual(self.new_stack_set.pop(), 17)
-        # self.assertEqual(self.new_stack_set.pop(), 16)
+    
     def test_set_of_stacks_lists_pop_at_1(self):
         self.assertEqual(self.new_stack_set.pop_at(1), 19)
 
     def test_set_of_stacks_lists_pop_at_0(self):
         self.assertEqual(self.new_stack_set.pop_at(0), 9)
-        # print(self.new_stack_set)
         self.assertEqual(self.new_stack_set.pop_at(0), 8)
-        
-    # def test_set_of_stacks_lists_pop_at_0(self):
-    #     self.assertEqual(self.new_stack_set.pop_at(0), 8)
-    
+
 
 if __name__ == '__main__':
     unittest.main()
