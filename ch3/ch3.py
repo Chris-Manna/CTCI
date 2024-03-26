@@ -78,3 +78,39 @@ class MyStack:
             s += str(element) + ", "
             self.push(element)
         return s
+    
+
+class QueueNode:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class Queue:
+    def __init__(self):
+        self.first = None
+        self.last = None
+
+    def add(self, item):
+        t = QueueNode(item)
+        if self.last is not None:
+            self.last.next = t
+        self.last = t
+        if self.first is None:
+            self.first = self.last
+
+    def remove(self):
+        if self.first is None:
+            raise Exception("Queue is empty")
+        data = self.first.data
+        self.first = self.first.next
+        if self.first is None:
+            self.last = None
+        return data
+
+    def peek(self):
+        if self.first is None:
+            raise Exception("Queue is empty")
+        return self.first.data
+
+    def is_empty(self):
+        return self.first is None
