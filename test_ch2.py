@@ -14,6 +14,16 @@ class TestLinkedList(unittest.TestCase):
         self.list.head = self.nodes[0]
         self.list.tail = self.nodes[-1]
 
+        # Setting up the second list with string values
+        self.list2 = LinkedList()
+        self.nodes_values2 = ['a', 'b', 'c', 'b', 'a']
+        self.nodes2 = [Node(value=val) for val in self.nodes_values2]
+
+        for i in range(len(self.nodes2) - 1):
+            self.nodes2[i].next = self.nodes2[i + 1]
+        self.list2.head = self.nodes2[0]
+        self.list2.tail = self.nodes2[-1]
+
     def test_remove_dups(self):
         # Assuming remove_dups removes duplicate values
         self.list.remove_dups()
@@ -25,7 +35,7 @@ class TestLinkedList(unittest.TestCase):
         self.assertEqual(values, [1, 2, 3])
 
     def test_is_palindrome_simple(self):
-        self.assertTrue(self.list.is_palindrome_simple())
+        self.assertTrue(self.list2.is_palindrome_simple())
 
     def test_get_kth_to_last_val(self):
         kth_val = self.list.get_kth_to_last_val(2)
