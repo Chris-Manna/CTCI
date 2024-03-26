@@ -40,14 +40,47 @@ class MyStack:
         self.top = self.top.next
         return item
 
-    def push(self, item):
+    def push(self, item): 
+        # stack = []
+
+        # # first = {min_val: None, data: 0, next: None}
+        # stack = [first]
+        # first = {min_val: 0, data: 0, next: None}
+        # second = {min_val: None, data: 1, next: None}
+        # stack = [first]
+        # first.min_val < second.data:
+        # 0 < 1
+        # stack = [
+        #     (first) {min_val: 0, data: 0, next: None},
+        #     (second) {min_val: 0, data: 1, next: first}
+        # ]
+        # stack = [first, second]
+
+        # third = {min_val: None, data: -1, next: None}
+        # third.min_val < second.min_val
+        # third.min_val = -1
+        # stack = [
+        #     (first) {min_val: 0, data: 0, next: None},
+        #     (second) {min_val: 0, data: 1, next: first}
+        #     (third) {min_val: -1, data: -1, next: second}
+        # ]
+
+
+
         t = StackNode(item)
+
+        # print(f"self.top: {self.top}; t.data: {t.data}")
         t.next = self.top
+        
         if self.top == None: # nothing in the stack yet
             t.min_val = t.data
         
-        elif t.next.min_val < t.data: # check top before assigning val
-            t.min_val = t.next.min_val
+        elif self.top.min_val < t.data:
+            # check top before assigning val
+            t.min_val = self.top.min_val
+        else: 
+            t.min_val = t.data
+        
         self.top = t
 
     def peek(self):
