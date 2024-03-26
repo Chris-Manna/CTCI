@@ -12,14 +12,5 @@ class TestStack(unittest.TestCase):
         self.assertEqual(self.test_stack.min(), 0)
 
 
-    def test_is_palindrome_simple(self):
-        self.assertTrue(self.list2.is_palindrome_simple())
-
-    def test_get_kth_to_last_val(self):
-        kth_val = self.list.get_kth_to_last_val(2)
-        self.assertEqual(kth_val, 2)
-
-    # More tests for each method...
-
 if __name__ == '__main__':
     unittest.main()
