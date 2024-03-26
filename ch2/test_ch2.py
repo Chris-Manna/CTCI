@@ -1,5 +1,5 @@
 import unittest
-from ch2 import Node, LinkedList
+from ch2.ch2 import Node, LinkedList
 
 class TestLinkedList(unittest.TestCase):
     

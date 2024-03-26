@@ -1,5 +1,5 @@
 import unittest, random
-from ch3 import EmptyStackException, StackNode, MyStack
+from ch3.ch3 import EmptyStackException, StackNode, MyStack
 
 class TestStack(unittest.TestCase):
     
