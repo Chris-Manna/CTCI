@@ -31,16 +31,23 @@ class StackNode:
 class MyStack:
     def __init__(self):
         self.top = None
+        self.min_list = []
 
     def pop(self):
         if self.top is None:
             raise EmptyStackException("Stack is empty")
         item = self.top.data
+        if len(self.min_list) == 0: 
+            raise EmptyStackException("Stack is empty")
+        if item == self.min_list[-1]:
+            self.min_list.pop()
         self.top = self.top.next
         return item
 
     def push(self, item):
         t = StackNode(item)
+        if len(self.min_list) == 0 or t.data < self.min_list[-1].data:
+            self.min_list.append(t)
         t.next = self.top
         self.top = t
 
@@ -50,22 +57,9 @@ class MyStack:
         return self.top.data
     
     def min(self):
-        if self.top is None: 
+        if len(self.min_list) == 0:
             raise EmptyStackException("Stack is empty")
-        new_stack  = MyStack()
-        min_val = None
-        
-        while self.top != None:
-            element = self.pop()
-            if min_val == None: 
-                min_val = element
-            elif element < min_val:
-                min_val = element
-            new_stack.push(min_val)
-        
-        while new_stack.top != None: 
-            self.push(new_stack.pop())
-        return min_val
+        return self.min_list[-1].data
 
     def is_empty(self):
         return self.top is None

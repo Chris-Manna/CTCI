@@ -5,7 +5,9 @@ class TestStack(unittest.TestCase):
     
     def setUp(self):
         self.test_stack = MyStack()
-        for element in random.shuffle(list(range(10))):
+        zero_to_ten = list(range(10))
+        random.shuffle(zero_to_ten)
+        for element in zero_to_ten:
             self.test_stack.push(element)
 
     def test_min(self):
