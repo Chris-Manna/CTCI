@@ -3,6 +3,7 @@ import java.io.*;
 import java.util.*;
 
 public class StackWithMin2 extends Stack<Integer> {
+    // check update
     Stack<Integer> s2;
     public StackWithMin2() {
         s2 = new Stack<Integer>();
