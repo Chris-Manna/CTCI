@@ -31,8 +31,6 @@ class MyStack:
 
     def push(self, item): 
         t = StackNode(item)
-
-        # print(f"self.top: {self.top}; t.data: {t.data}")
         t.next = self.top
         
         if self.top == None: # nothing in the stack yet
