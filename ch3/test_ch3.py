@@ -39,7 +39,5 @@ class TestStack(unittest.TestCase):
         with self.assertRaises(EmptyStackException):
             raise EmptyStackException("Stack is empty")
 
-
-
 if __name__ == '__main__':
     unittest.main()
