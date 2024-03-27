@@ -1,14 +1,3 @@
-# class Stack:
-#     class StackNode:
-#         self.data
-#         self.next
-#         class StackNode(self, data):
-#             self.data = data
-#         private StackNode<T> top
-#         public T pop():
-#             if (top == null) throw new EmptystackException()
-#             T item = top.data
-
 print("QUESTION 3.1 Three in One")
 print("Describe how you could use a single array to implement three stacks.")
 # use an iterator to dynamically point to the bottom of the stack and move the stacks around inside an array
@@ -41,32 +30,6 @@ class MyStack:
         return item
 
     def push(self, item): 
-        # stack = []
-
-        # # first = {min_val: None, data: 0, next: None}
-        # stack = [first]
-        # first = {min_val: 0, data: 0, next: None}
-        # second = {min_val: None, data: 1, next: None}
-        # stack = [first]
-        # first.min_val < second.data:
-        # 0 < 1
-        # stack = [
-        #     (first) {min_val: 0, data: 0, next: None},
-        #     (second) {min_val: 0, data: 1, next: first}
-        # ]
-        # stack = [first, second]
-
-        # third = {min_val: None, data: -1, next: None}
-        # third.min_val < second.min_val
-        # third.min_val = -1
-        # stack = [
-        #     (first) {min_val: 0, data: 0, next: None},
-        #     (second) {min_val: 0, data: 1, next: first}
-        #     (third) {min_val: -1, data: -1, next: second}
-        # ]
-
-
-
         t = StackNode(item)
 
         # print(f"self.top: {self.top}; t.data: {t.data}")
