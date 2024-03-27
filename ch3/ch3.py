@@ -9,16 +9,16 @@
 #             if (top == null) throw new EmptystackException()
 #             T item = top.data
 
-# print("QUESTION 3.1 Three in One")
-# print("Describe how you could use a single array to implement three stacks.")
-# # use an iterator to dynamically point to the bottom of the stack and move the stacks around inside an array
+print("QUESTION 3.1 Three in One")
+print("Describe how you could use a single array to implement three stacks.")
+# use an iterator to dynamically point to the bottom of the stack and move the stacks around inside an array
 
-# print("QUESTION 3.2 Stack Min: ")
-# print("How would you design a stack which, ")
-# print("in addition to push and pop, has a function min ")
-# print("which returns the minimum element? Push, pop and ")
-# print("min should all operate in 0(1) time.")
-# # if we can keep the same stack
+print("QUESTION 3.2 Stack Min: ")
+print("How would you design a stack which, ")
+print("in addition to push and pop, has a function min ")
+print("which returns the minimum element? Push, pop and ")
+print("min should all operate in 0(1) time.")
+# if we can keep the same stack
 
 class EmptyStackException(Exception):
     pass
