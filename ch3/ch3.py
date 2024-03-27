@@ -236,7 +236,7 @@ class SetOfStacksLists:
         
         list_index = len(self.lists) - 1
         if len(self.lists[list_index]) >= self.THRESHOLD:
-            self.lists.append(list())
+            self.lists.append([])
         
         list_index = len(self.lists) - 1
         self.lists[list_index].append(item)
