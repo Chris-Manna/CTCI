@@ -159,9 +159,9 @@ class SetOfStacks:
         self.previous_stack = None
         self.stack_count = 0
 
-    def pop(self):
-        sub_stack = self
-        
+#         while sub_stack.previous_stack != None:
+#             sub_stack = sub_stack.previous_stack
+    
         while sub_stack.previous_stack != None:
             sub_stack = sub_stack.previous_stack
         
