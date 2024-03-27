@@ -150,79 +150,70 @@ class Queue:
 
 
 print("QUESTION 3.3")
-class SetOfStacks:
-    #  start a new stack when the previous stack exceeds some threshold
-    def __init__(self):
-        self.top = None
-        self.THRESHOLD = 10
-        self.capacity = 0
-        self.previous_stack = None
-        self.stack_count = 0
-
+# class SetOfStacks:
+#     #  start a new stack when the previous stack exceeds some threshold
+#     def __init__(self):
+#         self.top = None
+#         self.THRESHOLD = 10
+#         self.capacity = 0
+#         self.previous_stack = None
+#         self.stack_count = 0
+#     def pop(self):
+#         sub_stack = self
+    
 #         while sub_stack.previous_stack != None:
 #             sub_stack = sub_stack.previous_stack
     
-        while sub_stack.previous_stack != None:
-            sub_stack = sub_stack.previous_stack
-        
-        if sub_stack.top is None:
-            if sub_stack.capacity == 0 and sub_stack.previous_stack != None: 
-                sub_stack = sub_stack.previous_stack
-                item = sub_stack.top.data
-                sub_stack.top = sub_stack.top.next
-                sub_stack.capacity -= 1
-                # return item
-                sub_stack = None
-            else:
-                raise EmptyStackException("Stack is empty")
-        else:
-            item = sub_stack.top.data
-            sub_stack.top = sub_stack.top.next
-            sub_stack.capacity -= 1
-        return item
-
-
-    def push(self, item):
-        t = StackNode(item)
-        t.next = self.top
-        # print(f"item: {item}, self.top: {self.top}")
-
-        # met and exceeds the stack threshold
-        if self.capacity == self.THRESHOLD: 
-            # print(f'inside conditional: item: {item}, self.top: {self.top.data}')
+#         if sub_stack.top is None:
+#             if sub_stack.capacity == 0 and sub_stack.previous_stack != None: 
+#                 sub_stack = sub_stack.previous_stack
+#                 item = sub_stack.top.data
+#                 sub_stack.top = sub_stack.top.next
+#                 sub_stack.capacity -= 1
+#                 # return item
+#                 sub_stack = None
+#             else:
+#                 raise EmptyStackException("Stack is empty")
+#         else:
+#             item = sub_stack.top.data
+#             sub_stack.top = sub_stack.top.next
+#             sub_stack.capacity -= 1
+#         return item
+#     def push(self, item):
+#         t = StackNode(item)
+#         t.next = self.top
+#         # print(f"item: {item}, self.top: {self.top}")
+#         # met and exceeds the stack threshold
+#         if self.capacity == self.THRESHOLD: 
+#             # print(f'inside conditional: item: {item}, self.top: {self.top.data}')
             
-            new_stack = SetOfStacks()
-            new_stack.previous_stack = self
-            new_stack.stack_count = 1 + self.stack_count
-            self = new_stack
+#             new_stack = SetOfStacks()
+#             new_stack.previous_stack = self
+#             new_stack.stack_count = 1 + self.stack_count
+#             self = new_stack
+#         self.capacity += 1
+#         self.top = t
+#         # print(f"1 self.stack_count: {self.stack_count}; self.top.data: {self.top.data}")
+#     def peek(self):
+#         if self.top is None:
+#             raise EmptyStackException("Stack is empty")
+#         return self.top.data
+#     def is_empty(self):
+#         return self.top is None
+#     def __str__(self) -> str:
+#         s = ""
+#         if self.top is None: 
+#             return ""
 
-        self.capacity += 1
-        self.top = t
-        # print(f"1 self.stack_count: {self.stack_count}; self.top.data: {self.top.data}")
-
-    def peek(self):
-        if self.top is None:
-            raise EmptyStackException("Stack is empty")
-        return self.top.data
-
-    def is_empty(self):
-        return self.top is None
+#         new_stack  = SetOfStacks()        
+#         while self.top != None:
+#             new_stack.push(self.pop())
     
-    def __str__(self) -> str:
-        s = ""
-        if self.top is None: 
-            return ""
-        
-        new_stack  = SetOfStacks()
-        
-        while self.top != None:
-            new_stack.push(self.pop())
-        
-        while new_stack.top != None: 
-            element = new_stack.pop()
-            s += str(element) + ", "
-            self.push(element)
-        return s
+#         while new_stack.top != None: 
+#             element = new_stack.pop()
+#             s += str(element) + ", "
+#             self.push(element)
+#         return s
 
 class SetOfStacksLists:
     def __init__(self):
