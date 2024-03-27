@@ -27,8 +27,20 @@ class TestStack(unittest.TestCase):
         self.assertEqual(self.new_stack_set.pop_at(1), 19)
 
     def test_set_of_stacks_lists_pop_at_0(self):
-        self.assertEqual(self.new_stack_set.pop_at(0), 9)
-        self.assertEqual(self.new_stack_set.pop_at(0), 8)
+        ten_to_zero = list(range(10))
+        ten_to_zero.reverse()
+        for i in ten_to_zero:
+            self.assertEqual(self.new_stack_set.pop_at(0), i)
+        
+        twenty_to_ten = list(range(10, 20))
+        twenty_to_ten.reverse()
+        for i in twenty_to_ten:
+            # print(f"self.new_stack_set.pop_at(0): {self.new_stack_set.pop_at(0)}")
+            self.assertEqual(self.new_stack_set.pop_at(0), i)
+            
+        with self.assertRaises(EmptyStackException):
+            raise EmptyStackException("Stack is empty")
+
 
 
 if __name__ == '__main__':
