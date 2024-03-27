@@ -255,6 +255,8 @@ class SetOfStacksLists:
             self.pop_at(list_index)
         else:
             item = self.lists[list_index].pop()
+            if len(self.lists[list_index]) == 0:
+                self.lists.pop(list_index)
             return item
     def peek(self):
         list_index = len(self.lists) - 1
