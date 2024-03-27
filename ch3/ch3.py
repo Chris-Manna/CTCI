@@ -150,7 +150,7 @@ class Queue:
 
 
 print("QUESTION 3.3")
-# class SetOfStacks:
+# class SetOfStacksLinkedList:
 #     #  start a new stack when the previous stack exceeds some threshold
 #     def __init__(self):
 #         self.top = None
