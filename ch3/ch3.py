@@ -256,6 +256,12 @@ class SetOfStacksLists:
         else:
             item = self.lists[list_index].pop()
             return item
+    def peek(self):
+        list_index = len(self.lists) - 1
+        if list_index == -1 or len(self.lists[list_index]) == 0:
+            raise EmptyStackException("Stack is empty")
+        return self.lists[list_index][-1]
+
     def __str__(self) -> str:
         s = ""
         for l in self.lists:
