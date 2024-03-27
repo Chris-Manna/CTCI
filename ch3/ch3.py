@@ -108,6 +108,23 @@ class Queue:
 
     def is_empty(self):
         return self.first is None
+    
+class QueueMadeOfStacks:
+    def __init__(self) -> None:
+        stack_1 = MyStack()
+        stack_2 = MyStack()
+        
+    def add(self, item):
+        pass
+
+    def remove(self):
+        pass
+
+    def peek(self):
+        pass
+
+    def is_empty(self):
+        pass
 
 class SetOfStacksLists:
     def __init__(self):
