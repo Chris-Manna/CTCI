@@ -13,7 +13,6 @@ class TestStack(unittest.TestCase):
 
         self.new_stack_set = SetOfStacksLists()
         zero_to_twenty = list(range(20))
-        # random.shuffle(zero_to_twenty)
         for element in zero_to_twenty:
             self.new_stack_set.push(element)
 
@@ -35,7 +34,6 @@ class TestStack(unittest.TestCase):
         twenty_to_ten = list(range(10, 20))
         twenty_to_ten.reverse()
         for i in twenty_to_ten:
-            # print(f"self.new_stack_set.pop_at(0): {self.new_stack_set.pop_at(0)}")
             self.assertEqual(self.new_stack_set.pop_at(0), i)
             
         with self.assertRaises(EmptyStackException):
