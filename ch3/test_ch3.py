@@ -1,5 +1,5 @@
 import unittest, random
-from ch3 import EmptyStackException, MyStack, SetOfStacksLists
+from ch3 import EmptyStackException, MyStack, SetOfStacksLists, QueueMadeOfStacks
 
 class TestStack(unittest.TestCase):
     
@@ -15,6 +15,11 @@ class TestStack(unittest.TestCase):
         zero_to_twenty = list(range(20))
         for element in zero_to_twenty:
             self.new_stack_set.push(element)
+
+        self.test_queue = QueueMadeOfStacks()
+        zero_to_five = list(range(5))
+        for element in zero_to_five:
+            self.test_queue.add(element)
 
     def test_min(self):
         self.assertEqual(self.test_stack.min(), 0)
@@ -38,6 +43,9 @@ class TestStack(unittest.TestCase):
             
         with self.assertRaises(EmptyStackException):
             raise EmptyStackException("Stack is empty")
+    
+    def test_queue(self):
+        self.assertEqual(self.test_queue.remove(), 0)
 
 if __name__ == '__main__':
     unittest.main()
