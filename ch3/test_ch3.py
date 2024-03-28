@@ -16,6 +16,7 @@ class TestStack(unittest.TestCase):
         for element in zero_to_twenty:
             self.new_stack_set.push(element)
 
+        # Queue settup
         self.test_queue = QueueMadeOfStacks()
         zero_to_five = list(range(5))
         for element in zero_to_five:
@@ -45,7 +46,19 @@ class TestStack(unittest.TestCase):
             raise EmptyStackException("Stack is empty")
     
     def test_queue(self):
+        # Queue via Stacks: 
+        # Implement a MyQueue class which implements a queue using two stacks. 
         self.assertEqual(self.test_queue.remove(), 0)
+        self.assertEqual(self.test_queue.remove(), 1)
+        self.assertEqual(self.test_queue.remove(), 2)
+        self.assertEqual(self.test_queue.remove(), 3)
+        self.assertEqual(self.test_queue.remove(), 4)
+        with self.assertRaises(Exception) as context:
+            self.test_queue.remove()
+        
+        self.assertEqual(str(context.exception), "Queue is empty")
+
+    
 
 if __name__ == '__main__':
     unittest.main()
