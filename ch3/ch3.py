@@ -109,6 +109,7 @@ class Queue:
     def is_empty(self):
         return self.first is None
     
+# O(n) time complexity, not O(1)
 class QueueMadeOfStacks:
     def __init__(self) -> None:
         self.stack_1 = MyStack()
@@ -158,6 +159,35 @@ class QueueMadeOfStacks:
 
     def is_empty(self):
         return self.stack_1.is_empty()
+
+
+# Solution from the book, can sometimes achieve O(1) time complexity
+class QueueViaStacks:
+    def __init__(self) -> None:
+        self.stackNewest = MyStack()
+        self.stackOldest = MyStack()
+
+    def size():
+        return self.stackNewest.size() + self.stackOldest.size()
+    
+    # Push onto stackNewest, which always has the newest elements on top
+    def add(self, value):
+        self.stackNewest.push(value)
+    
+    # Move elements from stackNewest into stackOldest. This is usually done so that
+    # we can do operations on stackOldest.
+    def shiftStacks(self):
+        if (self.stackOldest.is_empty()):
+            while (not self.stackNewest.is_empty()):
+                self.stackOldest.push(self.stackNewest.pop())
+    
+    def peek(self):
+        self.shiftStacks() # Ensure stackOldest has the current elements
+        return self.stackOldest.peek() # retrieve the oldest item.
+    
+    def remove(self):
+        self.shiftStacks(); # Ensure stackOldest has the current elements
+        return self.stackOldest.pop(); # pop the oldest item. 
 
 class SetOfStacksLists:
     def __init__(self):
