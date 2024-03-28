@@ -111,20 +111,53 @@ class Queue:
     
 class QueueMadeOfStacks:
     def __init__(self) -> None:
-        stack_1 = MyStack()
-        stack_2 = MyStack()
+        self.stack_1 = MyStack()
+        self.stack_2 = MyStack()
         
     def add(self, item):
-        pass
+        self.stack_1.push(item)
 
     def remove(self):
-        pass
+        if self.stack_1.is_empty():
+            raise Exception("Queue is empty")
+        
+        # reverse the stack by popping the stack onto another stack
+        while not self.stack_1.is_empty():
+            item = self.stack_1.pop()
+            self.stack_2.push(item)
+        
+        # the last element on the second stack is the first element on the second stack
+        first_element_in_queue = self.stack_2.pop()
+        
+        # reverse the stack by popping the stack onto another stack
+        while not self.stack_2.is_empty():
+            item = self.stack_2.pop()
+            self.stack_1.push(item)
+        
+        return first_element_in_queue
+
 
     def peek(self):
-        pass
+        if self.stack_1.is_empty():
+            raise Exception("Queue is empty")
+        
+        # reverse the stack by popping the stack onto another stack
+        while not self.stack_1.is_empty():
+            item = self.stack_1.pop()
+            self.stack_2.push(item)
+        
+        # the last element on the second stack is the first element on the second stack
+        first_element_in_queue = self.stack_2.peek()
+        
+        # reverse the stack by popping the stack onto another stack
+        while not self.stack_2.is_empty():
+            item = self.stack_2.pop()
+            self.stack_1.push(item)
+        
+        return first_element_in_queue
 
     def is_empty(self):
-        pass
+        return self.stack_1.is_empty()
 
 class SetOfStacksLists:
     def __init__(self):
