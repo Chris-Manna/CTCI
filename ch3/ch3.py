@@ -17,6 +17,7 @@ class StackNode:
         self.data = data
         self.min_val = None
         self.next = None
+        self.is_ordered = False
 
 class MyStack:
     def __init__(self):
@@ -58,13 +59,28 @@ class MyStack:
         return self.top is None
     
     def sort_stack(self):
+        # [0]
         # Write a program to sort a stack such that the smallest items are on the top. 
         # You can use an additional temporary stack, but you may not copy the 
         # elements into any other data structure (such as an array). The stack 
         # supports the following operations: push, pop, peek, and is Empty.
-        # Hints:# 15, #32, #43 
-        pass
+        # Hints:# 15, #32, #43
         
+        second_stack = MyStack()
+        stack_min = self.min()
+        # while self.top != None: 
+        while self.top != None:
+            original_stack_top = self.pop()
+            if original_stack_top == stack_min:
+                break
+            second_stack.push(original_stack_top)
+        while second_stack.top != None and second_stack.top.min_val != second_stack.top.data:
+            self.push(second_stack.pop())
+        second_stack.push(original_stack_top)
+
+        while second_stack.top != None:
+            self.push(second_stack.pop())
+
     
     def __str__(self) -> str:
         s = ""

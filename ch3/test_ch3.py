@@ -21,6 +21,14 @@ class TestStack(unittest.TestCase):
         zero_to_five = list(range(5))
         for element in zero_to_five:
             self.test_queue.add(element)
+        
+        self.unsorted_stack = MyStack()
+        zero_to_five = list(range(3))
+
+        for element in zero_to_five:
+            self.test_queue.add(element)
+        
+
 
     def test_min(self):
         self.assertEqual(self.test_stack.min(), 0)
@@ -57,6 +65,16 @@ class TestStack(unittest.TestCase):
             self.test_queue.remove()
         
         self.assertEqual(str(context.exception), "Queue is empty")
+
+    def test_sort(self):
+        # Write a program to sort a stack such that the smallest items are on the top. 
+        # You can use an additional temporary stack, but you may not copy the 
+        # elements into any other data structure (such as an array). The stack 
+        # supports the following operations: push, pop, peek, and is Empty.
+        # Hints:# 15, #32, #43
+        print(f"0 test_sort: self.test_stack {self.test_stack}")
+        self.test_stack.sort_stack()
+        print(f"1 test_sort: self.test_stack {self.test_stack}")
 
     
 
