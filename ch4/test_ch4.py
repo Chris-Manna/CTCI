@@ -1,1 +1,17 @@
-# a trie can check if a string is a valid prefix in O(K) time, where K is the length of the strig. This is actuallyt eh same runtime as a hash table will take. Although we often rfere to hash table looksups as being O(1) time, this isn't entirely true. A hash table must read through all the characters in the input, which takes O(K) time in the case of a word lookup.
+import unittest, random
+from ch4 import Node, Graph
+
+class TestStack(unittest.TestCase):
+    
+    def setUp(self):
+        # directed graph
+        a = Node("")
+        pass
+
+    def test_route_between_two_nodes_dfs(self):
+        # Given a directed graph, design an algorithm to find out whether there is a route between two nodes
+        self.assertEqual(self.test_stack.min(), 0)
+
+    def test_route_between_two_nodes_bfs(self):
+        # Given a directed graph, design an algorithm to find out whether there is a route between two nodes
+        self.assertEqual(self.test_stack.min(), 0)
