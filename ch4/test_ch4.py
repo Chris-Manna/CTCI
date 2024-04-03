@@ -13,10 +13,10 @@ class TestGraphs(unittest.TestCase):
         self.test_graph = Graph([self.a1, self.a, self.b, self.c, self.d])
 
     def test_route_between_two_nodes_bidirectional_bfs(self):
-        print("inside test")
         # Given a directed graph, design an algorithm to find out whether there is a route between two nodes
         self.assertTrue(self.test_graph.bidirectional_bfs(self.a, self.a))
-        # self.assertTrue(self.test_graph.bidirectional_bfs(self.a, self.a1))
+        self.assertTrue(self.test_graph.bidirectional_bfs(self.a, self.a1))
+        self.assertTrue(self.test_graph.bidirectional_bfs(self.a, self.d))
 
     def test_route_between_two_nodes_bfs(self):
         # Given a directed graph, design an algorithm to find out whether there is a route between two nodes

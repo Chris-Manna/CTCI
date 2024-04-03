@@ -22,32 +22,39 @@ class Graph:
         if start_node == end_node:
             return True
         
+        visited = set()
+
         queue_left = []
         queue_left.append(start_node)
         
         queue_right = []
         queue_right.append(end_node)
         
-        # queue = []
-        # queue.append(start_node)
-        # queue.append(end_node)
-        
         left_element = start_node
         right_element = end_node
-        while len(queue_left) != 0 and len(queue_right) != 0:
+        while len(queue_left) != 0 or len(queue_right) != 0:
 
             neighbors_left = left_element.children
             neighbors_right = right_element.children
             
             for neighbor in neighbors_left:
-                if neighbor in neighbors_right:
+                if neighbor in visited:
                     return True
+                else:
+                    visited.add(neighbor)
                 queue_left.append(neighbor)
             
             for neighbor in neighbors_right:
+                if neighbor in visited:
+                    return True
+                else:
+                    visited.add(neighbor)
                 queue_right.append(neighbor)
             
-            queue_left.append(neighbors_left)
+            if len(queue_left) > 0:
+                left_element = queue_left.pop(0)
+            if len(queue_right) > 0:
+                right_element = queue_right.pop(0)
             
         return False
 
