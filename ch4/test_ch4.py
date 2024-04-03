@@ -18,9 +18,16 @@ class TestGraphs(unittest.TestCase):
         self.assertTrue(self.test_graph.bidirectional_bfs(self.a, self.a1))
         self.assertTrue(self.test_graph.bidirectional_bfs(self.a, self.d))
 
-    def test_route_between_two_nodes_bfs(self):
-        # Given a directed graph, design an algorithm to find out whether there is a route between two nodes
-        # self.assertEqual(self.test_stack.min(), 0)
+    def test_minimal_tree(self):
+        # Minimal Tree: 
+        # Given a sorted (increasing order) array with unique integer elements, 
+        # write an algorithm to create a binary search tree with minimal height. 
+
+        pass
+    
+    def test_successor_6(self):
+        # Write an algorithm to find the "next" node (i.e., in-order successor) of a given node in a binary search tree.
+        # You may assume that each node has a link to its parent.
         pass
 
     
