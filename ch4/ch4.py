@@ -132,3 +132,34 @@ def bfs(root):
 # Given a directed graph, design an algorithm to find out whether there is a
 # route between two nodes.
     
+
+class BinaryNode:
+    def __init__(self, name = "", left = None, right = None) -> None:
+        self.name = name
+        self.left = left
+        self.right = right
+
+class BinarySearchTree:
+    def __init__(self, root = None) -> None:
+        self.root = root
+
+    def in_order_traversal(self, element):
+        nodes_list = []
+        self.traverse_inorder(nodes_list)
+        
+        i = 0
+        while element != current_element:
+            current_element = nodes_list[i]
+            i += 1
+
+        return nodes_list[i + 1]
+    
+    def traverse_inorder(self, nodes_list):
+        if self.left != None:
+            self.left.in_order_traversal(nodes_list)
+        
+        nodes_list.append(self)
+
+        if self.right != None:
+            self.right.in_order_traversal()
+        
