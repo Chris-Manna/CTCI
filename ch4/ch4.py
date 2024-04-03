@@ -5,12 +5,18 @@ class Node:
         self.children = children
 
 class Graph:
-    def __init__(self):
-        nodes = []
+    def __init__(self, nodes = []):
+        self.nodes = nodes
     
     def add_nodes(self, pass_nodes):
         for node in pass_nodes:
             self.nodes.append(node)
+    
+    def dfs(self, start_node, target_node):
+        pass
+
+    def bfs(self, start_node, target_nodes):
+        pass
 
 
 # You don't necessarily need any additional classes to represent a graph. An array (or a hash table) of lists
