@@ -13,10 +13,43 @@ class Graph:
             self.nodes.append(node)
     
     def dfs(self, start_node, target_node):
+        # potentially the O(n)
+        # return True
         pass
 
-    def bfs(self, start_node, target_nodes):
-        pass
+    def bidirectional_bfs(self, start_node, end_node):
+        # O(k^(d/2))
+        if start_node == end_node:
+            return True
+        
+        queue_left = []
+        queue_left.append(start_node)
+        
+        queue_right = []
+        queue_right.append(end_node)
+        
+        # queue = []
+        # queue.append(start_node)
+        # queue.append(end_node)
+        
+        left_element = start_node
+        right_element = end_node
+        while len(queue_left) != 0 and len(queue_right) != 0:
+
+            neighbors_left = left_element.children
+            neighbors_right = right_element.children
+            
+            for neighbor in neighbors_left:
+                if neighbor in neighbors_right:
+                    return True
+                queue_left.append(neighbor)
+            
+            for neighbor in neighbors_right:
+                queue_right.append(neighbor)
+            
+            queue_left.append(neighbors_left)
+            
+        return False
 
 
 # You don't necessarily need any additional classes to represent a graph. An array (or a hash table) of lists
