@@ -1,0 +1,1 @@
+# a trie can check if a string is a valid prefix in O(K) time, where K is the length of the strig. This is actuallyt eh same runtime as a hash table will take. Although we often rfere to hash table looksups as being O(1) time, this isn't entirely true. A hash table must read through all the characters in the input, which takes O(K) time in the case of a word lookup.
