@@ -134,10 +134,11 @@ def bfs(root):
     
 
 class BinaryNode:
-    def __init__(self, name = "", left = None, right = None) -> None:
+    def __init__(self, name = "", left = None, right = None, parent = None) -> None:
         self.name = name
         self.left = left
         self.right = right
+        self.parent
 
 class BinarySearchTree:
     def __init__(self, root = None) -> None:
@@ -163,3 +164,29 @@ class BinarySearchTree:
         if self.right != None:
             self.right.in_order_traversal()
         
+    def get_next_node(self):
+        if self.right != None: 
+            while self.left != None:
+                self = self.left
+            return self
+        else:
+            while self.parent != None: 
+                if self.parent.right != None and self.parent.right != trailing_node: 
+                    return self.parent.right.get_next_node()
+                trailing_node = self
+                self = self.parent
+
+    def get_next_node_recursion(self, trailing_node = None):
+        if self.right != None:
+            while self.left != None:
+                self = self.left
+            return self
+        
+        trailing_node = self
+        self = self.parent
+
+        if self.parent.right != None and self.parent.right != trailing_node: 
+            return self.parent.right.get_next_node()
+        if self.parent.right != None and self.
+        trailing_node = self
+        self = self.parent
