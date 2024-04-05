@@ -61,7 +61,7 @@ class TestGraphs(unittest.TestCase):
         while i < len(passed_list):
             self.assertEqual(str(passed_list[i]), str(self.elements_list[i]))
             i += 1
-        print(self.test_create_binary_tree.level_order_traversal())
+        # print(self.test_create_binary_tree.level_order_traversal())
         # 
         # test that all leaves in the tree at at the same height or 
         # within one of the maximum height leaf
@@ -75,13 +75,17 @@ class TestGraphs(unittest.TestCase):
         self.test_create_binary_tree.create_binary_tree_root(self.elements_list)
         depths = self.test_create_binary_tree.list_of_depths()
         i = 0
+        tiers = [["head", 5, "tail"],["head", 2, 8, "tail"],["head", 1,4,7,9, "tail"],["head", 0,3,6, "tail"]]
         while i < len(depths):
             current_node = depths[i]
-            while current_node != None: 
-                print(current_node.name)
+            tier = tiers[i]
+            j = 0
+            while current_node != None:
+                # print(f"current_node: {current_node.name} element: {tier[j]}")
+                self.assertEqual(str(tier[j]), str(current_node.name))
                 current_node = current_node.next
+                j += 1
             i += 1
-            # self.assertEqual(str(passed_list[i]), str(self.elements_list[i]))
 
     def test_check_balanced_4(self):
         pass
