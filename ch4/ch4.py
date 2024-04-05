@@ -187,9 +187,37 @@ class BinaryNode:
 class BinarySearchTree:
     def __init__(self, root = None) -> None:
         self.root = root
+    
+    def height_value(self):
+        #          5
+        #     2,            8
+        #  1,     4,      7,     9
+        # 0, N,  3, N,   6, N,  N, N
+
+        if self == None: 
+            return 0
+        elif self.left == None and self.right == None: 
+            self.height = 1
+        
+        left_height = 0
+        right_height = 0
+        if self.left != None:
+            left_height = self.left.add_height_value(height_value)
+        if self.right != None: 
+            right_height = self.right.add_height_value(height_value)
+        if abs(left_height-right_height) > 1:
+            return False
+        self.root.height += max(left_height, right_height)
 
     def is_balanced(self):
-        pass
+        # get height of each node
+        # compare child node of each current node to each other
+        # - if they differ by more than 1, return False
+        # - else return True
+        self.root
+
+        return False
+    
     def list_of_depths(self):
         depths = []
 
