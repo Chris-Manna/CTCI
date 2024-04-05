@@ -131,7 +131,33 @@ def bfs(root):
 # Route Between Nodes: 
 # Given a directed graph, design an algorithm to find out whether there is a
 # route between two nodes.
+
+
+class LinkedListNode:
+    def __init__(self, name, next = None) -> None:
+        self.name = name
+        self.next = next
     
+    
+class LinkedList:
+    def __init__(self, head = None, tail = None) -> None:
+        self.head = head
+        self.tail = tail
+        self.head.next = self.tail
+
+    def add_after(self, element):
+        self.tail.next = LinkedListNode(self.tail.name)
+        self.tail.name = element
+        self.tail = self.tail.next
+    
+    def __str__(self) -> str:
+        current_node = self.head
+        s = ""
+        while current_node != None:
+            s += f"{current_node.name} "
+            current_node = current_node.next
+        return s
+
 
 class BinaryNode:
     def __init__(self, name = "", left = None, right = None, parent = None) -> None:
@@ -161,6 +187,30 @@ class BinarySearchTree:
     def __init__(self, root = None) -> None:
         self.root = root
 
+    def list_of_depths(self):
+        depths = []
+
+        queue = []
+        queue.append(self.root)
+
+        while len(queue) != 0:
+            next_tier = []
+            new_list = LinkedList(LinkedListNode("head"), LinkedListNode("tail"))
+            depths.append(new_list.head)
+            
+            while len(queue) != 0:
+                visit = queue.pop(0)
+                # print(f"visit: {visit}")
+                new_list.add_after(visit)
+                if visit != None and visit.left != None:
+                    next_tier.append(visit.left)
+                if visit != None and visit.right != None: 
+                    next_tier.append(visit.right)
+            queue = next_tier
+            
+        return depths
+
+
     def level_order_traversal(self):
         h = {}
         h[f"{self.root.name}"] = self.root.name
@@ -181,7 +231,7 @@ class BinarySearchTree:
                     next_tier.append(visit.right)
             queue = next_tier
             s += "\n"
-        print(s)
+        # print(s)
         return h
 
     def in_order_traversal(self, element):

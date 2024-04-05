@@ -69,7 +69,19 @@ class TestGraphs(unittest.TestCase):
 
     
     def test_list_of_depths_3(self):
-        pass
+        # Given a binary tree, design an algorithm which creates a linked list of all 
+        # the nodes at each depth (e.g., if you have a tree with depth D, 
+        # you'll have D linked lists).
+        self.test_create_binary_tree.create_binary_tree_root(self.elements_list)
+        depths = self.test_create_binary_tree.list_of_depths()
+        i = 0
+        while i < len(depths):
+            current_node = depths[i]
+            while current_node != None: 
+                print(current_node.name)
+                current_node = current_node.next
+            i += 1
+            # self.assertEqual(str(passed_list[i]), str(self.elements_list[i]))
 
     def test_check_balanced_4(self):
         pass
