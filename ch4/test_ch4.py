@@ -75,7 +75,7 @@ class TestGraphs(unittest.TestCase):
         self.test_create_binary_tree.create_binary_tree_root(self.elements_list)
         depths = self.test_create_binary_tree.list_of_depths()
         i = 0
-        tiers = [["head", 5, "tail"],["head", 2, 8, "tail"],["head", 1,4,7,9, "tail"],["head", 0,3,6, "tail"]]
+        tiers = [["head",5,"tail"],["head",2, 8,"tail"],["head",1,4,7,9,"tail"],["head",0,3,6,"tail"]]
         while i < len(depths):
             current_node = depths[i]
             tier = tiers[i]
@@ -88,6 +88,10 @@ class TestGraphs(unittest.TestCase):
             i += 1
 
     def test_check_balanced_4(self):
+        # Implement a function to check if a binary tree is balanced. For the purposes of
+        # this question, a balanced tree is defined to be a tree such that the heights of 
+        # the two subtrees of any node never differ by more than one. 
+        
         pass
 
     def test_validate_bst_5(self):
