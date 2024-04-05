@@ -138,7 +138,24 @@ class BinaryNode:
         self.name = name
         self.left = left
         self.right = right
-        self.parent
+        self.parent = parent
+    
+    def traverse_inorder(self, nodes_list):
+        if self == None:
+            return
+        
+        if self.left != None:
+            self.left.traverse_inorder(nodes_list)
+        
+        nodes_list.append(self)
+
+        if self.right != None:
+            self.right.traverse_inorder(nodes_list)
+        
+        return nodes_list
+    
+    def __str__(self) -> str:
+        return f"{self.name}"
 
 class BinarySearchTree:
     def __init__(self, root = None) -> None:
@@ -156,14 +173,31 @@ class BinarySearchTree:
         return nodes_list[i + 1]
     
     def traverse_inorder(self, nodes_list):
-        if self.left != None:
-            self.left.in_order_traversal(nodes_list)
         
-        nodes_list.append(self)
+        return self.root.traverse_inorder(nodes_list)
 
-        if self.right != None:
-            self.right.in_order_traversal()
+    def create_binary_tree_root(self, elements_list):
+        if len(elements_list) == 0:
+            return
+        i = len(elements_list) // 2
+        self.root = BinaryNode(elements_list[i])
+        self.root.left = self.create_binary_tree(elements_list[:i])
+        self.root.right = self.create_binary_tree(elements_list[(i+1):])
         
+        return self.root
+        
+    def create_binary_tree(self, elements_list):
+        if len(elements_list) == 0:
+            return
+        if len(elements_list) == 1:
+            return BinaryNode(elements_list[0])
+        
+        i = len(elements_list) // 2
+        parent_node = BinaryNode(elements_list[i])
+        parent_node.right = self.create_binary_tree(elements_list[(i+1):])
+        parent_node.left = self.create_binary_tree(elements_list[:i])
+        return parent_node
+    
     def get_next_node(self):
         if self.right != None: 
             while self.left != None:
@@ -176,17 +210,17 @@ class BinarySearchTree:
                 trailing_node = self
                 self = self.parent
 
-    def get_next_node_recursion(self, trailing_node = None):
-        if self.right != None:
-            while self.left != None:
-                self = self.left
-            return self
+    # def get_next_node_recursion(self, trailing_node = None):
+    #     if self.right != None:
+    #         while self.left != None:
+    #             self = self.left
+    #         return self
         
-        trailing_node = self
-        self = self.parent
+    #     trailing_node = self
+    #     self = self.parent
 
-        if self.parent.right != None and self.parent.right != trailing_node: 
-            return self.parent.right.get_next_node()
-        if self.parent.right != None and self.
-        trailing_node = self
-        self = self.parent
+    #     if self.parent.right != None and self.parent.right != trailing_node: 
+    #         return self.parent.right.get_next_node()
+    #     if self.parent.right != None and self.
+    #     trailing_node = self
+    #     self = self.parent

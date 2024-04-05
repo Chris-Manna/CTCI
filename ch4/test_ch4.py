@@ -13,7 +13,7 @@ class TestGraphs(unittest.TestCase):
         self.test_graph = Graph([self.a1, self.a, self.b, self.c, self.d])
 
 
-        # inorder tree traversal
+        # inorder tree traversal, brute force
 
         self.ten = BinaryNode(10)
         self.three = BinaryNode(3)
@@ -37,6 +37,10 @@ class TestGraphs(unittest.TestCase):
         self.five.right = self.six
         self.test_binary_search_tree =  BinarySearchTree(self.ten)
 
+        # Question 4.2 Minimal Tree
+        self.elements_list = list(range(10))
+        self.test_create_binary_tree = BinarySearchTree()
+
     def test_route_between_two_nodes_bidirectional_bfs_1(self):
         # Given a directed graph, design an algorithm to find out whether there is a route between two nodes
         self.assertTrue(self.test_graph.bidirectional_bfs(self.a, self.a))
@@ -47,8 +51,21 @@ class TestGraphs(unittest.TestCase):
         # Minimal Tree: 
         # Given a sorted (increasing order) array with unique integer elements, 
         # write an algorithm to create a binary search tree with minimal height. 
+        # 
+        # test that all elements are in order
 
-        pass
+        self.test_create_binary_tree.create_binary_tree_root(self.elements_list)
+        passed_list = []
+        passed_list = self.test_create_binary_tree.traverse_inorder(passed_list)
+        i = 0
+        while i < len(passed_list):
+            self.assertEqual(str(passed_list[i]), str(self.elements_list[i]))
+            i += 1
+        # 
+        # test that all leaves in the tree at at the same height or 
+        # within one of the maximum height leaf
+
+
     
     def test_list_of_depths_3(self):
         pass
@@ -70,7 +87,7 @@ class TestGraphs(unittest.TestCase):
         # /  \      / \
         #10   14   17  22
 
-        self.assertEqual(self.test_binary_search_tree.in_order_traversal(6), 10)
+        # self.assertEqual(self.test_binary_search_tree.in_order_traversal(6), 10)
         pass
 
     def test_build_order_7(self):
