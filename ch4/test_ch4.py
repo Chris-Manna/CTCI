@@ -61,6 +61,7 @@ class TestGraphs(unittest.TestCase):
         while i < len(passed_list):
             self.assertEqual(str(passed_list[i]), str(self.elements_list[i]))
             i += 1
+        print(self.test_create_binary_tree.level_order_traversal())
         # 
         # test that all leaves in the tree at at the same height or 
         # within one of the maximum height leaf

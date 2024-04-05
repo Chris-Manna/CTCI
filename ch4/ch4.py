@@ -161,6 +161,24 @@ class BinarySearchTree:
     def __init__(self, root = None) -> None:
         self.root = root
 
+    def level_order_traversal(self):
+        self.root
+        queue = []
+        queue.append(self.root)
+        s = ""
+        while len(queue) != 0:
+            next_tier = []
+            while len(queue) != 0:
+                visit = queue.pop(0)
+                s += f" {visit} "
+                if visit != None and visit.left != None:
+                    next_tier.append(visit.left)
+                if visit != None and visit.right != None:
+                    next_tier.append(visit.right)
+            queue = next_tier
+            s += "\n"
+        return s
+
     def in_order_traversal(self, element):
         nodes_list = []
         self.traverse_inorder(nodes_list)
