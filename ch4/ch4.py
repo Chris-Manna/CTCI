@@ -162,6 +162,8 @@ class BinarySearchTree:
         self.root = root
 
     def level_order_traversal(self):
+        h = {}
+        h[f"{self.root.name}"] = self.root.name
         self.root
         queue = []
         queue.append(self.root)
@@ -172,12 +174,15 @@ class BinarySearchTree:
                 visit = queue.pop(0)
                 s += f" {visit} "
                 if visit != None and visit.left != None:
+                    h[f"{visit.name} left"] = visit.left.name
                     next_tier.append(visit.left)
                 if visit != None and visit.right != None:
+                    h[f"{visit.name} right"] = visit.right.name
                     next_tier.append(visit.right)
             queue = next_tier
             s += "\n"
-        return s
+        print(s)
+        return h
 
     def in_order_traversal(self, element):
         nodes_list = []
