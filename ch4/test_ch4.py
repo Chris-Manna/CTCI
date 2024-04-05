@@ -95,6 +95,8 @@ class TestGraphs(unittest.TestCase):
         pass
 
     def test_validate_bst_5(self):
+        # Implement a function to check if a binary tree is a binary search tree. 
+        
         pass
 
     def test_successor_6(self):

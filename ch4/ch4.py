@@ -160,11 +160,12 @@ class LinkedList:
 
 
 class BinaryNode:
-    def __init__(self, name = "", left = None, right = None, parent = None) -> None:
+    def __init__(self, name = "", left = None, right = None, parent = None, height = 0) -> None:
         self.name = name
         self.left = left
         self.right = right
         self.parent = parent
+        self.height = height
     
     def traverse_inorder(self, nodes_list):
         if self == None:
@@ -187,6 +188,8 @@ class BinarySearchTree:
     def __init__(self, root = None) -> None:
         self.root = root
 
+    def is_balanced(self):
+        pass
     def list_of_depths(self):
         depths = []
 
