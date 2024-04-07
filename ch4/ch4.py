@@ -180,6 +180,49 @@ class BinaryNode:
             self.right.traverse_inorder(nodes_list)
         
         return nodes_list
+    def is_node_balanced(self):
+        # print(f"0 self.name: {self.name} height: {self.height}")
+
+        if self == None:
+            return True
+        if self.left == None and self.right == None:
+            self.height = 0
+            return True
+        
+        # print(f"1 self.name: {self.name} height: {self.height}")
+        
+        left_height = -1
+        right_height = -1
+        if self.left != None:
+            # print(f"1.5 self.name: {self.name} height: {self.height} self.left.name: {self.left.name}")
+            is_left_balanced = self.left.is_node_balanced()
+            if is_left_balanced == False:
+                return False
+            left_height = self.left.height
+        
+        # print(f"2 self.name: {self.name} height: {self.height}")
+        
+        if self.right != None:
+            # print(f"2.5 self.name: {self.name} height: {self.height} self.right.name: {self.right.name}")
+            is_right_balanced = self.right.is_node_balanced()
+            if is_right_balanced == False:
+                return False
+            right_height = self.right.height
+        
+        # print(f"3 self.name: {self.name} height: {self.height}")
+        # l3 r1 
+        # l2 r1
+        
+        
+        if left_height > right_height and left_height - 1 > right_height:
+            # print(f"4 self.name: {self.name} height: {self.height}")
+            return False
+        if right_height > left_height and right_height - 1 > left_height:
+            # print(f"5 self.name: {self.name} height: {self.height}")
+            return False
+        self.height = 1 + max(left_height, right_height)
+        # print(f"6 self.name: {self.name} height: {self.height}")
+        return True
     
     def __str__(self) -> str:
         return f"{self.name}"
@@ -188,35 +231,19 @@ class BinarySearchTree:
     def __init__(self, root = None) -> None:
         self.root = root
     
-    def height_value(self):
+    def is_balanced(self):
+        # print("inside is balanced")
         #          5
         #     2,            8
         #  1,     4,      7,     9
         # 0, N,  3, N,   6, N,  N, N
-
-        if self == None: 
-            return 0
-        elif self.left == None and self.right == None: 
-            self.height = 1
+        # create the height of a single node
+        # compare the height of left child node to right child node
+        # print(f"self: {self}")
+        if self.root == None:
+            return True
+        return self.root.is_node_balanced()
         
-        left_height = 0
-        right_height = 0
-        if self.left != None:
-            left_height = self.left.add_height_value(height_value)
-        if self.right != None: 
-            right_height = self.right.add_height_value(height_value)
-        if abs(left_height-right_height) > 1:
-            return False
-        self.root.height += max(left_height, right_height)
-
-    def is_balanced(self):
-        # get height of each node
-        # compare child node of each current node to each other
-        # - if they differ by more than 1, return False
-        # - else return True
-        self.root
-
-        return False
     
     def list_of_depths(self):
         depths = []
@@ -283,7 +310,7 @@ class BinarySearchTree:
     def create_binary_tree_root(self, elements_list):
         if len(elements_list) == 0:
             return
-        i = len(elements_list) // 2
+        i = len(elements_list) // 2 + 1
         self.root = BinaryNode(elements_list[i])
         self.root.left = self.create_binary_tree(elements_list[:i])
         self.root.right = self.create_binary_tree(elements_list[(i+1):])
