@@ -153,9 +153,6 @@ class TestGraphs(unittest.TestCase):
 
         # ignored this
         # self.assertTrue(self.test_create_binary_tree.is_fewer_than_two_children_root())
-        
-
-        pass
 
     def test_successor_6(self):
         # Write an algorithm to find the "next" node (i.e., in-order successor) 
