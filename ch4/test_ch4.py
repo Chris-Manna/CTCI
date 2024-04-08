@@ -137,6 +137,24 @@ class TestGraphs(unittest.TestCase):
     def test_validate_bst_5(self):
         # Implement a function to check if a binary tree is a binary search tree. 
 
+        # tree is is balanced
+        self.test_create_binary_tree.create_binary_tree_root([0,1,2,7,8,9,10, 3,4,5,6])
+        self.assertFalse(self.test_create_binary_tree.elements_in_order_root())
+        
+        self.test_create_binary_tree.create_binary_tree_root([0,1,2,3,4,5,6,7,8,9,10])
+        self.assertTrue(self.test_create_binary_tree.elements_in_order_root())
+
+        self.assertTrue(self.test_create_binary_tree.is_binary_search_tree())
+
+        # all elements in the left subtree are smaller than the parent element &
+        # all elements int he right subtree are greater than the parent element
+
+        # height of the tree is log n of total number of elements - is this right? 
+
+        # ignored this
+        # self.assertTrue(self.test_create_binary_tree.is_fewer_than_two_children_root())
+        
+
         pass
 
     def test_successor_6(self):

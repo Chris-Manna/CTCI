@@ -230,6 +230,76 @@ class BinaryNode:
 class BinarySearchTree:
     def __init__(self, root = None) -> None:
         self.root = root
+
+    def is_binary_search_tree(self):
+        # ignored this because we would have to change the code to a list or something
+        # self.is_fewer_than_two_children_root()
+
+        return self.is_balanced() and self.elements_in_order_root() 
+
+    # helper function
+    # def is_fewer_than_two_children_root(self):
+    #     self.root.
+    #     # return self.is_fewer_than_two_children(self.root)
+    
+    # def is_fewer_than_two_children(self, current_node = None):
+    #     # base case 1
+    #     if current_node == None:
+    #         return True
+    #     # base case 2
+    #     print(f'keys: {current_node.keys}')
+    #     if current_node.left == None and current_node.right == None:
+    #         return True
+        
+    #     # check left subtree
+    #     if current_node.left != None:
+    #         if current_node.left >= current_node.name:
+    #             return False
+    #         if self.elements_in_order(current_node.left) == False:
+    #             return False
+        
+    #     # check right subtree
+    #     if current_node.right != None:
+    #         if current_node.right <= current_node.name:
+    #             return False
+    #         if self.elements_in_order(current_node.right) == False:
+    #             return False
+    #     # all passed
+    #     return True
+
+    # helper function
+    def elements_in_order_root(self):
+        return self.elements_in_order(self.root)
+    def elements_in_order(self, current_node):
+        # print(f"0: {current_node.name}")
+        if current_node.left == None and current_node.right == None or current_node == None:
+            return True
+        # print(f"1: {current_node.name}")
+        
+        if current_node.left != None:
+            # print(f"1.5: {current_node.name}")
+
+            if current_node.left.name >= current_node.name:
+                # print(f"1.70: {current_node.name}")
+
+                return False
+            if self.elements_in_order(current_node.left) == False:
+                # print(f"1.71: {current_node.name}")
+                return False
+        # print(2)
+        if current_node.right != None:
+            # print(f"2.5: {current_node.name}")
+
+            if current_node.right.name <= current_node.name:
+                # print(f"2.70: {current_node.name}")
+
+                return False
+            if self.elements_in_order(current_node.right) == False:
+                # print(f"2.71: {current_node.name}")
+
+                return False
+        # print(f"3: {current_node.name}")
+        return True
     
     def is_balanced(self):
         # print("inside is balanced")
