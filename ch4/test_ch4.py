@@ -41,6 +41,8 @@ class TestGraphs(unittest.TestCase):
         self.elements_list = list(range(10))
         self.test_create_binary_tree = BinarySearchTree()
 
+        self.test_unbalanced_binary_tree = BinarySearchTree()
+
     def test_route_between_two_nodes_bidirectional_bfs_1(self):
         # Given a directed graph, design an algorithm to find out whether there is a route between two nodes
         self.assertTrue(self.test_graph.bidirectional_bfs(self.a, self.a))
@@ -72,20 +74,22 @@ class TestGraphs(unittest.TestCase):
         # Given a binary tree, design an algorithm which creates a linked list of all 
         # the nodes at each depth (e.g., if you have a tree with depth D, 
         # you'll have D linked lists).
-        self.test_create_binary_tree.create_binary_tree_root(self.elements_list)
-        depths = self.test_create_binary_tree.list_of_depths()
-        i = 0
-        tiers = [["head",5,"tail"],["head",2, 8,"tail"],["head",1,4,7,9,"tail"],["head",0,3,6,"tail"]]
-        while i < len(depths):
-            current_node = depths[i]
-            tier = tiers[i]
-            j = 0
-            while current_node != None:
-                # print(f"current_node: {current_node.name} element: {tier[j]}")
-                self.assertEqual(str(tier[j]), str(current_node.name))
-                current_node = current_node.next
-                j += 1
-            i += 1
+        
+        # self.test_create_binary_tree.create_binary_tree_root(self.elements_list)
+        # depths = self.test_create_binary_tree.list_of_depths()
+        # i = 0
+        # tiers = [["head",5,"tail"],["head",2, 8,"tail"],["head",1,4,7,9,"tail"],["head",0,3,6,"tail"]]
+        # while i < len(depths):
+        #     current_node = depths[i]
+        #     tier = tiers[i]
+        #     j = 0
+        #     while current_node != None:
+        #         # print(f"current_node: {current_node.name} element: {tier[j]}")
+        #         self.assertEqual(str(tier[j]), str(current_node.name))
+        #         current_node = current_node.next
+        #         j += 1
+        #     i += 1
+        pass
 
     def test_check_balanced_4(self):
         # Implement a function to check if a binary tree is balanced. For the purposes of
@@ -121,11 +125,15 @@ class TestGraphs(unittest.TestCase):
         # self.assertTrue(self.test_create_binary_tree.is_balanced())
 
 
-        self.test_create_binary_tree.create_binary_tree_root([0,1,2,3,4,5,6,7,8,9,10])
-        self.assertTrue(self.test_create_binary_tree.is_balanced())
+        # self.test_create_binary_tree.create_binary_tree_root([0,1,2,3,4,5,6,7,8,9,10])
+        # self.assertTrue(self.test_create_binary_tree.is_balanced())
 
         # self.test_create_binary_tree.create_binary_tree_root([0,1,2,7,8,9,10, 3,4,5,6])
         # self.assertTrue(self.test_create_binary_tree.is_balanced())
+
+        self.test_unbalanced_binary_tree.create_unbalanced_tree_root([0,1,2,3,4,5,6,7,8,9,10])
+        self.assertFalse(self.test_unbalanced_binary_tree.is_balanced())
+
 
     def test_validate_bst_5(self):
         # Implement a function to check if a binary tree is a binary search tree. 

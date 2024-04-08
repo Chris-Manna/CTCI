@@ -307,6 +307,16 @@ class BinarySearchTree:
         
         return self.root.traverse_inorder(nodes_list)
 
+    def create_unbalanced_tree_root(self, elements_list):
+
+        self.root = BinaryNode(elements_list[0])
+        current_node = self.root
+        i = 0
+        while i < len(elements_list):
+            current_node.right = BinaryNode(elements_list)
+            current_node = current_node.right
+            i+=1
+        return self.root
     def create_binary_tree_root(self, elements_list):
         if len(elements_list) == 0:
             return
