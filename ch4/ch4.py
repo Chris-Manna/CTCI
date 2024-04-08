@@ -320,7 +320,7 @@ class BinarySearchTree:
     def create_binary_tree_root(self, elements_list):
         if len(elements_list) == 0:
             return
-        i = len(elements_list) // 2 + 1
+        i = len(elements_list) // 2
         self.root = BinaryNode(elements_list[i])
         self.root.left = self.create_binary_tree(elements_list[:i])
         self.root.right = self.create_binary_tree(elements_list[(i+1):])
