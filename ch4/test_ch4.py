@@ -96,40 +96,39 @@ class TestGraphs(unittest.TestCase):
         # this question, a balanced tree is defined to be a tree such that the heights of 
         # the two subtrees of any node never differ by more than one. 
         
-        # self.test_create_binary_tree.create_binary_tree_root(self.elements_list)
         self.test_create_binary_tree.create_binary_tree_root([])
         self.assertTrue(self.test_create_binary_tree.is_balanced())
 
-        # self.test_create_binary_tree.create_binary_tree_root([0])
-        # self.assertTrue(self.test_create_binary_tree.is_balanced())
+        self.test_create_binary_tree.create_binary_tree_root([0])
+        self.assertTrue(self.test_create_binary_tree.is_balanced())
 
-        # self.test_create_binary_tree.create_binary_tree_root([0,1])
-        # self.assertTrue(self.test_create_binary_tree.is_balanced())
+        self.test_create_binary_tree.create_binary_tree_root([0,1])
+        self.assertTrue(self.test_create_binary_tree.is_balanced())
         
-        # self.test_create_binary_tree.create_binary_tree_root([0,1,2])
-        # self.assertTrue(self.test_create_binary_tree.is_balanced())
+        self.test_create_binary_tree.create_binary_tree_root([0,1,2])
+        self.assertTrue(self.test_create_binary_tree.is_balanced())
         
-        # self.test_create_binary_tree.create_binary_tree_root([0,1,2,3])
-        # self.assertTrue(self.test_create_binary_tree.is_balanced())
+        self.test_create_binary_tree.create_binary_tree_root([0,1,2,3])
+        self.assertTrue(self.test_create_binary_tree.is_balanced())
         
-        # self.test_create_binary_tree.create_binary_tree_root([0,1,2,3,4])
-        # self.assertTrue(self.test_create_binary_tree.is_balanced())
+        self.test_create_binary_tree.create_binary_tree_root([0,1,2,3,4])
+        self.assertTrue(self.test_create_binary_tree.is_balanced())
 
-        # self.test_create_binary_tree.create_binary_tree_root([0,1,2,3,4,5])
-        # self.assertTrue(self.test_create_binary_tree.is_balanced())
+        self.test_create_binary_tree.create_binary_tree_root([0,1,2,3,4,5])
+        self.assertTrue(self.test_create_binary_tree.is_balanced())
 
-        # self.test_create_binary_tree.create_binary_tree_root([0,1,2,3,4,5,6])
-        # self.assertTrue(self.test_create_binary_tree.is_balanced())
+        self.test_create_binary_tree.create_binary_tree_root([0,1,2,3,4,5,6])
+        self.assertTrue(self.test_create_binary_tree.is_balanced())
 
-        # self.test_create_binary_tree.create_binary_tree_root([0,1,2,3,4,5,6,7])
-        # self.assertTrue(self.test_create_binary_tree.is_balanced())
+        self.test_create_binary_tree.create_binary_tree_root([0,1,2,3,4,5,6,7])
+        self.assertTrue(self.test_create_binary_tree.is_balanced())
 
 
-        # self.test_create_binary_tree.create_binary_tree_root([0,1,2,3,4,5,6,7,8,9,10])
-        # self.assertTrue(self.test_create_binary_tree.is_balanced())
+        self.test_create_binary_tree.create_binary_tree_root([0,1,2,3,4,5,6,7,8,9,10])
+        self.assertTrue(self.test_create_binary_tree.is_balanced())
 
-        # self.test_create_binary_tree.create_binary_tree_root([0,1,2,7,8,9,10, 3,4,5,6])
-        # self.assertTrue(self.test_create_binary_tree.is_balanced())
+        self.test_create_binary_tree.create_binary_tree_root([0,1,2,7,8,9,10, 3,4,5,6])
+        self.assertTrue(self.test_create_binary_tree.is_balanced())
 
         self.test_unbalanced_binary_tree.create_unbalanced_tree_root([0,1,2,3,4,5,6,7,8,9,10])
         self.assertFalse(self.test_unbalanced_binary_tree.is_balanced())
