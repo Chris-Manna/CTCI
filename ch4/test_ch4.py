@@ -10,7 +10,18 @@ class TestGraphs(unittest.TestCase):
         self.b = Node("b", [self.a])
         self.c = Node("c", [self.b])
         self.d = Node("d", [self.c])
-        self.test_graph = Graph([self.a1, self.a, self.b, self.c, self.d])
+        self.test_graph_1 = Graph([self.a1, self.a, self.b, self.c, self.d])
+
+
+
+        # directed graph
+        self.a2 = Node("a")
+        self.b2 = Node("b")
+        self.c2 = Node("c")
+        self.d2 = Node("d")
+        self.e2 = Node("e")
+        self.f2 = Node("f")
+        self.test_graph_2 = Graph([self.a2, self.b2, self.c2, self.d2, self.e2, self.f2], [(self.a2, self.d2), (self.f2, self.b2),(self.b2, self.d2),(self.f2, self.a2),(self.d2, self.c2),])
 
 
         # inorder tree traversal, brute force
@@ -45,9 +56,9 @@ class TestGraphs(unittest.TestCase):
 
     def test_route_between_two_nodes_bidirectional_bfs_1(self):
         # Given a directed graph, design an algorithm to find out whether there is a route between two nodes
-        self.assertTrue(self.test_graph.bidirectional_bfs(self.a, self.a))
-        self.assertTrue(self.test_graph.bidirectional_bfs(self.a, self.a1))
-        self.assertTrue(self.test_graph.bidirectional_bfs(self.a, self.d))
+        self.assertTrue(self.test_graph_1.bidirectional_bfs(self.a, self.a))
+        self.assertTrue(self.test_graph_1.bidirectional_bfs(self.a, self.a1))
+        self.assertTrue(self.test_graph_1.bidirectional_bfs(self.a, self.d))
 
     def test_minimal_tree_2(self):
         # Minimal Tree: 
@@ -209,7 +220,9 @@ class TestGraphs(unittest.TestCase):
         # organize based on the number of vertices in a build
         # organize based on the number of edges in a single build
         # if there are the same number of edges, organize based on the number of 
-
+        
+        # no cycle
+        print(self.test_graph_2.build_order())
         pass
 
     def test_first_common_ancestor_8(self):

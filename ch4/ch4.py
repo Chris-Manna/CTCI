@@ -1,8 +1,13 @@
+import copy
+
 # adjacency list example
 class Node:
     def __init__(self, name, neighbors = []) -> None:
         self.name = name
         self.neighbors = neighbors
+
+    def __str__(self) -> str:
+        return f"{self.name}"
 
 class Graph:
     def __init__(self, vertices = [], edges = []):
@@ -22,8 +27,48 @@ class Graph:
     # Output: f, e, a, b, d, c
     # Hints: #26, #47, #60, #85, #725, #133
     def build_order(self):
+        processed_projects = list()
         
-        pass
+        # get vertices with no in edges
+        in_edges_hash = self.create_dependency_hash()
+        in_edges_hash_2 = self.create_dependency_hash()
+        vertices_without_in_edges = self.get_no_in_edges(in_edges_hash)
+        
+        while len(vertices_without_in_edges) >= 1:
+            # process vertices
+            for vertex in vertices_without_in_edges:
+                no_in_edges = set()
+                # get outgoing edge from vertex
+                for edge in in_edges_hash:
+                    if vertex in in_edges_hash_2[edge]:
+                        if len(in_edges_hash_2[edge]) == 1:
+                            no_in_edges.add(edge)
+                            in_edges_hash_2[edge].remove(vertex)
+                            del(in_edges_hash_2[edge])
+                        else: 
+                            in_edges_hash_2[edge].remove(vertex)
+                processed_projects.append(vertex)
+            in_edges_hash = copy.deepcopy(in_edges_hash_2)
+            vertices_without_in_edges = list(no_in_edges)
+        return processed_projects
+    
+    def get_no_in_edges(self, in_edges_hash):
+        no_in_edges = []
+        for vertex in self.vertices:
+            if not (vertex.name in in_edges_hash):
+                no_in_edges.append(vertex.name)
+        return no_in_edges
+
+    def create_dependency_hash(self):
+        in_edges = {}
+        # edges are dependencies
+        for dependency in self.edges:
+            if dependency[1].name in in_edges:
+                in_edges[dependency[1].name].append(dependency[0].name)
+            else:
+                in_edges[dependency[1].name] = []
+                in_edges[dependency[1].name].append(dependency[0].name)
+        return in_edges
 
     def add_vertices(self, pass_vertices):
         for vertex in pass_vertices:
