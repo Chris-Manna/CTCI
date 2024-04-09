@@ -2,17 +2,17 @@ import copy
 
 # adjacency list example
 class Node:
-    def __init__(self, name, neighbors = []) -> None:
+    def __init__(self, name, neighbors = None) -> None:
         self.name = name
-        self.neighbors = neighbors
+        self.neighbors = [] if not neighbors else neighbors
 
     def __str__(self) -> str:
         return f"{self.name}"
 
 class Graph:
-    def __init__(self, vertices = [], edges = []):
-        self.vertices = vertices
-        self.edges = edges
+    def __init__(self, vertices = None, edges = None):
+        self.vertices = [] if vertices == None else vertices
+        self.edges = [] if edges == None else edges
     
     # You are given a list of projects and a list of dependencies 
     # (which is a list of pairs of projects, where the second project is dependent on 
