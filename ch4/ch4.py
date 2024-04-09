@@ -1,41 +1,42 @@
 # adjacency list example
 class Node:
-    def __init__(self, name, children = []) -> None:
+    def __init__(self, name, neighbors = []) -> None:
         self.name = name
-        self.children = children
+        self.neighbors = neighbors
 
 class Graph:
-    def __init__(self, nodes = []):
-        self.nodes = nodes
+    def __init__(self, vertices = [], edges = []):
+        self.vertices = vertices
+        self.edges = edges
     
-    def add_nodes(self, pass_nodes):
-        for node in pass_nodes:
-            self.nodes.append(node)
+    def add_vertices(self, pass_vertices):
+        for vertex in pass_vertices:
+            self.vertices.append(vertex)
     
-    def dfs(self, start_node, target_node):
+    def dfs(self, start_vertex, target_vertex):
         # potentially the O(n)
         # return True
         pass
 
-    def bidirectional_bfs(self, start_node, end_node):
+    def bidirectional_bfs(self, start_vertex, end_vertex):
         # O(k^(d/2))
-        if start_node == end_node:
+        if start_vertex == end_vertex:
             return True
         
         visited = set()
 
         queue_left = []
-        queue_left.append(start_node)
+        queue_left.append(start_vertex)
         
         queue_right = []
-        queue_right.append(end_node)
+        queue_right.append(end_vertex)
         
-        left_element = start_node
-        right_element = end_node
+        left_element = start_vertex
+        right_element = end_vertex
         while len(queue_left) != 0 or len(queue_right) != 0:
 
-            neighbors_left = left_element.children
-            neighbors_right = right_element.children
+            neighbors_left = left_element.neighbors
+            neighbors_right = right_element.neighbors
             
             for neighbor in neighbors_left:
                 if neighbor in visited:

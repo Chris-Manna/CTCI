@@ -169,6 +169,47 @@ class TestGraphs(unittest.TestCase):
         pass
 
     def test_build_order_7(self):
+        # You are given a list of projects and a list of dependencies 
+        # (which is a list of pairs of projects, where the second project is dependent on 
+        # the first project). 
+        # All of a project's dependencies must be built before the project is. 
+        # Find a build order that will allow the projects to be built. 
+        # If there is no valid build order, return an error.
+        # EXAMPLE
+        # Input:
+        # projects: a, b, c, d, e, f
+        # dependencies: (a, d), (f, b), (b, d), (f, a), (d, c)
+        # Output: f, e, a, b, d, c
+        # Hints: #26, #47, #60, #85, #725, #133
+
+        # pseudocode: DAG
+        # WATCH FOR: cycles
+        # - go through each project and get the dependency
+        # - treat each project like a vertex
+
+        # go through dependencies and resolve them one at a time, creating a chain - it may be a linked list
+        # a <- d
+        # f <- b
+        # b <- d
+        # f <- a
+        # d <- c
+        # they may intersect and there should never be a cycle
+        # arrange the list of projects
+        # start from the element that has the most dependencies and then work backwards from that point
+        # ve
+        # this depends on the number of edges go into a single project
+        # FIRST:
+        # ensure there are no cycles
+        # f <- a <- d
+        # f <- b
+        # b <- d
+        # # to do this, we can create a linked list or a hash table
+        # # if there is a cycle, throw error
+        # SECOND: 
+        # organize based on the number of vertices in a build
+        # organize based on the number of edges in a single build
+        # if there are the same number of edges, organize based on the number of 
+
         pass
 
     def test_first_common_ancestor_8(self):
