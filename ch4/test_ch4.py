@@ -232,10 +232,8 @@ class TestGraphs(unittest.TestCase):
         # self.assertEqual(self.test_binary_search_tree.in_order_traversal(6), 10)
         pass
 
-    def test_build_order_70(self):
-        self.test_graph_2.build_order()
 
-    def test_build_order_71(self):
+    def test_build_order_7(self):
         # You are given a list of projects and a list of dependencies
         # (which is a list of pairs of projects, where the second project is dependent on
         # the first project).
@@ -280,15 +278,18 @@ class TestGraphs(unittest.TestCase):
         # no cycle
         # print("no cycle: ")
 
-        # with self.assertRaises(Exception):
-        #     self.test_graph_cycle_exists_1.build_order()
+        with self.assertRaises(Exception):
+            self.test_graph_cycle_exists_1.build_order()
 
-        # with self.assertRaises(Exception):
-        #     self.test_graph_3.build_order()
+        with self.assertRaises(Exception):
+            self.test_graph_3.build_order()
 
         # # test cycle
-        # with self.assertRaises(Exception):
-        #     self.test_graph_cycle_exists.build_order()
+        with self.assertRaises(Exception):
+            self.test_graph_cycle_exists.build_order()
+        
+        self.test_graph_2.build_order()
+        
         # projects: a, b, c, d, e, f
         # dependencies: (a, d), (f, b), (b, d), (f, a), (d, c)
         pass

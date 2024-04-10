@@ -14,6 +14,48 @@ class Graph:
         self.vertices = [] if vertices == None else vertices
         self.edges = [] if edges == None else edges
     
+    # [
+        # (self.a2, self.d2),
+        # (self.d2, self.a2)
+        # ]
+    def depth_first_search(self, edge, path = set(), processed_edges = set()):
+        # print(f"edge: {edge} path: {path} id:{id(path)}; processed_edges: {processed_edges} id:{id(processed_edges)}")
+        
+        processed_edges.add(edge) # processed_edges = [(self.a2, self.d2)]
+        
+        starting_vertex = edge[0] # self.a2
+        path.add(starting_vertex) # path = { self.a2 }
+
+
+        ending_vertex = edge[1] # self.d2
+        path.add(ending_vertex) # path = { self.a2, self.d2 }
+
+        # [
+        # (self.a2, self.d2), 
+        # (self.d2, self.a2) <--- edge_to_process
+        # ]
+        for edge_to_process in self.edges: 
+            # self.a2 > self.d2 > self.a2
+            # (self.d2, >self.a2<) # self.a2
+            if edge_to_process[1] == starting_vertex and not (edge_to_process in processed_edges) and edge_to_process[1] in path and edge_to_process[0] in path:
+                # print(f"edge_to_process: ({edge_to_process[0].name},{edge_to_process[1].name}), starting_vertex: {starting_vertex.name}")
+                raise Exception("cycle exists")
+            
+            # (>self.a2<, self.d2)
+            if edge_to_process[0] == ending_vertex and not (edge_to_process in processed_edges):
+                self.depth_first_search(edge_to_process, copy.deepcopy(path), copy.deepcopy(processed_edges))
+
+    def is_cycle(self):
+        # for each starting point, we should never have a path that returns to the starting point, if we do, return False
+        # traverse every path starting from every starting point
+        # in every edge & traverse to the edge's ending point
+
+        for edge in self.edges:
+            new_path = set()
+            new_processed_edges = set()
+            self.depth_first_search(edge, new_path, new_processed_edges)
+        
+            
     # You are given a list of projects and a list of dependencies 
     # (which is a list of pairs of projects, where the second project is dependent on 
     # the first project). 
@@ -32,6 +74,8 @@ class Graph:
         # get vertices with no in edges
         in_edges_hash = self.create_dependency_hash()
         in_edges_hash_2 = self.create_dependency_hash()
+        if self.is_cycle():
+            raise Exception("There exists a cycle in the dependencies")
         vertices_without_in_edges = self.get_no_in_edges(in_edges_hash)
         
         while len(vertices_without_in_edges) >= 1:
@@ -50,6 +94,8 @@ class Graph:
                 processed_projects.append(vertex)
             in_edges_hash = copy.deepcopy(in_edges_hash_2)
             vertices_without_in_edges = list(no_in_edges)
+        if len(processed_projects) != len(self.vertices):
+            raise Exception("There exists a project that depends on building another project that is not available")
         return processed_projects
     
     def get_no_in_edges(self, in_edges_hash):
