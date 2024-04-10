@@ -108,6 +108,10 @@ class Graph:
                 "There exists a project that depends on building another project that is not available"
             )
         return processed_projects
+    
+    def build_order_dfs(self):
+        
+        pass
 
     def get_no_in_edges(self, in_edges_hash):
         no_in_edges = []
