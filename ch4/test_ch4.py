@@ -71,6 +71,26 @@ class TestGraphs(unittest.TestCase):
             ],
         )
 
+        self.basic_test = Graph(
+            [self.a2, self.b2, self.c2, self.d2, self.e2, self.f2],
+            [
+                (self.a2, self.d2),
+                (self.f2, self.b2),
+                (self.b2, self.d2),
+                (self.f2, self.a2),
+                (self.d2, self.c2),
+            ],
+        )
+
+        self.cycle_test = Graph(
+
+            [self.a2, self.b2, self.c2, self.d2, self.e2, self.f2],
+            [
+                (self.a2, self.d2),
+                (self.d2, self.a2),
+            ],
+        )
+
         # inorder tree traversal, brute force
 
         self.ten = BinaryNode(10)
@@ -233,6 +253,14 @@ class TestGraphs(unittest.TestCase):
         pass
 
 
+    def test_build_order_with_dfs(self):
+
+        self.basic_test.build_order()
+
+        with self.assertRaises(Exception):
+            self.cycle_test.build_order()
+        
+
     def test_build_order_7(self):
         # You are given a list of projects and a list of dependencies
         # (which is a list of pairs of projects, where the second project is dependent on
@@ -291,7 +319,7 @@ class TestGraphs(unittest.TestCase):
         self.test_graph_2.build_order()
         
         # projects: a, b, c, d, e, f
-        # dependencies: (a, d), (f, b), (b, d), (f, a), (d, c)
+        # dependencies: (a,d), (f,b), (b,d), (f,a), (d,c)
     
     def test_build_order_72(self):
         # solve using depth first search

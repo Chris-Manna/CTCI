@@ -11,6 +11,78 @@ class Node:
         return f"{self.name}"
 
 
+class Projects:
+    def __init__(self, projects=None, dependencies=None):
+        self.projects = [] if projects == None else projects
+        self.dependencies = [] if dependencies == None else dependencies
+    
+    # pseudocode:
+    # process projects with no dependencies
+    # - if the project you're processing is already in path, raise an exception - you can't have projects in the path twice
+    # - add project to path
+    # - remove roject keys that have no dependencies
+    # - remove project from values
+    # return path
+    # space complexity: O(V+E)
+    # time complexity: O(V+E)
+    #  we have to create the hash and we have to iterate through the edges once
+    def build_order(self):
+        projects_hash = {}
+        path = []
+        path_set = set()
+
+        for project in self.projects:
+            projects_hash[project] = []
+
+        for dependency in self.dependencies:
+            project = dependency[1]
+            depends_on = dependency[0]
+            projects_hash[depends_on].append(project)
+        
+        self.dfs(projects_hash, path, path_set)
+
+    def dfs(self, projects_hash, path, path_set):
+        if len(projects_hash) == 0:
+            return path
+        
+        projects_with_no_dependencies = set()
+        for depends_on in projects_hash:
+            if (projects_hash[depends_on]) == 0:
+                projects_with_no_dependencies.add(depends_on)
+        
+        # if there are only projects with dependencies left there must be a cycle somewhere
+        if len(projects_with_no_dependencies) == 0 and len(projects_hash) > 0:
+            raise Exception("cycle exists")
+        
+        # use the set of projects with no dependencies to remove the keys from the projects_hash dict 
+        # no projects are depending on projects when they have no elements in their dependency lists
+        # add those projects to the path set for quick access and append them to the path
+        for project in projects_with_no_dependencies:
+            if project in path_set:
+                raise Exception("cycle exists")
+            del(projects_hash, project)
+            path.append(project)
+            path_set.add(project)
+
+        # process the projects that depend on the project with no dependency to free up the projects that depend on them
+        for depends_on in projects_hash:
+            if depends_on in path_set:
+                raise Exception("cycle exists")
+            
+            # process project
+            for project in projects_with_no_dependencies:
+                if project in projects_hash[depends_on]:
+                    projects_hash.remove(project)
+        
+        return self.dfs(projects_hash, path, path_set)
+        # process projects with no dependencies
+        # - if the project you're processing is already in path, raise an exception - you can't have projects in the path twice
+        # - add project to path
+        # - remove roject keys that have no dependencies
+        # - remove project from values
+        # return path
+
+
 class Graph:
     def __init__(self, vertices=None, edges=None):
         self.vertices = [] if vertices == None else vertices
@@ -59,7 +131,7 @@ class Graph:
         # for each starting point, we should never have a path that returns to the starting point, if we do, return False
         # traverse every path starting from every starting point
         # in every edge & traverse to the edge's ending point
-
+        
         for edge in self.edges:
             new_path = set()
             new_processed_edges = set()
@@ -108,10 +180,24 @@ class Graph:
                 "There exists a project that depends on building another project that is not available"
             )
         return processed_projects
-    
+
     def build_order_dfs(self):
+        hash_path = {}
+        for edge in self.edges:
+            starting_vertex = edge[0]
+            ending_vertex = edge[1]
+            
+            if not(starting_vertex in self.vertices) or not(ending_vertex in self.vertices):
+                raise Exception("Dependency doesn't exist")
+            
+            hash_path[starting_vertex] = ending_vertex
         
-        pass
+        processed_vertices = []
+        for vertex in self.vertices:
+            if not(vertex in hash_path):
+                processed_vertices.append(vertex)
+            else:
+                self.dfs(hash_path[vertex])
 
     def get_no_in_edges(self, in_edges_hash):
         no_in_edges = []
@@ -121,6 +207,7 @@ class Graph:
         return no_in_edges
 
     def create_dependency_hash(self):
+        # second element in edges tuple depends on the first element in tuple
         in_edges = {}
         # edges are dependencies
         for dependency in self.edges:
@@ -134,11 +221,6 @@ class Graph:
     def add_vertices(self, pass_vertices):
         for vertex in pass_vertices:
             self.vertices.append(vertex)
-
-    def dfs(self, start_vertex, target_vertex):
-        # potentially the O(n)
-        # return True
-        pass
 
     def bidirectional_bfs(self, start_vertex, end_vertex):
         # O(k^(d/2))
@@ -199,19 +281,19 @@ class Graph:
 
 
 # DFS
-def dfs(root):
-    if root == None:
-        return None
+# def dfs(root):
+#     if root == None:
+#         return None
 
-    visit(root)
-    root.visited = True
-    for n in root.adjacent:
-        if n.visited == False:
-            search(n)
+#     visit(root)
+#     root.visited = True
+#     for n in root.adjacent:
+#         if n.visited == False:
+#             search(n)
 
 
-def visit(node):
-    pass
+# def visit(node):
+#     pass
 
 
 # BFS uses a queue
