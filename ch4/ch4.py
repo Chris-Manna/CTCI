@@ -15,7 +15,7 @@ class Projects:
     def __init__(self, projects=None, dependencies=None):
         self.projects = [] if projects == None else projects
         self.dependencies = [] if dependencies == None else dependencies
-    
+
     # pseudocode:
     # process projects with no dependencies
     # - if the project you're processing is already in path, raise an exception - you can't have projects in the path twice
@@ -38,29 +38,29 @@ class Projects:
             project = dependency[1]
             depends_on = dependency[0]
             projects_hash[depends_on].append(project)
-        
+
         self.dfs(projects_hash, path, path_set)
 
     def dfs(self, projects_hash, path, path_set):
         if len(projects_hash) == 0:
             return path
-        
+
         projects_with_no_dependencies = set()
         for depends_on in projects_hash:
             if (projects_hash[depends_on]) == 0:
                 projects_with_no_dependencies.add(depends_on)
-        
+
         # if there are only projects with dependencies left there must be a cycle somewhere
         if len(projects_with_no_dependencies) == 0 and len(projects_hash) > 0:
             raise Exception("cycle exists")
-        
-        # use the set of projects with no dependencies to remove the keys from the projects_hash dict 
+
+        # use the set of projects with no dependencies to remove the keys from the projects_hash dict
         # no projects are depending on projects when they have no elements in their dependency lists
         # add those projects to the path set for quick access and append them to the path
         for project in projects_with_no_dependencies:
             if project in path_set:
                 raise Exception("cycle exists")
-            del(projects_hash, project)
+            del (projects_hash, project)
             path.append(project)
             path_set.add(project)
 
@@ -68,19 +68,13 @@ class Projects:
         for depends_on in projects_hash:
             if depends_on in path_set:
                 raise Exception("cycle exists")
-            
+
             # process project
             for project in projects_with_no_dependencies:
                 if project in projects_hash[depends_on]:
                     projects_hash.remove(project)
-        
+
         return self.dfs(projects_hash, path, path_set)
-        # process projects with no dependencies
-        # - if the project you're processing is already in path, raise an exception - you can't have projects in the path twice
-        # - add project to path
-        # - remove roject keys that have no dependencies
-        # - remove project from values
-        # return path
 
 
 class Graph:
@@ -131,7 +125,7 @@ class Graph:
         # for each starting point, we should never have a path that returns to the starting point, if we do, return False
         # traverse every path starting from every starting point
         # in every edge & traverse to the edge's ending point
-        
+
         for edge in self.edges:
             new_path = set()
             new_processed_edges = set()
@@ -186,15 +180,17 @@ class Graph:
         for edge in self.edges:
             starting_vertex = edge[0]
             ending_vertex = edge[1]
-            
-            if not(starting_vertex in self.vertices) or not(ending_vertex in self.vertices):
+
+            if not (starting_vertex in self.vertices) or not (
+                ending_vertex in self.vertices
+            ):
                 raise Exception("Dependency doesn't exist")
-            
+
             hash_path[starting_vertex] = ending_vertex
-        
+
         processed_vertices = []
         for vertex in self.vertices:
-            if not(vertex in hash_path):
+            if not (vertex in hash_path):
                 processed_vertices.append(vertex)
             else:
                 self.dfs(hash_path[vertex])
