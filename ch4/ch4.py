@@ -644,3 +644,32 @@ class BinarySearchTree:
     #     if self.parent.right != None and self.
     #     trailing_node = self
     #     self = self.parent
+    
+    # pseudocode:
+    # use one DFS to find both targets
+    # once we find one target keep track of the ancestor that is closest to the first while 
+    # still on the path towards the second target
+    # once we find the second target, return the common ancestor
+    # once we find one of the targets, we start to backtrack, when paths cross
+    # # return the first instance of common ancestory
+    # AVOID STORING ADDITIONAL NODE IN A DATA STRUCTURE
+    def first_common_ancestor(self, target1, target2):
+        if self.root == None:
+            return None
+        current_node = self.root
+        # common_ancestor = self.dfs_48()
+        # return common_ancestor
+
+    def dfs_48(self, current_node, target_node):
+        if target_node == current_node:
+            return current_node
+        
+        # if 1 target is in the left and 2 target is in the right
+        # return this node as common ancestor
+
+        # if 1 target is in the left and 2 target is in the left
+        # return left search
+        
+        # if 1 target is in the right and 2 target is in the right
+        # return the right search
+        pass
