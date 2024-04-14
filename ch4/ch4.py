@@ -658,7 +658,9 @@ class BinarySearchTree:
             return None
         current_node = self.root
         return self.dfs_48(current_node, target1, target2)
-
+    
+    # use dfs to find the first occurrence of t1 or t2. 
+    # When they are on different branches, return the node where they split.
     def dfs_48(self, current_node, target1, target2):
         if (
             current_node == None
