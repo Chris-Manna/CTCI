@@ -656,8 +656,8 @@ class BinarySearchTree:
     def first_common_ancestor(self, target1, target2):
         if self.root == None:
             return None
-        current_node = self.root
-        return self.dfs_48(current_node, target1, target2)
+        common_ancestor = self.dfs_48(self.root, target1, target2)
+        return common_ancestor
     
     # use dfs to find the first occurrence of t1 or t2. 
     # When they are on different branches, return the node where they split.
