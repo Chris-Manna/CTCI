@@ -657,27 +657,31 @@ class BinarySearchTree:
         if self.root == None:
             return None
         current_node = self.root
-        return self.dfs_48(current_node, target1,target2)
-    
+        return self.dfs_48(current_node, target1, target2)
+
     def dfs_48(self, current_node, target1, target2):
-        if current_node == None or current_node.name == target1 or current_node.name == target2:
+        if (
+            current_node == None
+            or current_node.name == target1
+            or current_node.name == target2
+        ):
             return current_node
         left = None
         right = None
-        
+
         if current_node.left != None:
             left = self.dfs_48(current_node.left, target1, target2)
-        
+
         if current_node.right != None:
             right = self.dfs_48(current_node.right, target1, target2)
-            
+
         if left != None and right != None:
             return current_node
-        
+
         if left != None:
             return left
-        
-        if right != None: 
+
+        if right != None:
             return right
-        
+
         return None

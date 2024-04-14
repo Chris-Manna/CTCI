@@ -353,7 +353,7 @@ class TestGraphs(unittest.TestCase):
 
 
         self.assertEqual(self.test_create_binary_tree.first_common_ancestor(3,5).name, 5)
-        self.assertEqual(self.test_binary_tree.first_common_ancestor(10,10).name,10)
+        self.assertEqual(self.test_binary_tree.first_common_ancestor(10,3).name,10)
         self.assertEqual(self.test_binary_tree.first_common_ancestor(self.four.name,self.six.name).name,5)
         self.assertEqual(self.test_binary_tree.first_common_ancestor(3,6).name,3)
 
