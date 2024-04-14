@@ -113,7 +113,7 @@ class TestGraphs(unittest.TestCase):
         self.three.right = self.five
         self.five.left = self.four
         self.five.right = self.six
-        self.test_binary_search_tree = BinarySearchTree(self.ten)
+        self.test_binary_tree = BinarySearchTree(self.ten)
 
         # Question 4.2 Minimal Tree
         self.elements_list = list(range(10))
@@ -249,7 +249,7 @@ class TestGraphs(unittest.TestCase):
         # /  \      / \
         # 10   14   17  22
 
-        # self.assertEqual(self.test_binary_search_tree.in_order_traversal(6), 10)
+        # self.assertEqual(self.test_binary_tree.in_order_traversal(6), 10)
         pass
 
 
@@ -339,7 +339,23 @@ class TestGraphs(unittest.TestCase):
         pass
 
     def test_first_common_ancestor_8(self):
-        pass
+        self.test_create_binary_tree.create_binary_tree_root(self.elements_list)
+        
+        #    10
+        #   /
+        #  3
+        # / \
+        # 1   5
+        #   / \
+        #  4   6
+        # 
+        # self.test_binary_tree = BinarySearchTree(self.ten)
+
+
+        self.assertEqual(self.test_create_binary_tree.first_common_ancestor(3,5).name, 5)
+        self.assertEqual(self.test_binary_tree.first_common_ancestor(10,10).name,10)
+        self.assertEqual(self.test_binary_tree.first_common_ancestor(self.four.name,self.six.name).name,5)
+        self.assertEqual(self.test_binary_tree.first_common_ancestor(3,6).name,3)
 
     def test_bst_sequences_9(self):
         pass

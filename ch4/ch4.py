@@ -364,7 +364,7 @@ class LinkedList:
 
 
 class BinaryNode:
-    def __init__(self, name="", left=None, right=None, parent=None, height=0) -> None:
+    def __init__(self, name=0, left=None, right=None, parent=None, height=0) -> None:
         self.name = name
         self.left = left
         self.right = right
@@ -644,10 +644,10 @@ class BinarySearchTree:
     #     if self.parent.right != None and self.
     #     trailing_node = self
     #     self = self.parent
-    
+
     # pseudocode:
     # use one DFS to find both targets
-    # once we find one target keep track of the ancestor that is closest to the first while 
+    # once we find one target keep track of the ancestor that is closest to the first while
     # still on the path towards the second target
     # once we find the second target, return the common ancestor
     # once we find one of the targets, we start to backtrack, when paths cross
@@ -657,19 +657,27 @@ class BinarySearchTree:
         if self.root == None:
             return None
         current_node = self.root
-        # common_ancestor = self.dfs_48()
-        # return common_ancestor
-
-    def dfs_48(self, current_node, target_node):
-        if target_node == current_node:
+        return self.dfs_48(current_node, target1,target2)
+    
+    def dfs_48(self, current_node, target1, target2):
+        if current_node == None or current_node.name == target1 or current_node.name == target2:
+            return current_node
+        left = None
+        right = None
+        
+        if current_node.left != None:
+            left = self.dfs_48(current_node.left, target1, target2)
+        
+        if current_node.right != None:
+            right = self.dfs_48(current_node.right, target1, target2)
+            
+        if left != None and right != None:
             return current_node
         
-        # if 1 target is in the left and 2 target is in the right
-        # return this node as common ancestor
-
-        # if 1 target is in the left and 2 target is in the left
-        # return left search
+        if left != None:
+            return left
         
-        # if 1 target is in the right and 2 target is in the right
-        # return the right search
-        pass
+        if right != None: 
+            return right
+        
+        return None
