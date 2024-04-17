@@ -648,13 +648,32 @@ class BinarySearchTree:
     # pseudocode:
     # use dfs to find the first occurrence of t1 or t2. 
     # When they are on different branches, return the node where they split.
+    # Assume both targets exist in the tree and if they both do not, then the first
+    # target that appears will serve as the first common ancestor
     def first_common_ancestor(self, target1, target2):
         if self.root == None:
             return None
-        common_ancestor = self.dfs_48(self.root, target1, target2)
+        
+        if (self.dfs_target(self.root, target1) == None or self.dfs_target(self.root, target2) == None):
+            return None
+
+        common_ancestor = self.dfs_or(self.root, target1, target2)
         return common_ancestor
     
-    def dfs_48(self, current_node, target1, target2):
+    def dfs_target(self, current_node, target):
+        if current_node.name == target:
+            return current_node
+        if current_node.left != None:
+            left = self.dfs_target(current_node.left, target)
+            if left == target:
+                return left
+        if current_node.right != None:
+            right = self.dfs_target(current_node.right, target)
+            if right == target:
+                return right
+        
+
+    def dfs_or(self, current_node, target1, target2):
         if (
             current_node == None
             or current_node.name == target1
@@ -665,10 +684,10 @@ class BinarySearchTree:
         right = None
 
         if current_node.left != None:
-            left = self.dfs_48(current_node.left, target1, target2)
+            left = self.dfs_or(current_node.left, target1, target2)
 
         if current_node.right != None:
-            right = self.dfs_48(current_node.right, target1, target2)
+            right = self.dfs_or(current_node.right, target1, target2)
 
         if left != None and right != None:
             return current_node
