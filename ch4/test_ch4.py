@@ -339,8 +339,11 @@ class TestGraphs(unittest.TestCase):
         pass
 
     def test_first_common_ancestor_8(self):
+
+        # [0,1,2,3,4,5,6,7,8,9]
         self.test_create_binary_tree.create_binary_tree_root(self.elements_list)
-        
+        self.assertEqual(self.test_create_binary_tree.first_common_ancestor(3,25), None)
+        self.assertEqual(self.test_create_binary_tree.first_common_ancestor(3,5).name, 5)
         #    10
         #   /
         #  3
@@ -351,14 +354,12 @@ class TestGraphs(unittest.TestCase):
         # 
         self.test_binary_tree = BinarySearchTree(self.ten)
 
-        self.assertEqual(self.test_create_binary_tree.first_common_ancestor(3,25), None)
-        # [0,1,2,3,4,5,6,7,8,9]
-        self.assertEqual(self.test_create_binary_tree.first_common_ancestor(3,5).name, 5)
         self.assertEqual(self.test_binary_tree.first_common_ancestor(10,3).name,10)
         self.assertEqual(self.test_binary_tree.first_common_ancestor(self.four.name,self.six.name).name,5)
         self.assertEqual(self.test_binary_tree.first_common_ancestor(3,6).name,3)
 
     def test_bst_sequences_9(self):
+        
         pass
 
     def test_check_subtree_10(self):

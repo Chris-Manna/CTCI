@@ -705,3 +705,14 @@ class BinarySearchTree:
             return right
 
         return None
+    def insert(self, element):
+        current_node = self.root
+        trailing_node = None
+        while current_node != None:
+            trailing_node = current_node
+            if element > current_node.name:
+                current_node = current_node.right
+            else:
+                current_node = current_node.left
+        current_node = BinaryNode(element, parent=trailing_node)
+        return current_node
