@@ -661,17 +661,20 @@ class BinarySearchTree:
         return common_ancestor
     
     def dfs_target(self, current_node, target):
+        if current_node == None:
+            return None
         if current_node.name == target:
             return current_node
+        left = None
+        right = None
         if current_node.left != None:
             left = self.dfs_target(current_node.left, target)
-            if left == target:
-                return left
+        if left != None:
+            return left
         if current_node.right != None:
             right = self.dfs_target(current_node.right, target)
-            if right == target:
-                return right
-        
+        if right != None:
+            return right
 
     def dfs_or(self, current_node, target1, target2):
         if (
