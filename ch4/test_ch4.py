@@ -359,8 +359,9 @@ class TestGraphs(unittest.TestCase):
         self.assertEqual(self.test_binary_tree.first_common_ancestor(3,6).name,3)
 
     def test_bst_sequences_9(self):
-        
-        pass
+        elements_new = [2, 1, 3]
+        self.bst_sequences_tree_test = BinarySearchTree()
+        self.bst_sequences_tree_test.insert_multiple_elements(elements_new)
 
     def test_check_subtree_10(self):
         pass
