@@ -372,8 +372,8 @@ class TestGraphs(unittest.TestCase):
         test = set()
         test.add( (1,3))
         test.add((3,1))
-        self.assertSetEqual(self.bst_sequences_tree_test3.rearrange_single_level([1,3]),test)
-        self.bst_sequences_tree_test3.rearrange_single_level([1,3,6,8])
+        self.assertSetEqual(self.bst_sequences_tree_test3.create_permutations([1,3]),test)
+        self.bst_sequences_tree_test3.create_permutations([1,3,6,8])
 
     def test_check_subtree_10(self):
         pass

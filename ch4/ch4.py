@@ -778,15 +778,20 @@ class BinarySearchTree:
         # partner them up with their previous level for full
 
     def rearrange_levels(self, levels):
-        rearranged_levels = []
+        permuted_levels = []
         for level in levels:
-            rearranged_levels.append(self.rearrange_single_level(level))
+            permuted_levels.append(self.create_permutations(level))
+        print(f"permuted_levels: {permuted_levels}")
+        return self.permute_levels(permuted_levels)
+
+    def permute_levels(self):
+        # level in levels
+        # for level 
         
+        pass
 
-    def rearrange_single_level(self, level):
+    def create_permutations(self, level):
         rearranged_level = set()
-        # [1367]
-
         for itr, num in enumerate(level):
 
             level_without_num = level[:itr] + level[itr + 1 :]
