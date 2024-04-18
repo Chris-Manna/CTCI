@@ -705,11 +705,11 @@ class BinarySearchTree:
             return right
 
         return None
-    
+
     def insert_multiple_elements(self, elements):
         for element in elements:
             self.insert(element)
-        
+
     def insert(self, element):
         if self.root == None:
             self.root = BinaryNode(element)
@@ -723,8 +723,80 @@ class BinarySearchTree:
                 current_node = current_node.right
             else:
                 current_node = current_node.left
-        if trailing_node.name > element: 
+        if trailing_node.name > element:
             trailing_node.left = BinaryNode(element)
         else:
             trailing_node.right = BinaryNode(element)
-    
+
+    # prompt:
+    # A binary search tree was created by traversing through an array from left to right and inserting each element. Given a binary search tree with distinct elements, print all possible arrays that could have led to this tree.
+    # EXAMPLE
+    # Input:
+    #      2
+    #   1     3
+    # Output: {2, 1, 3}, {2, 3, 1}
+    #
+    # pseudocode:
+    # using level traverse on a binary tree we are going to generate combinations
+    # of the potential lists that could have been used to create a binary search tree
+    # from the insert_multiple_elements method above
+    def bst_sequences(self):
+        # using level order traversal return each list
+        queue = []
+        current_node = self.root
+        queue.append(current_node)
+        levels = []
+
+        # process all elements the current level
+        while len(queue) > 0:
+
+            current_level = []
+
+            # empty the elements in the current level and
+            # add them to current_level
+            while len(queue) > 0:
+                element = queue.pop(0)
+                current_level.append(element)
+
+            # levels will now have the current level as it's own list
+            levels.append(current_level)
+
+            # get the next level from the current level using the current level elements
+            next_level = []
+            for element in current_level:
+                if element.left != None:
+                    next_level.append(element.left)
+                if element.right != None:
+                    next_level.append(element.right)
+
+            # add all of the elements from next_level into queue
+            for element in next_level:
+                queue.append(element)
+
+        # we now have all of the levels
+        # create all of the combinations for each level and
+        # partner them up with their previous level for full
+
+    def rearrange_levels(self, levels):
+        rearranged_levels = []
+        for level in levels:
+            rearranged_levels.append(self.rearrange_single_level(level))
+        
+
+    def rearrange_single_level(self, level):
+        rearranged_level = set()
+        # [1367]
+
+        for itr, num in enumerate(level):
+
+            level_without_num = level[:itr] + level[itr + 1 :]
+
+            place_in_level = 0
+            while place_in_level < len(level):
+                rearranged_level.add(
+                    tuple(level_without_num[:(place_in_level)]
+                    + [num]
+                    + level_without_num[(place_in_level):])
+                )
+                place_in_level += 1
+        return rearranged_level
