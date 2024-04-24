@@ -359,21 +359,38 @@ class TestGraphs(unittest.TestCase):
         self.assertEqual(self.test_binary_tree.first_common_ancestor(3,6).name,3)
 
     def test_bst_sequences_9(self):
-        # elements1 = [2, 1, 3]
-        # self.bst_sequences_tree_test1 = BinarySearchTree()
-        # self.bst_sequences_tree_test1.insert_multiple_elements(elements1)
+        elements1 = [2, 1, 3]
+        self.bst_sequences_tree_test1 = BinarySearchTree()
+        self.bst_sequences_tree_test1.insert_multiple_elements(elements1)
+        levels_in_order = self.bst_sequences_tree_test1.bst_level_order_traversal()
+        permuted_levels = self.bst_sequences_tree_test1.rearrange_levels(levels_in_order)
+        all_levels_combined = self.bst_sequences_tree_test1.permute_levels(permuted_levels)
+        # self.bst_sequences_tree_test1.bst_sequences()
+        # print(f"permuted_levels: {all_levels_combined}")
+
+        # for itr, level in enumerate(permuted_levels):
+        #     print(f"level itr: {itr}; level: {level}")
+        #     for tuple in level:
+        #         print(f"tuple: {tuple}")
+        #         for itr, element in enumerate(tuple): 
+        #             print(f"itr: {itr}; element: {element}")
+                    
         
-        # elements2 = [2,3,1]
-        # self.bst_sequences_tree_test2 = BinarySearchTree()
-        # self.bst_sequences_tree_test2.insert_multiple_elements(elements2)
+        # self.bst_sequences_tree_test1.bst_sequences()
+        
+        elements2 = [2,3,1]
+        self.bst_sequences_tree_test1.root = None
+        self.bst_sequences_tree_test2 = BinarySearchTree()
+        self.bst_sequences_tree_test2.insert_multiple_elements(elements2)
 
-        self.bst_sequences_tree_test3 = BinarySearchTree()
+        # self.bst_sequences_tree_test3 = BinarySearchTree()
 
-        test = set()
-        test.add( (1,3))
-        test.add((3,1))
-        self.assertSetEqual(self.bst_sequences_tree_test3.create_permutations([1,3]),test)
-        self.bst_sequences_tree_test3.create_permutations([1,3,6,8])
+        # test = set()
+        # test.add((1,3))
+        # test.add((3,1))
+        # self.assertSetEqual(self.bst_sequences_tree_test3.create_permutations([1,3]),test)
+        # self.bst_sequences_tree_test3.create_permutations([1,3,6,8])
+
 
     def test_check_subtree_10(self):
         pass
@@ -382,6 +399,17 @@ class TestGraphs(unittest.TestCase):
         pass
 
     def test_paths_with_sum_12(self):
+        pass
+
+    def test_nine_balls(self):
+        123456789
+        a = 123
+        b = 456
+        c = 789
+        
+        balance1 = 123^456
+        balance2 = 1^3 # (2) on the side OR if 123^456 is balanced...
+        balance3 = 7^9 # (8) on the side
         pass
 
 

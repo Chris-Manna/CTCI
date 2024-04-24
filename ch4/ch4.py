@@ -742,6 +742,12 @@ class BinarySearchTree:
     # from the insert_multiple_elements method above
     def bst_sequences(self):
         # using level order traversal return each list
+        levels = self.bst_level_order_traversal()
+        all_permutations_for_each_level = self.rearrange_levels(levels)
+        all_permuted_levels_combined = self.permute_levels(all_permutations_for_each_level)
+        return all_permuted_levels_combined
+    
+    def bst_level_order_traversal(self):
         queue = []
         current_node = self.root
         queue.append(current_node)
@@ -775,20 +781,90 @@ class BinarySearchTree:
 
         # we now have all of the levels
         # create all of the combinations for each level and
-        # partner them up with their previous level for full
-
+        # partner them up with their previous level
+        return levels
+    
     def rearrange_levels(self, levels):
         permuted_levels = []
         for level in levels:
-            permuted_levels.append(self.create_permutations(level))
-        print(f"permuted_levels: {permuted_levels}")
-        return self.permute_levels(permuted_levels)
+            # print(f"list(self.create_permutations(level)): {list(self.create_permutations(level))}")
+            permuted_levels.append(list(self.create_permutations(level)))
+        # print(f"permuted_levels: {permuted_levels}")
+        return permuted_levels
 
-    def permute_levels(self):
+    def permute_levels(self, permuted_levels, itr = 0):
         # level in levels
-        # for level 
+        if len(permuted_levels) == 0:
+            return
+        """
+        Pseudocode:
+        we want to align every permutation for every level
+        with every other permutation on every level for as many
+        levels there are
+
+        we take the first part of every element and connect it once, to each ending element
+        if the levels looks like this: 
         
-        pass
+        {
+            0:[[2]], 
+            1:[[3, 1],[1, 3]], 
+            2:[[a,b,c,d],[b,a,c,d],[b,c,a,d],[b,c,d,a], [a,c,b,d],[a,c,d,b],[c,a,b,d],[a,b,d,c],[d,a,b,c],[a,d,b,c],[a,b,d,c]]
+        }
+        
+        then we would prepend the 0th tier elements to every array in tier 1
+        and our array connecting the first two tiers would look like this: 
+        prepended_list = [[2,3,1], [2,1,3]]
+
+        then connecting our prepended list with the final tier our list would look like this: 
+           2
+         3   1
+        a b c d
+        prepended_list = [
+            [2,3,1,a,b,c,d],
+            [2,3,1,b,a,c,d],
+            [2,3,1,b,c,a,d],
+            [2,3,1,b,c,d,a],
+            [2,3,1,a,c,b,d],
+            [2,3,1,a,c,d,b],
+            [2,3,1,c,a,b,d],
+            [2,3,1,a,b,d,c],
+            [2,3,1,d,a,b,c],
+            [2,3,1,a,d,b,c],
+            [2,3,1,a,b,d,c],
+            [2,1,3,a,b,c,d],
+            [2,1,3,b,a,c,d],
+            [2,1,3,b,c,a,d],
+            [2,1,3,b,c,d,a],
+            [2,1,3,a,c,b,d],
+            [2,1,3,a,c,d,b],
+            [2,1,3,c,a,b,d],
+            [2,1,3,a,b,d,c],
+            [2,1,3,d,a,b,c],
+            [2,1,3,a,d,b,c],
+        ]
+        Each level starts with the prepend and we merge them with the appending elements
+
+        """
+        print(f"permuted_levels: {permuted_levels}")
+        permuted_hash = {}
+        for itr, permuted_level in enumerate(permuted_levels):
+            if itr not in permuted_hash:
+                permuted_hash[itr] = []
+            permuted_hash[itr].append(permuted_level[itr])
+        print(f"permuted_hash: {permuted_hash}")
+        prepended_lists1 = []
+        prepended_lists2 = []
+        # for permuted_tier in list(permuted_hash.keys()):
+            # print(f"permuted_tier: {permuted_tier}; permuted_hash[permuted_tier]: {permuted_hash[permuted_tier]}")
+            # for permutation in permuted_hash[permuted_tier]:
+                # prepended_lists2.append(permutation + list(permuted_hash[permuted_tier]))
+                # print(f"permutation: {permutation}")
+            # prepended_lists1 = []
+            # for element in prepended_lists2:
+            #     prepended_lists1.append(element)
+            # prepended_lists2 = []
+        # print(f"prepended_lists1: {prepended_lists1}")
+        return prepended_lists1
 
     def create_permutations(self, level):
         rearranged_level = set()
