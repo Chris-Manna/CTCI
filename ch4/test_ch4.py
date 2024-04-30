@@ -359,27 +359,52 @@ class TestGraphs(unittest.TestCase):
         self.assertEqual(self.test_binary_tree.first_common_ancestor(3,6).name,3)
 
     def test_bst_sequences_9(self):
+        def hint1(self):
+            # What is the very first value that must be in each array? 
+            pass
+        def hint2(self):
+            #48
+            pass
+        def hint3(self):
+            #66
+            pass
+        def hint4(self):
+            #82
+            pass
+
+        # elements0 = [2]
+        # self.bst_sequences_tree_test1 = BinarySearchTree()
+        # self.bst_sequences_tree_test1.insert_multiple_elements(elements0)
+        # paths = self.bst_sequences_tree_test1.bst_sequences()
+        # print(paths)
+        # self.assertListEqual(paths,[elements0])
+        
+        # elements0_left = [2,1]
+        # self.bst_sequences_tree_test1 = BinarySearchTree()
+        # self.bst_sequences_tree_test1.insert_multiple_elements(elements0_left)
+        # paths = self.bst_sequences_tree_test1.bst_sequences()
+        # print(paths)
+        # elements0_right = [2,3]
+        # self.bst_sequences_tree_test1 = BinarySearchTree()
+        # self.bst_sequences_tree_test1.insert_multiple_elements(elements0_right)
+        # paths = self.bst_sequences_tree_test1.bst_sequences()
+        # print(paths)
+
         elements1 = [2, 1, 3]
         self.bst_sequences_tree_test1 = BinarySearchTree()
         self.bst_sequences_tree_test1.insert_multiple_elements(elements1)
-        levels_in_order = self.bst_sequences_tree_test1.bst_level_order_traversal()
+        paths = self.bst_sequences_tree_test1.bst_sequences()
+        print(paths)
         # self.bst_sequences_tree_test1.bst_sequences()
         # print(f"permuted_levels: {all_levels_combined}")
-
-        # for itr, level in enumerate(permuted_levels):
-        #     print(f"level itr: {itr}; level: {level}")
-        #     for tuple in level:
-        #         print(f"tuple: {tuple}")
-        #         for itr, element in enumerate(tuple): 
-        #             print(f"itr: {itr}; element: {element}")
-                    
+     
         
-        # self.bst_sequences_tree_test1.bst_sequences()
+        # # self.bst_sequences_tree_test1.bst_sequences()
         
-        elements2 = [2,3,1]
-        self.bst_sequences_tree_test1.root = None
-        self.bst_sequences_tree_test2 = BinarySearchTree()
-        self.bst_sequences_tree_test2.insert_multiple_elements(elements2)
+        # elements2 = [2,3,1]
+        # self.bst_sequences_tree_test1.root = None
+        # self.bst_sequences_tree_test2 = BinarySearchTree()
+        # self.bst_sequences_tree_test2.insert_multiple_elements(elements2)
 
         # self.bst_sequences_tree_test3 = BinarySearchTree()
 
@@ -391,6 +416,23 @@ class TestGraphs(unittest.TestCase):
 
 
     def test_check_subtree_10(self):
+        # Check Subtree: 
+        # T1 and T2 are two very large binary trees, with T1 much bigger than T2. 
+        # Create an algorithm to determine if T2 is a subtree of T1.
+        # A tree T2 is a subtree of T1 if there exists a node n in T1 such that 
+        # the subtree of n is identical to T2. That is, if you cut off the tree 
+        # at node n, the two trees would be identical. 
+        def hint1(self):
+            # If T2 is a subtree of Tl, how will its in-order traversal compare to Tl's? 
+            # What about its pre-order and post-order traversal?
+            pass
+        def hint2(self):
+            pass
+        def hint3(self):
+            pass
+        def hint4(self):
+            pass
+
         pass
 
     def test_random_node_11(self):
