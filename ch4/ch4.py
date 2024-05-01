@@ -750,9 +750,11 @@ class BinarySearchTree:
 
         if node == None:
             return
+
         if node.left != None:
             # get_left_paths
             pass
+
         if node.right != None:
             # get_right_paths
             pass
