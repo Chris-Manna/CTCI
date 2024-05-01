@@ -743,10 +743,11 @@ class BinarySearchTree:
     def bst_sequences(self):
         paths = [[]]
         return self.bst_sequences_helper(self.root, paths)
-    
+
     def bst_sequences_helper(self, node):
         left_paths = []
         right_paths = []
+
         if node == None:
             return
         if node.left != None:
@@ -755,21 +756,21 @@ class BinarySearchTree:
         if node.right != None:
             # get_right_paths
             pass
-        
+
         # create lr_paths
         lr_paths = []
-        
+
         # create rl_paths
         rl_paths = []
 
         if len(lr_paths + rl_paths) == 0:
-            return [[ node.name ]]
+            return [[node.name]]
         extensions = lr_paths + rl_paths
         for path in extensions:
             path = [node.name] + path
-        
+
         return extensions
 
-    # 
+    #
     def check_subtree(self):
         pass
