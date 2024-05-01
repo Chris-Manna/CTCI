@@ -372,30 +372,30 @@ class TestGraphs(unittest.TestCase):
             #82
             pass
 
-        elements0 = [2]
-        self.bst_sequences_tree_test1 = BinarySearchTree()
-        self.bst_sequences_tree_test1.insert_multiple_elements(elements0)
-        paths0 = self.bst_sequences_tree_test1.bst_sequences()
-        print(f"paths0: {paths0}")
+        # elements0 = [2]
+        # self.bst_sequences_tree_test1 = BinarySearchTree()
+        # self.bst_sequences_tree_test1.insert_multiple_elements(elements0)
+        # paths0 = self.bst_sequences_tree_test1.bst_sequences()
+        # print(f"paths0: {paths0}")
         # self.assertListEqual(paths0,[elements0])
         
-        elements0_left = [2,1]
-        self.bst_sequences_tree_test2 = BinarySearchTree()
-        self.bst_sequences_tree_test2.insert_multiple_elements(elements0_left)
-        paths1 = self.bst_sequences_tree_test2.bst_sequences()
-        print(f"paths1: {paths1}")
+        # elements0_left = [2,1]
+        # self.bst_sequences_tree_test2 = BinarySearchTree()
+        # self.bst_sequences_tree_test2.insert_multiple_elements(elements0_left)
+        # paths1 = self.bst_sequences_tree_test2.bst_sequences()
+        # print(f"paths1: {paths1}")
 
-        elements0_right = [2,3]
-        self.bst_sequences_tree_test3 = BinarySearchTree()
-        self.bst_sequences_tree_test3.insert_multiple_elements(elements0_right)
-        paths2 = self.bst_sequences_tree_test3.bst_sequences()
-        print(f"paths2: {paths2}")
+        # elements0_right = [2,3]
+        # self.bst_sequences_tree_test3 = BinarySearchTree()
+        # self.bst_sequences_tree_test3.insert_multiple_elements(elements0_right)
+        # paths2 = self.bst_sequences_tree_test3.bst_sequences()
+        # print(f"paths2: {paths2}")
 
-        elements1 = [2, 1, 3]
-        self.bst_sequences_tree_test4 = BinarySearchTree()
-        self.bst_sequences_tree_test4.insert_multiple_elements(elements1)
-        paths3 = self.bst_sequences_tree_test4.bst_sequences()
-        print(f"paths3: {paths3}")
+        # elements1 = [2, 1, 3]
+        # self.bst_sequences_tree_test4 = BinarySearchTree()
+        # self.bst_sequences_tree_test4.insert_multiple_elements(elements1)
+        # paths3 = self.bst_sequences_tree_test4.bst_sequences()
+        # print(f"paths3: {paths3}")
 
         elements1 = [3,1,0,2,5,4,6]
         self.bst_sequences_tree_test5 = BinarySearchTree()

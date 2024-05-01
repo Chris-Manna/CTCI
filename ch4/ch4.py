@@ -743,11 +743,13 @@ class BinarySearchTree:
     def bst_sequences(self):
         depth_switch_paths = self.depth_switch_paths(self.root)
         level_switch_paths = self.get_level_switch()
+        print(f"level_switch_paths: {level_switch_paths}")
         return depth_switch_paths
     
     def get_level_switch(self):
         # using level order traversal return each list
         levels = self.bst_level_order_traversal()
+        print(f"levels: {levels}")
         all_permutations_for_each_level = self.rearrange_levels(levels)
         all_permuted_levels_combined = self.permute_levels(all_permutations_for_each_level)
         return all_permuted_levels_combined
@@ -788,12 +790,21 @@ class BinarySearchTree:
         # create all of the combinations for each level and
         # partner them up with their previous level
         return levels
-    
+    def print_permuted_list(self,permuted_list):
+        for permuted_tuple in permuted_list:
+            s = ""
+            for element in permuted_tuple: 
+                s += str(element.name) + ", "
+            print(f"{s}")
     def rearrange_levels(self, levels):
         permuted_levels = []
         for level in levels:
             # print(f"list(self.create_permutations(level)): {list(self.create_permutations(level))}")
-            permuted_levels.append(list(self.create_permutations(level)))
+            permuted_list = list(self.create_permutations(level))
+            print(f'print_permuted_list: ')
+            self.print_permuted_list(permuted_list)
+
+            permuted_levels.append(permuted_list)
         # print(f"permuted_levels: {permuted_levels}")
         return permuted_levels
 
@@ -850,24 +861,24 @@ class BinarySearchTree:
         Each level starts with the prepend and we merge them with the appending elements
 
         """
-        print(f"permuted_levels: {permuted_levels}")
+        # print(f"permuted_levels: {permuted_levels}")
         permuted_hash = {}
         for itr, permuted_level in enumerate(permuted_levels):
             if itr not in permuted_hash:
                 permuted_hash[itr] = []
-            permuted_hash[itr].append(permuted_level[itr])
-        print(f"permuted_hash: {permuted_hash}")
+            permuted_hash[itr].append(permuted_level)
+        # print(f"permuted_hash[2]: {permuted_hash[2]}")
         prepended_lists1 = []
         prepended_lists2 = []
         # for permuted_tier in list(permuted_hash.keys()):
-            # print(f"permuted_tier: {permuted_tier}; permuted_hash[permuted_tier]: {permuted_hash[permuted_tier]}")
-            # for permutation in permuted_hash[permuted_tier]:
-                # prepended_lists2.append(permutation + list(permuted_hash[permuted_tier]))
-                # print(f"permutation: {permutation}")
-            # prepended_lists1 = []
-            # for element in prepended_lists2:
-            #     prepended_lists1.append(element)
-            # prepended_lists2 = []
+        #     print(f"permuted_tier: {permuted_tier}; permuted_hash[permuted_tier]: {permuted_hash[permuted_tier]}")
+        #     for permutation in permuted_hash[permuted_tier]:
+        #         prepended_lists2.append(permutation + list(permuted_hash[permuted_tier]))
+        #         print(f"permutation: {permutation}")
+        #     prepended_lists1 = []
+        #     for element in prepended_lists2:
+        #         prepended_lists1.append(element)
+        #     prepended_lists2 = []
         # print(f"prepended_lists1: {prepended_lists1}")
         return prepended_lists1
 
