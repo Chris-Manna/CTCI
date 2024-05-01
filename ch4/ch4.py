@@ -759,13 +759,13 @@ class BinarySearchTree:
             # get_right_paths
             right_paths = self.bst_sequences_helper(node.right)
 
-        # because the paths are interchangeable,
+        # combine left path with right path and right path with left path
         # append right path to left path
         lr_paths = []
         for left_path in left_paths:
             for right_path in right_paths:
                 lr_paths.append(left_path + right_path)
-
+        
         # append left path to right path
         rl_paths = []
         for left_path in left_paths:
