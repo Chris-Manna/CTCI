@@ -759,21 +759,34 @@ class BinarySearchTree:
             # get_right_paths
             right_paths = self.bst_sequences_helper(node.right)
 
-        # create lr_paths
+        # because the paths are interchangeable,
+        # append right path to left path
         lr_paths = []
         for left_path in left_paths:
             for right_path in right_paths:
                 lr_paths.append(left_path + right_path)
-        
-        # create rl_paths
+
+        # append left path to right path
         rl_paths = []
         for left_path in left_paths:
             for right_path in right_paths:
                 rl_paths.append(right_path + left_path)
 
+        prepended_extensions = []
         if len(lr_paths + rl_paths) == 0:
+
+            if len(left_paths) != 0:
+                for each_path in left_paths:
+                    prepended_extensions.append([node.name] + each_path)
+                return prepended_extensions
+            
+            elif len(right_paths) != 0:
+                for each_path in right_paths:
+                    prepended_extensions.append([node.name] + each_path)
+                return prepended_extensions
+            
             return [[node.name]]
-        
+
         extensions = lr_paths + rl_paths
         prepended_extensions = []
         for path in extensions:
