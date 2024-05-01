@@ -744,66 +744,31 @@ class BinarySearchTree:
         paths = [[]]
         return self.bst_sequences_helper(self.root, paths)
     
-    def bst_sequences_helper(self, node, prepend_paths):
+    def bst_sequences_helper(self, node):
+        left_paths = []
+        right_paths = []
         if node == None:
-            return prepend_paths
+            return
+        if node.left != None:
+            # get_left_paths
+            pass
+        if node.right != None:
+            # get_right_paths
+            pass
         
-        left_prepend_paths = []
-        left_extension_paths = []
-        right_prepend_paths = []
-        right_extension_paths = []
+        # create lr_paths
+        lr_paths = []
+        
+        # create rl_paths
+        rl_paths = []
 
-        # add the current node to every existing path
-        for prepend_path in prepend_paths:
-            prepend_path.append(node.name)
+        if len(lr_paths + rl_paths) == 0:
+            return [[ node.name ]]
+        extensions = lr_paths + rl_paths
+        for path in extensions:
+            path = [node.name] + path
         
-        # no children
-        if node.left == None and node.right == None:
-            return prepend_paths
-        
-        # one child
-        # if there is a left subtree, capture all paths down the left subtree
-        # note that every path down the left subtree should start with the first left node
-        # which is what happens in the for loop above
-        if node.left != None and node.right == None:
-            
-            for path in prepend_paths: 
-                left_prepend_paths.append(path)
-            left_extension_paths = self.bst_sequences_helper(node.left, [])
-            
-        
-        # one child
-        if node.right != None and node.left == None:
-            for prepend_path in prepend_paths: 
-                right_prepend_paths.append(prepend_path)
-
-            right_extension_paths = self.bst_sequences_helper(node.right, right_prepend_paths)
-        
-
-        # two children
-
-        # prepend every path passed into the helper
-        lr_combined_extensions = []
-        for l_path in left_paths:
-            for r_path in right_paths:
-                lr_combined_extensions.append(l_path + r_path)
-        
-        rl_combined_extensions = []
-        for r_path in right_paths:
-            for l_path in left_paths:
-                rl_combined_extensions.append(r_path + left_paths)
-        
-        all_paths = []
-        for prepend in paths:
-            for combined_extension in lr_combined_extensions + rl_combined_extensions:
-                all_paths.append(prepend + combined_extension)
-
-        if len(all_paths) == 0:
-            for path in paths:
-                all_paths.append(path)
-            return all_paths
-        
-        return all_paths
+        return extensions
 
     # 
     def check_subtree(self):
