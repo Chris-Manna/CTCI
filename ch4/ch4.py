@@ -741,11 +741,10 @@ class BinarySearchTree:
     # of the potential lists that could have been used to create a binary search tree
     # from the insert_multiple_elements method above
     def bst_sequences(self):
-        depth_switch_paths = self.depth_switch_paths_helper(self.root)
-        # level_switch_paths = self.level_switch_paths_helper(self.root)
+        depth_switch_paths = self.depth_switch_paths(self.root)
         return depth_switch_paths
 
-    def depth_switch_paths_helper(self, node):
+    def depth_switch_paths(self, node):
         left_paths = []
         right_paths = []
 
@@ -754,11 +753,11 @@ class BinarySearchTree:
 
         if node.left != None:
             # get_left_paths
-            left_paths = self.depth_switch_paths_helper(node.left)
+            left_paths = self.depth_switch_paths(node.left)
 
         if node.right != None:
             # get_right_paths
-            right_paths = self.depth_switch_paths_helper(node.right)
+            right_paths = self.depth_switch_paths(node.right)
 
         # combine left path with right path and right path with left path
         # append right path to left path
