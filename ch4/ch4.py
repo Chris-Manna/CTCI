@@ -742,7 +742,7 @@ class BinarySearchTree:
     # from the insert_multiple_elements method above
     def bst_sequences(self):
         paths = [[]]
-        return self.bst_sequences_helper(self.root, paths)
+        return self.bst_sequences_helper(self.root)
 
     def bst_sequences_helper(self, node):
         left_paths = []
@@ -753,25 +753,33 @@ class BinarySearchTree:
 
         if node.left != None:
             # get_left_paths
-            pass
+            left_paths = self.bst_sequences_helper(node.left)
 
         if node.right != None:
             # get_right_paths
-            pass
+            right_paths = self.bst_sequences_helper(node.right)
 
         # create lr_paths
         lr_paths = []
-
+        for left_path in left_paths:
+            for right_path in right_paths:
+                lr_paths.append(left_path + right_path)
+        
         # create rl_paths
         rl_paths = []
+        for left_path in left_paths:
+            for right_path in right_paths:
+                rl_paths.append(right_path + left_path)
 
         if len(lr_paths + rl_paths) == 0:
             return [[node.name]]
+        
         extensions = lr_paths + rl_paths
+        prepended_extensions = []
         for path in extensions:
-            path = [node.name] + path
+            prepended_extensions.append([node.name] + path)
 
-        return extensions
+        return prepended_extensions
 
     #
     def check_subtree(self):

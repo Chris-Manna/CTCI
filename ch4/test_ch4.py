@@ -394,7 +394,7 @@ class TestGraphs(unittest.TestCase):
         self.bst_sequences_tree_test1 = BinarySearchTree()
         self.bst_sequences_tree_test1.insert_multiple_elements(elements1)
         paths = self.bst_sequences_tree_test1.bst_sequences()
-        print(paths)
+        print(f"paths: {paths}")
         # self.bst_sequences_tree_test1.bst_sequences()
         # print(f"permuted_levels: {all_levels_combined}")
      
