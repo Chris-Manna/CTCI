@@ -784,6 +784,28 @@ class BinarySearchTree:
     #      ^           4       4
     #      ^             5       5
     #      ^             5       5
+    # [a,c,b], [[d,e,f],[d,f,e]]
+    #  ^        0       0
+    #  ^          1       1
+    #  ^            2       2
+    #  ^              3       3
+    #    ^       1       1
+    #    ^         2       2
+    #    ^           3       3
+    #    ^             4       4
+    #    ^         2       2
+    #    ^           3       3
+    #    ^             4       4
+    #    ^           3       3
+    #    ^             4       4
+    #    ^             4       4
+    #      ^         3       3
+    #      ^           4       4
+    #      ^             5       5
+    #      ^           4       4
+    #      ^             5       5
+    #      ^             5       5
+    
     def _add_each_element_from_into_(self, one_path, multiple_paths):
         new_path = []
         for itr, element in enumerate(one_path):
