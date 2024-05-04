@@ -741,17 +741,104 @@ class BinarySearchTree:
     # of the potential lists that could have been used to create a binary search tree
     # from the insert_multiple_elements method above
     def bst_sequences(self):
-        depth_switch_paths = self.depth_switch_paths(self.root)
-        level_switch_paths = self.get_level_switch()
-        print(f"level_switch_paths: {level_switch_paths}")
-        return depth_switch_paths
+        self.bst_sequences_helper(self.root)
+
+        # depth_switch_paths = self.depth_switch_paths(self.root)
+        # level_switch_paths = self.get_level_switch()
+        # print(f"level_switch_paths: {level_switch_paths}")
+        # return depth_switch_paths
+
+    def _is_leaf(self, node):
+        return node.left == None and node.right == None
+
+    def _is_only_left_path(self, node):
+        return node.left != None and node.right == None
+
+    def _is_only_right_path(self, node):
+        return node.right != None and node.left == None
+
+    def _prepend_node_to_paths(self, node, paths):
+        prepended_node_to_paths = []
+        for path in paths:
+            prepended_node_to_paths.append([node] + path)
+        return prepended_node_to_paths
     
+    def _add_each_element_from_into_(self, one_path, multiple_paths):
+        
+        # [a,b,c],[a,c,b], [d,e,f],[d,f,e]
+        #  ^               0       0
+        #  ^                 1       1
+        #  ^                   2       2
+        #  ^                     3       3
+        #    ^              1       1
+        #    ^                2       2
+        #    ^                  3       3
+        #    ^                    4       4
+        #    ^                2       2
+        #    ^                  3       3
+        #    ^                    4       4
+        #    ^                  3       3
+        #    ^                    4       4
+        #    ^                    4       4
+        #      ^              2       2
+        #      ^                3       3
+        #      ^                  4       4
+        #      ^                    5       5
+        #      ^                3       3
+        #      ^                  4       4
+        #      ^                    5       5
+        #      ^                  4       4
+        #      ^                    5       5
+        #      ^                    5       5
+        pass
+
+    def bst_sequences_helper(self, node):
+        left_paths = []
+        right_paths = []
+
+        if node == None:
+            return
+
+        if self._is_leaf(node):
+            return [[node.name]]
+
+        if self._is_only_left_path(node):
+            # get_left_paths
+            left_paths = self.bst_sequences_helper(node.left)
+            prepended_paths = self._prepend_node_to_paths(node, left_paths)
+            return prepended_paths
+
+        if self._is_only_left_path(node):
+            # get_right_paths
+            right_paths = self.bst_sequences_helper(node.right)
+            prepended_paths = self._prepend_node_to_paths(node, right_paths)
+            return prepended_paths
+        
+        # there exists left and right child nodes
+        
+        # get_left_paths
+        left_paths = self.bst_sequences_helper(node.left)
+        
+        # get_right_paths
+        right_paths = self.bst_sequences_helper(node.right)
+        
+        # combine left path with right path
+        combined_paths = []
+        # [a,d,e,f,b,c]
+        for left_path in left_paths:
+            combined_paths = self._add_each_element_from_into_(left_path, right_paths)
+        
+        prepended_extensions = self._prepend_node_to_paths(node, combined_paths)    
+        return prepended_extensions
+
     def get_level_switch(self):
         # using level order traversal return each list
         levels = self.bst_level_order_traversal()
         print(f"levels: {levels}")
         all_permutations_for_each_level = self.rearrange_levels(levels)
-        all_permuted_levels_combined = self.permute_levels(all_permutations_for_each_level)
+        all_permuted_levels_combined = self.permute_levels(
+            all_permutations_for_each_level
+        )
         return all_permuted_levels_combined
 
     def bst_level_order_traversal(self):
@@ -790,25 +877,27 @@ class BinarySearchTree:
         # create all of the combinations for each level and
         # partner them up with their previous level
         return levels
-    def print_permuted_list(self,permuted_list):
+
+    def print_permuted_list(self, permuted_list):
         for permuted_tuple in permuted_list:
             s = ""
-            for element in permuted_tuple: 
+            for element in permuted_tuple:
                 s += str(element.name) + ", "
             print(f"{s}")
+
     def rearrange_levels(self, levels):
         permuted_levels = []
         for level in levels:
             # print(f"list(self.create_permutations(level)): {list(self.create_permutations(level))}")
             permuted_list = list(self.create_permutations(level))
-            print(f'print_permuted_list: ')
+            print(f"print_permuted_list: ")
             self.print_permuted_list(permuted_list)
 
             permuted_levels.append(permuted_list)
         # print(f"permuted_levels: {permuted_levels}")
         return permuted_levels
 
-    def permute_levels(self, permuted_levels, itr = 0):
+    def permute_levels(self, permuted_levels, itr=0):
         # level in levels
         if len(permuted_levels) == 0:
             return
@@ -891,13 +980,14 @@ class BinarySearchTree:
             place_in_level = 0
             while place_in_level < len(level):
                 rearranged_level.add(
-                    tuple(level_without_num[:(place_in_level)]
-                    + [num]
-                    + level_without_num[(place_in_level):])
+                    tuple(
+                        level_without_num[:(place_in_level)]
+                        + [num]
+                        + level_without_num[(place_in_level):]
+                    )
                 )
                 place_in_level += 1
         return rearranged_level
-
 
     def depth_switch_paths(self, node):
         left_paths = []
@@ -920,7 +1010,7 @@ class BinarySearchTree:
         for left_path in left_paths:
             for right_path in right_paths:
                 lr_paths.append(left_path + right_path)
-        
+
         # append left path to right path
         rl_paths = []
         for left_path in left_paths:
@@ -934,12 +1024,12 @@ class BinarySearchTree:
                 for each_path in left_paths:
                     prepended_extensions.append([node.name] + each_path)
                 return prepended_extensions
-            
+
             elif len(right_paths) != 0:
                 for each_path in right_paths:
                     prepended_extensions.append([node.name] + each_path)
                 return prepended_extensions
-            
+
             return [[node.name]]
 
         extensions = lr_paths + rl_paths
