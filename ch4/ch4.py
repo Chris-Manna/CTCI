@@ -741,7 +741,7 @@ class BinarySearchTree:
     # of the potential lists that could have been used to create a binary search tree
     # from the insert_multiple_elements method above
     def bst_sequences(self):
-        self.bst_sequences_helper(self.root)
+        return self.bst_sequences_helper(self.root)
 
         # depth_switch_paths = self.depth_switch_paths(self.root)
         # level_switch_paths = self.get_level_switch()
@@ -763,34 +763,37 @@ class BinarySearchTree:
             prepended_node_to_paths.append([node] + path)
         return prepended_node_to_paths
     
+    # [a,b,c], [[d,e,f],[d,f,e]]
+    #  ^        0       0
+    #  ^          1       1
+    #  ^            2       2
+    #  ^              3       3
+    #    ^       1       1
+    #    ^         2       2
+    #    ^           3       3
+    #    ^             4       4
+    #    ^         2       2
+    #    ^           3       3
+    #    ^             4       4
+    #    ^           3       3
+    #    ^             4       4
+    #    ^             4       4
+    #      ^         3       3
+    #      ^           4       4
+    #      ^             5       5
+    #      ^           4       4
+    #      ^             5       5
+    #      ^             5       5
     def _add_each_element_from_into_(self, one_path, multiple_paths):
-        
-        # [a,b,c],[a,c,b], [d,e,f],[d,f,e]
-        #  ^               0       0
-        #  ^                 1       1
-        #  ^                   2       2
-        #  ^                     3       3
-        #    ^              1       1
-        #    ^                2       2
-        #    ^                  3       3
-        #    ^                    4       4
-        #    ^                2       2
-        #    ^                  3       3
-        #    ^                    4       4
-        #    ^                  3       3
-        #    ^                    4       4
-        #    ^                    4       4
-        #      ^              2       2
-        #      ^                3       3
-        #      ^                  4       4
-        #      ^                    5       5
-        #      ^                3       3
-        #      ^                  4       4
-        #      ^                    5       5
-        #      ^                  4       4
-        #      ^                    5       5
-        #      ^                    5       5
-        pass
+        new_path = []
+        for itr, element in enumerate(one_path):
+            for path in multiple_paths:
+                i = 0 + itr
+                while i < len(path):
+                    new_path.append(path[:i] + [element] + path[i:])
+                    i += 1
+                # new_path.append(path)
+        return new_path
 
     def bst_sequences_helper(self, node):
         left_paths = []
@@ -805,16 +808,16 @@ class BinarySearchTree:
         if self._is_only_left_path(node):
             # get_left_paths
             left_paths = self.bst_sequences_helper(node.left)
-            prepended_paths = self._prepend_node_to_paths(node, left_paths)
+            prepended_paths = self._prepend_node_to_paths(node.name, left_paths)
             return prepended_paths
 
-        if self._is_only_left_path(node):
+        if self._is_only_right_path(node):
             # get_right_paths
             right_paths = self.bst_sequences_helper(node.right)
-            prepended_paths = self._prepend_node_to_paths(node, right_paths)
+            prepended_paths = self._prepend_node_to_paths(node.name, right_paths)
             return prepended_paths
         
-        # there exists left and right child nodes
+        # there exists both left and right child nodes
         
         # get_left_paths
         left_paths = self.bst_sequences_helper(node.left)
@@ -826,219 +829,11 @@ class BinarySearchTree:
         combined_paths = []
         # [a,d,e,f,b,c]
         for left_path in left_paths:
-            combined_paths = self._add_each_element_from_into_(left_path, right_paths)
+            combined_paths += self._add_each_element_from_into_(left_path, right_paths)
         
-        prepended_extensions = self._prepend_node_to_paths(node, combined_paths)    
+        for right_path in right_paths:
+            combined_paths += self._add_each_element_from_into_(right_path, left_paths)
+        
+        prepended_extensions = self._prepend_node_to_paths(node.name, combined_paths)    
+        
         return prepended_extensions
-
-    def get_level_switch(self):
-        # using level order traversal return each list
-        levels = self.bst_level_order_traversal()
-        print(f"levels: {levels}")
-        all_permutations_for_each_level = self.rearrange_levels(levels)
-        all_permuted_levels_combined = self.permute_levels(
-            all_permutations_for_each_level
-        )
-        return all_permuted_levels_combined
-
-    def bst_level_order_traversal(self):
-        queue = []
-        current_node = self.root
-        queue.append(current_node)
-        levels = []
-
-        # process all elements the current level
-        while len(queue) > 0:
-
-            current_level = []
-
-            # empty the elements in the current level and
-            # add them to current_level
-            while len(queue) > 0:
-                element = queue.pop(0)
-                current_level.append(element)
-
-            # levels will now have the current level as it's own list
-            levels.append(current_level)
-
-            # get the next level from the current level using the current level elements
-            next_level = []
-            for element in current_level:
-                if element.left != None:
-                    next_level.append(element.left)
-                if element.right != None:
-                    next_level.append(element.right)
-
-            # add all of the elements from next_level into queue
-            for element in next_level:
-                queue.append(element)
-
-        # we now have all of the levels
-        # create all of the combinations for each level and
-        # partner them up with their previous level
-        return levels
-
-    def print_permuted_list(self, permuted_list):
-        for permuted_tuple in permuted_list:
-            s = ""
-            for element in permuted_tuple:
-                s += str(element.name) + ", "
-            print(f"{s}")
-
-    def rearrange_levels(self, levels):
-        permuted_levels = []
-        for level in levels:
-            # print(f"list(self.create_permutations(level)): {list(self.create_permutations(level))}")
-            permuted_list = list(self.create_permutations(level))
-            print(f"print_permuted_list: ")
-            self.print_permuted_list(permuted_list)
-
-            permuted_levels.append(permuted_list)
-        # print(f"permuted_levels: {permuted_levels}")
-        return permuted_levels
-
-    def permute_levels(self, permuted_levels, itr=0):
-        # level in levels
-        if len(permuted_levels) == 0:
-            return
-        """
-        Pseudocode:
-        we want to align every permutation for every level
-        with every other permutation on every level for as many
-        levels there are
-
-        we take the first part of every element and connect it once, to each ending element
-        if the levels looks like this: 
-        
-        {
-            0:[[2]], 
-            1:[[3, 1],[1, 3]], 
-            2:[[a,b,c,d],[b,a,c,d],[b,c,a,d],[b,c,d,a], [a,c,b,d],[a,c,d,b],[c,a,b,d],[a,b,d,c],[d,a,b,c],[a,d,b,c],[a,b,d,c]]
-        }
-        
-        then we would prepend the 0th tier elements to every array in tier 1
-        and our array connecting the first two tiers would look like this: 
-        prepended_list = [[2,3,1], [2,1,3]]
-
-        then connecting our prepended list with the final tier our list would look like this: 
-           2
-         3   1
-        a b c d
-        prepended_list = [
-            [2,3,1,a,b,c,d],
-            [2,3,1,b,a,c,d],
-            [2,3,1,b,c,a,d],
-            [2,3,1,b,c,d,a],
-            [2,3,1,a,c,b,d],
-            [2,3,1,a,c,d,b],
-            [2,3,1,c,a,b,d],
-            [2,3,1,a,b,d,c],
-            [2,3,1,d,a,b,c],
-            [2,3,1,a,d,b,c],
-            [2,3,1,a,b,d,c],
-            [2,1,3,a,b,c,d],
-            [2,1,3,b,a,c,d],
-            [2,1,3,b,c,a,d],
-            [2,1,3,b,c,d,a],
-            [2,1,3,a,c,b,d],
-            [2,1,3,a,c,d,b],
-            [2,1,3,c,a,b,d],
-            [2,1,3,a,b,d,c],
-            [2,1,3,d,a,b,c],
-            [2,1,3,a,d,b,c],
-        ]
-        Each level starts with the prepend and we merge them with the appending elements
-
-        """
-        # print(f"permuted_levels: {permuted_levels}")
-        permuted_hash = {}
-        for itr, permuted_level in enumerate(permuted_levels):
-            if itr not in permuted_hash:
-                permuted_hash[itr] = []
-            permuted_hash[itr].append(permuted_level)
-        # print(f"permuted_hash[2]: {permuted_hash[2]}")
-        prepended_lists1 = []
-        prepended_lists2 = []
-        # for permuted_tier in list(permuted_hash.keys()):
-        #     print(f"permuted_tier: {permuted_tier}; permuted_hash[permuted_tier]: {permuted_hash[permuted_tier]}")
-        #     for permutation in permuted_hash[permuted_tier]:
-        #         prepended_lists2.append(permutation + list(permuted_hash[permuted_tier]))
-        #         print(f"permutation: {permutation}")
-        #     prepended_lists1 = []
-        #     for element in prepended_lists2:
-        #         prepended_lists1.append(element)
-        #     prepended_lists2 = []
-        # print(f"prepended_lists1: {prepended_lists1}")
-        return prepended_lists1
-
-    def create_permutations(self, level):
-        rearranged_level = set()
-        for itr, num in enumerate(level):
-
-            level_without_num = level[:itr] + level[itr + 1 :]
-
-            place_in_level = 0
-            while place_in_level < len(level):
-                rearranged_level.add(
-                    tuple(
-                        level_without_num[:(place_in_level)]
-                        + [num]
-                        + level_without_num[(place_in_level):]
-                    )
-                )
-                place_in_level += 1
-        return rearranged_level
-
-    def depth_switch_paths(self, node):
-        left_paths = []
-        right_paths = []
-
-        if node == None:
-            return
-
-        if node.left != None:
-            # get_left_paths
-            left_paths = self.depth_switch_paths(node.left)
-
-        if node.right != None:
-            # get_right_paths
-            right_paths = self.depth_switch_paths(node.right)
-
-        # combine left path with right path and right path with left path
-        # append right path to left path
-        lr_paths = []
-        for left_path in left_paths:
-            for right_path in right_paths:
-                lr_paths.append(left_path + right_path)
-
-        # append left path to right path
-        rl_paths = []
-        for left_path in left_paths:
-            for right_path in right_paths:
-                rl_paths.append(right_path + left_path)
-
-        prepended_extensions = []
-        if len(lr_paths + rl_paths) == 0:
-
-            if len(left_paths) != 0:
-                for each_path in left_paths:
-                    prepended_extensions.append([node.name] + each_path)
-                return prepended_extensions
-
-            elif len(right_paths) != 0:
-                for each_path in right_paths:
-                    prepended_extensions.append([node.name] + each_path)
-                return prepended_extensions
-
-            return [[node.name]]
-
-        extensions = lr_paths + rl_paths
-        prepended_extensions = []
-        for path in extensions:
-            prepended_extensions.append([node.name] + path)
-
-        return prepended_extensions
-
-    #
-    def check_subtree(self):
-        pass

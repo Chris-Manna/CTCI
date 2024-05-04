@@ -377,7 +377,7 @@ class TestGraphs(unittest.TestCase):
         # self.bst_sequences_tree_test1.insert_multiple_elements(elements0)
         # paths0 = self.bst_sequences_tree_test1.bst_sequences()
         # print(f"paths0: {paths0}")
-        # self.assertListEqual(paths0,[elements0])
+        # # self.assertListEqual(paths0,[elements0])
         
         # elements0_left = [2,1]
         # self.bst_sequences_tree_test2 = BinarySearchTree()
