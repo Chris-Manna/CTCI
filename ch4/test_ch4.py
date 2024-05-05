@@ -407,7 +407,7 @@ class TestGraphs(unittest.TestCase):
         self.bst_sequences_tree_test5 = BinarySearchTree()
         self.bst_sequences_tree_test5.insert_multiple_elements(elements1)
         paths4 = self.bst_sequences_tree_test5.bst_sequences()
-        print(f"paths4: {paths4}")
+        # print(f"paths4: {paths4}")
 
         
         # self.bst_sequences_tree_test1.bst_sequences()
