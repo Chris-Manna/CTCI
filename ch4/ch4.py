@@ -763,6 +763,17 @@ class BinarySearchTree:
             prepended_node_to_paths.append([node] + path)
         return prepended_node_to_paths
     
+    def _integrate_element_into(self, element, right, prev_num):
+        new_right_lists = []
+        if prev_num == None: 
+            i = 0
+        else: 
+            i = right.index(prev_num) + 1
+        
+        while i < len(right) + 1:
+            new_right_lists.append(right[:i] + [element] + right[i:])
+            i += 1
+        return new_right_lists
     # [a,b,c], [[d,e,f],[d,f,e]]
     #  ^        0       0
     #  ^          1       1
@@ -785,11 +796,14 @@ class BinarySearchTree:
     #      ^             5       5
     #      ^             5       5
     # [a,c,b], [[d,e,f],[d,f,e]]
-    #  ^        0       0
+    #  i        0       0
+    
     #  ^          1       1
     #  ^            2       2
     #  ^              3       3
+
     #    ^       1       1
+
     #    ^         2       2
     #    ^           3       3
     #    ^             4       4
@@ -799,23 +813,32 @@ class BinarySearchTree:
     #    ^           3       3
     #    ^             4       4
     #    ^             4       4
+    #      ^       2       2
     #      ^         3       3
     #      ^           4       4
     #      ^             5       5
     #      ^           4       4
     #      ^             5       5
     #      ^             5       5
-    
-    def _add_each_element_from_into_(self, one_path, multiple_paths):
-        new_path = []
-        for itr, element in enumerate(one_path):
-            for path in multiple_paths:
-                i = 0 + itr
-                while i < len(path):
-                    new_path.append(path[:i] + [element] + path[i:])
-                    i += 1
-                # new_path.append(path)
-        return new_path
+    def _get_permutations_from_into(self, left_list, right_lists):
+        combined_lists = []
+        dup_right_list = copy.deepcopy(right_lists)
+        for left in left_list:
+            right_lists = copy.deepcopy(dup_right_list)
+            prev_num = None
+            for itr, element in enumerate(left):
+                new_right_lists = []
+                if itr != 0:
+                    prev_num = itr - 1
+                    prev_num = left[prev_num]
+                
+                for right in right_lists:
+                    new_right_lists += self._integrate_element_into(element,right,prev_num)
+                right_lists = new_right_lists
+            # we might need to do a deep copy here
+            updated_right_lists = copy.deepcopy(right_lists)
+            combined_lists += updated_right_lists
+        return combined_lists
 
     def bst_sequences_helper(self, node):
         left_paths = []
@@ -849,12 +872,7 @@ class BinarySearchTree:
         
         # combine left path with right path
         combined_paths = []
-        # [a,d,e,f,b,c]
-        for left_path in left_paths:
-            combined_paths += self._add_each_element_from_into_(left_path, right_paths)
-        
-        for right_path in right_paths:
-            combined_paths += self._add_each_element_from_into_(right_path, left_paths)
+        combined_paths += self._get_permutations_from_into(left_paths, right_paths)
         
         prepended_extensions = self._prepend_node_to_paths(node.name, combined_paths)    
         
