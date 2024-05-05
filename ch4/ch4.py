@@ -762,64 +762,21 @@ class BinarySearchTree:
         for path in paths:
             prepended_node_to_paths.append([node] + path)
         return prepended_node_to_paths
-    
-    def _integrate_left_element_into_right_list_after_prev_num(self, element, right, prev_num):
+
+    def _integrate_left_element_into_right_list_after_prev_num(
+        self, element, right, prev_num
+    ):
         new_right_lists = []
-        if prev_num == None: 
+        if prev_num == None:
             i = 0
-        else: 
+        else:
             i = right.index(prev_num) + 1
-        
+
         while i < len(right) + 1:
             new_right_lists.append(right[:i] + [element] + right[i:])
             i += 1
         return new_right_lists
-    # [a,b,c], [[d,e,f],[d,f,e]]
-    #  ^        0       0
-    #  ^          1       1
-    #  ^            2       2
-    #  ^              3       3
-    #    ^       1       1
-    #    ^         2       2
-    #    ^           3       3
-    #    ^             4       4
-    #    ^         2       2
-    #    ^           3       3
-    #    ^             4       4
-    #    ^           3       3
-    #    ^             4       4
-    #    ^             4       4
-    #      ^         3       3
-    #      ^           4       4
-    #      ^             5       5
-    #      ^           4       4
-    #      ^             5       5
-    #      ^             5       5
-    # [a,c,b], [[d,e,f],[d,f,e]]
-    #  i        0       0
-    
-    #  ^          1       1
-    #  ^            2       2
-    #  ^              3       3
 
-    #    ^       1       1
-
-    #    ^         2       2
-    #    ^           3       3
-    #    ^             4       4
-    #    ^         2       2
-    #    ^           3       3
-    #    ^             4       4
-    #    ^           3       3
-    #    ^             4       4
-    #    ^             4       4
-    #      ^       2       2
-    #      ^         3       3
-    #      ^           4       4
-    #      ^             5       5
-    #      ^           4       4
-    #      ^             5       5
-    #      ^             5       5
     def _get_permutations_from_into(self, left_list, right_lists):
         combined_lists = []
         dup_right_list = copy.deepcopy(right_lists)
@@ -831,9 +788,13 @@ class BinarySearchTree:
                 if itr != 0:
                     prev_num = itr - 1
                     prev_num = left[prev_num]
-                
+
                 for right in right_lists:
-                    new_right_lists += self._integrate_left_element_into_right_list_after_prev_num(element,right,prev_num)
+                    new_right_lists += (
+                        self._integrate_left_element_into_right_list_after_prev_num(
+                            element, right, prev_num
+                        )
+                    )
                 right_lists = new_right_lists
             # we might need to do a deep copy here
             updated_right_lists = copy.deepcopy(right_lists)
@@ -845,7 +806,7 @@ class BinarySearchTree:
         right_paths = []
 
         if node == None:
-            return
+            return []
 
         if self._is_leaf(node):
             return [[node.name]]
@@ -861,19 +822,20 @@ class BinarySearchTree:
             right_paths = self.bst_sequences_helper(node.right)
             prepended_paths = self._prepend_node_to_paths(node.name, right_paths)
             return prepended_paths
-        
+
         # there exists both left and right child nodes
-        
+
         # get_left_paths
+
         left_paths = self.bst_sequences_helper(node.left)
-        
+
         # get_right_paths
         right_paths = self.bst_sequences_helper(node.right)
-        
+
         # combine left path with right path
         combined_paths = []
         combined_paths += self._get_permutations_from_into(left_paths, right_paths)
-        
-        prepended_extensions = self._prepend_node_to_paths(node.name, combined_paths)    
-        
+
+        prepended_extensions = self._prepend_node_to_paths(node.name, combined_paths)
+
         return prepended_extensions
