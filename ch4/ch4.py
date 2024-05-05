@@ -743,11 +743,6 @@ class BinarySearchTree:
     def bst_sequences(self):
         return self.bst_sequences_helper(self.root)
 
-        # depth_switch_paths = self.depth_switch_paths(self.root)
-        # level_switch_paths = self.get_level_switch()
-        # print(f"level_switch_paths: {level_switch_paths}")
-        # return depth_switch_paths
-
     def _is_leaf(self, node):
         return node.left == None and node.right == None
 
@@ -796,7 +791,6 @@ class BinarySearchTree:
                         )
                     )
                 right_lists = new_right_lists
-            # we might need to do a deep copy here
             updated_right_lists = copy.deepcopy(right_lists)
             combined_lists += updated_right_lists
         return combined_lists
@@ -824,12 +818,11 @@ class BinarySearchTree:
             return prepended_paths
 
         # there exists both left and right child nodes
-
-        # get_left_paths
-
+        
+        # get left paths
         left_paths = self.bst_sequences_helper(node.left)
 
-        # get_right_paths
+        # get right paths
         right_paths = self.bst_sequences_helper(node.right)
 
         # combine left path with right path

@@ -397,17 +397,30 @@ class TestGraphs(unittest.TestCase):
         paths3 = self.bst_sequences_tree_test4.bst_sequences()
         print(f"paths3: {paths3}")
         
-        elements1 = [2, 1, 3]
-        self.bst_sequences_tree_test4 = BinarySearchTree()
-        self.bst_sequences_tree_test4.insert_multiple_elements(elements1)
-        paths3 = self.bst_sequences_tree_test4.bst_sequences()
-        print(f"paths3: {paths3}")
-
-        elements1 = [3,1,2,0,5,4,6]
+        elements1 = [2, 3, 1]
         self.bst_sequences_tree_test5 = BinarySearchTree()
         self.bst_sequences_tree_test5.insert_multiple_elements(elements1)
-        paths4 = self.bst_sequences_tree_test5.bst_sequences()
-        print(f"paths4: {len(paths4)}")
+        paths3 = self.bst_sequences_tree_test5.bst_sequences()
+        print(f"paths3: {paths3}")
+
+        elements1 = [3,1,0,5,4]
+        self.bst_sequences_tree_test6 = BinarySearchTree()
+        self.bst_sequences_tree_test6.insert_multiple_elements(elements1)
+        paths4 = self.bst_sequences_tree_test6.bst_sequences()
+        print(f"paths4: {(paths4)}")
+
+        elements1 = [3,1,2,5,6]
+        self.bst_sequences_tree_test7 = BinarySearchTree()
+        self.bst_sequences_tree_test7.insert_multiple_elements(elements1)
+        paths5 = self.bst_sequences_tree_test7.bst_sequences()
+        print(f"paths5: {(paths5)}")
+
+
+        elements1 = [3,1,2,0,5,4,6]
+        self.bst_sequences_tree_test8 = BinarySearchTree()
+        self.bst_sequences_tree_test8.insert_multiple_elements(elements1)
+        paths6 = self.bst_sequences_tree_test8.bst_sequences()
+        print(f"paths6: {len(paths6)}")
 
         
         # self.bst_sequences_tree_test1.bst_sequences()
@@ -437,17 +450,21 @@ class TestGraphs(unittest.TestCase):
         # A tree T2 is a subtree of T1 if there exists a node n in T1 such that 
         # the subtree of n is identical to T2. That is, if you cut off the tree 
         # at node n, the two trees would be identical. 
+        
         def hint1(self):
-            # If T2 is a subtree of Tl, how will its in-order traversal compare to Tl's? 
+            # If T2 is a subtree of T1, how will its in-order traversal compare to T1's? 
             # What about its pre-order and post-order traversal?
             pass
+
         def hint2(self):
             pass
+        
         def hint3(self):
             pass
+        
         def hint4(self):
             pass
-
+        
         pass
 
     def test_random_node_11(self):
