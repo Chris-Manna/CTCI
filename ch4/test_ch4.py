@@ -377,7 +377,7 @@ class TestGraphs(unittest.TestCase):
         # self.bst_sequences_tree_test1.insert_multiple_elements(elements0)
         # paths0 = self.bst_sequences_tree_test1.bst_sequences()
         # print(f"paths0: {paths0}")
-        # self.assertListEqual(paths0,[elements0])
+        # # self.assertListEqual(paths0,[elements0])
         
         # elements0_left = [2,1]
         # self.bst_sequences_tree_test2 = BinarySearchTree()
@@ -396,8 +396,14 @@ class TestGraphs(unittest.TestCase):
         # self.bst_sequences_tree_test4.insert_multiple_elements(elements1)
         # paths3 = self.bst_sequences_tree_test4.bst_sequences()
         # print(f"paths3: {paths3}")
+        
+        # elements1 = [2, 1, 3]
+        # self.bst_sequences_tree_test4 = BinarySearchTree()
+        # self.bst_sequences_tree_test4.insert_multiple_elements(elements1)
+        # paths3 = self.bst_sequences_tree_test4.bst_sequences()
+        # print(f"paths3: {paths3}")
 
-        elements1 = [3,1,0,2,5,4,6]
+        elements1 = [3,1,2,0,5,4,6]
         self.bst_sequences_tree_test5 = BinarySearchTree()
         self.bst_sequences_tree_test5.insert_multiple_elements(elements1)
         paths4 = self.bst_sequences_tree_test5.bst_sequences()
