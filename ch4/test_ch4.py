@@ -452,8 +452,11 @@ class TestGraphs(unittest.TestCase):
         # at node n, the two trees would be identical. 
         
         def hint1(self):
+            # HINT: 
             # If T2 is a subtree of T1, how will its in-order traversal compare to T1's? 
             # What about its pre-order and post-order traversal?
+            # ANSWER: 
+            # they'll definitely all be the same in their output lists but are there other outputs
             pass
 
         def hint2(self):
