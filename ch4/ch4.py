@@ -763,7 +763,7 @@ class BinarySearchTree:
             prepended_node_to_paths.append([node] + path)
         return prepended_node_to_paths
     
-    def _integrate_element_into(self, element, right, prev_num):
+    def _integrate_left_element_into_right_list_after_prev_num(self, element, right, prev_num):
         new_right_lists = []
         if prev_num == None: 
             i = 0
@@ -833,7 +833,7 @@ class BinarySearchTree:
                     prev_num = left[prev_num]
                 
                 for right in right_lists:
-                    new_right_lists += self._integrate_element_into(element,right,prev_num)
+                    new_right_lists += self._integrate_left_element_into_right_list_after_prev_num(element,right,prev_num)
                 right_lists = new_right_lists
             # we might need to do a deep copy here
             updated_right_lists = copy.deepcopy(right_lists)
