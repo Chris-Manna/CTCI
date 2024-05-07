@@ -506,10 +506,13 @@ class TestGraphs(unittest.TestCase):
         self.bst_sequences_tree_test4.insert_multiple_elements(elements)
         sorted_elements = sorted(elements)
         for itr, element in enumerate(sorted_elements):
-            self.assertEqual(self.bst_sequences_tree_test4.get_random_node(itr), element)
-        
+            self.assertEqual(
+                self.bst_sequences_tree_test4.get_random_node(itr), element
+            )
+
     def test_paths_with_sum_12(self):
         pass
+
     def test_nine_balls(self):
         123456789
         a = 123
