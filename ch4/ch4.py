@@ -818,7 +818,7 @@ class BinarySearchTree:
             return prepended_paths
 
         # there exists both left and right child nodes
-        
+
         # get left paths
         left_paths = self.bst_sequences_helper(node.left)
 
@@ -832,3 +832,103 @@ class BinarySearchTree:
         prepended_extensions = self._prepend_node_to_paths(node.name, combined_paths)
 
         return prepended_extensions
+
+    def check_subtree_10(self, t1, t2):
+        # search for node that has the same value as r2 in t1
+
+        subtree_t1 = self.find_second_tree(t1.root, t2.root.name)
+
+        if subtree_t1 == None:
+            return False
+
+        # get preorder in list, inorder, postorder in list format
+        pre_order_list_t1 = self.preorder_traversal(subtree_t1)
+        inorder_list_t1 = self.inorder_traversal(subtree_t1)
+        postorder_list_t1 = self.postorder_traversal(subtree_t1)
+
+        pre_order_list_t2 = self.preorder_traversal(t2.root)
+        inorder_list_t2 = self.inorder_traversal(t2.root)
+        postorder_list_t2 = self.postorder_traversal(t2.root)
+
+        # return False if any of the list values do not match
+        if (
+            len(pre_order_list_t1) != len(pre_order_list_t2)
+            or len(inorder_list_t1) != len(inorder_list_t2)
+            or len(postorder_list_t1) != len(postorder_list_t2)
+        ):
+            return False
+
+        i = 0
+        while i < len(pre_order_list_t1):
+            if (
+                (pre_order_list_t1[i]) != (pre_order_list_t2[i])
+                or (inorder_list_t1[i]) != (inorder_list_t2[i])
+                or (postorder_list_t1[i]) != (postorder_list_t2[i])
+            ):
+                return False
+            i += 1
+        return True
+    
+    def find_second_tree(self, t1_node,t2_root_name):
+        if t1_node == None or t1_node.name == None: 
+            return None
+        if t1_node.name == t2_root_name:
+            return t1_node
+        if t1_node.name < t2_root_name:
+            return self.find_second_tree(t1_node.right, t2_root_name)
+        else:
+            return self.find_second_tree(t1_node.left, t2_root_name)
+
+    def preorder_traversal(self, node):
+        if node == None: 
+            return []
+        
+        if node.right == None and node.left == None: 
+            return [node.name]
+
+        all_nodes = []
+        all_nodes += [node.name]
+        if node.left != None: 
+            all_nodes += self.preorder_traversal(node.left)
+        
+        if node.right != None: 
+            all_nodes += self.preorder_traversal(node.right)
+        
+        return all_nodes
+
+    def inorder_traversal(self, node):
+        if node == None: 
+            return []
+        
+        if node.left == None and node.right == None:
+            return [node.name]
+        
+        all_nodes = []
+        
+        if node.left != None: 
+            all_nodes += self.inorder_traversal(node.left)
+            
+        all_nodes += [node.name]
+
+        if node.right != None: 
+            all_nodes += self.inorder_traversal(node.right)
+        
+        return all_nodes
+
+    def postorder_traversal(self,node):
+        if node == None: 
+            return []
+        
+        if node.left == None and node.right == None:
+            return [node.name]
+        
+        all_nodes = []
+        if node.left != None: 
+            all_nodes += self.postorder_traversal(node.left)
+        
+        if node.right != None: 
+            all_nodes += self.postorder_traversal(node.right)
+        
+        all_nodes += [node.name]
+
+        return all_nodes

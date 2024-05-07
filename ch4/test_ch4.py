@@ -83,7 +83,6 @@ class TestGraphs(unittest.TestCase):
         )
 
         self.cycle_test = Graph(
-
             [self.a2, self.b2, self.c2, self.d2, self.e2, self.f2],
             [
                 (self.a2, self.d2),
@@ -252,14 +251,12 @@ class TestGraphs(unittest.TestCase):
         # self.assertEqual(self.test_binary_tree.in_order_traversal(6), 10)
         pass
 
-
     def test_build_order_with_dfs(self):
 
         self.basic_test.build_order()
 
         with self.assertRaises(Exception):
             self.cycle_test.build_order()
-        
 
     def test_build_order_7(self):
         # You are given a list of projects and a list of dependencies
@@ -315,12 +312,12 @@ class TestGraphs(unittest.TestCase):
         # # test cycle
         with self.assertRaises(Exception):
             self.test_graph_cycle_exists.build_order()
-        
+
         self.test_graph_2.build_order()
-        
+
         # projects: a, b, c, d, e, f
         # dependencies: (a,d), (f,b), (b,d), (f,a), (d,c)
-    
+
     def test_build_order_72(self):
         # solve using depth first search
         # You are given a list of projects and a list of dependencies
@@ -342,8 +339,12 @@ class TestGraphs(unittest.TestCase):
 
         # [0,1,2,3,4,5,6,7,8,9]
         self.test_create_binary_tree.create_binary_tree_root(self.elements_list)
-        self.assertEqual(self.test_create_binary_tree.first_common_ancestor(3,25), None)
-        self.assertEqual(self.test_create_binary_tree.first_common_ancestor(3,5).name, 5)
+        self.assertEqual(
+            self.test_create_binary_tree.first_common_ancestor(3, 25), None
+        )
+        self.assertEqual(
+            self.test_create_binary_tree.first_common_ancestor(3, 5).name, 5
+        )
         #    10
         #   /
         #  3
@@ -351,25 +352,33 @@ class TestGraphs(unittest.TestCase):
         # 1   5
         #   / \
         #  4   6
-        # 
+        #
         self.test_binary_tree = BinarySearchTree(self.ten)
 
-        self.assertEqual(self.test_binary_tree.first_common_ancestor(10,3).name,10)
-        self.assertEqual(self.test_binary_tree.first_common_ancestor(self.four.name,self.six.name).name,5)
-        self.assertEqual(self.test_binary_tree.first_common_ancestor(3,6).name,3)
+        self.assertEqual(self.test_binary_tree.first_common_ancestor(10, 3).name, 10)
+        self.assertEqual(
+            self.test_binary_tree.first_common_ancestor(
+                self.four.name, self.six.name
+            ).name,
+            5,
+        )
+        self.assertEqual(self.test_binary_tree.first_common_ancestor(3, 6).name, 3)
 
     def test_bst_sequences_9(self):
         def hint1(self):
-            # What is the very first value that must be in each array? 
+            # What is the very first value that must be in each array?
             pass
+
         def hint2(self):
-            #48
+            # 48
             pass
+
         def hint3(self):
-            #66
+            # 66
             pass
+
         def hint4(self):
-            #82
+            # 82
             pass
 
         elements0 = [2]
@@ -378,14 +387,14 @@ class TestGraphs(unittest.TestCase):
         paths0 = self.bst_sequences_tree_test1.bst_sequences()
         print(f"paths0: {paths0}")
         # self.assertListEqual(paths0,[elements0])
-        
-        elements0_left = [2,1]
+
+        elements0_left = [2, 1]
         self.bst_sequences_tree_test2 = BinarySearchTree()
         self.bst_sequences_tree_test2.insert_multiple_elements(elements0_left)
         paths1 = self.bst_sequences_tree_test2.bst_sequences()
         print(f"paths1: {paths1}")
 
-        elements0_right = [2,3]
+        elements0_right = [2, 3]
         self.bst_sequences_tree_test3 = BinarySearchTree()
         self.bst_sequences_tree_test3.insert_multiple_elements(elements0_right)
         paths2 = self.bst_sequences_tree_test3.bst_sequences()
@@ -396,39 +405,36 @@ class TestGraphs(unittest.TestCase):
         self.bst_sequences_tree_test4.insert_multiple_elements(elements1)
         paths3 = self.bst_sequences_tree_test4.bst_sequences()
         print(f"paths3: {paths3}")
-        
+
         elements1 = [2, 3, 1]
         self.bst_sequences_tree_test5 = BinarySearchTree()
         self.bst_sequences_tree_test5.insert_multiple_elements(elements1)
         paths3 = self.bst_sequences_tree_test5.bst_sequences()
         print(f"paths3: {paths3}")
 
-        elements1 = [3,1,0,5,4]
+        elements1 = [3, 1, 0, 5, 4]
         self.bst_sequences_tree_test6 = BinarySearchTree()
         self.bst_sequences_tree_test6.insert_multiple_elements(elements1)
         paths4 = self.bst_sequences_tree_test6.bst_sequences()
         print(f"paths4: {(paths4)}")
 
-        elements1 = [3,1,2,5,6]
+        elements1 = [3, 1, 2, 5, 6]
         self.bst_sequences_tree_test7 = BinarySearchTree()
         self.bst_sequences_tree_test7.insert_multiple_elements(elements1)
         paths5 = self.bst_sequences_tree_test7.bst_sequences()
         print(f"paths5: {(paths5)}")
 
-
-        elements1 = [3,1,2,0,5,4,6]
+        elements1 = [3, 1, 2, 0, 5, 4, 6]
         self.bst_sequences_tree_test8 = BinarySearchTree()
         self.bst_sequences_tree_test8.insert_multiple_elements(elements1)
         paths6 = self.bst_sequences_tree_test8.bst_sequences()
         print(f"paths6: {len(paths6)}")
 
-        
         # self.bst_sequences_tree_test1.bst_sequences()
         # print(f"permuted_levels: {all_levels_combined}")
-     
-        
+
         # # self.bst_sequences_tree_test1.bst_sequences()
-        
+
         # elements2 = [2,3,1]
         # self.bst_sequences_tree_test1.root = None
         # self.bst_sequences_tree_test2 = BinarySearchTree()
@@ -442,33 +448,50 @@ class TestGraphs(unittest.TestCase):
         # self.assertSetEqual(self.bst_sequences_tree_test3.create_permutations([1,3]),test)
         # self.bst_sequences_tree_test3.create_permutations([1,3,6,8])
 
-
     def test_check_subtree_10(self):
-        # Check Subtree: 
-        # T1 and T2 are two very large binary trees, with T1 much bigger than T2. 
+        # Check Subtree:
+        # T1 and T2 are two very large binary trees, with T1 much bigger than T2.
         # Create an algorithm to determine if T2 is a subtree of T1.
-        # A tree T2 is a subtree of T1 if there exists a node n in T1 such that 
-        # the subtree of n is identical to T2. That is, if you cut off the tree 
-        # at node n, the two trees would be identical. 
-        
+        # A tree T2 is a subtree of T1 if there exists a node n in T1 such that
+        # the subtree of n is identical to T2. That is, if you cut off the tree
+        # at node n, the two trees would be identical.
+
         def hint1(self):
-            # HINT: 
-            # If T2 is a subtree of T1, how will its in-order traversal compare to T1's? 
+            # HINT:
+            # If T2 is a subtree of T1, how will its in-order traversal compare to T1's?
             # What about its pre-order and post-order traversal?
-            # ANSWER: 
+
+            # ANSWER:
             # they'll definitely all be the same in their output lists but are there other outputs
             pass
 
-        def hint2(self):
-            pass
-        
-        def hint3(self):
-            pass
-        
-        def hint4(self):
-            pass
-        
-        pass
+        self.bst_sequences_tree_test4 = BinarySearchTree()
+        self.bst_sequences_tree_test4.insert_multiple_elements([2, 1, 3])
+        self.bst_sequences_tree_test5 = BinarySearchTree()
+        self.bst_sequences_tree_test5.insert_multiple_elements([2, 3, 1])
+        self.assertTrue(
+            self.bst_sequences_tree_test4.check_subtree_10(
+                self.bst_sequences_tree_test4, self.bst_sequences_tree_test5
+            )
+        )
+
+        self.bst_sequences_tree_test4 = BinarySearchTree()
+        self.bst_sequences_tree_test4.insert_multiple_elements([5, 2, 1, 3])
+        self.bst_sequences_tree_test5 = BinarySearchTree()
+        self.bst_sequences_tree_test5.insert_multiple_elements([2, 3, 1])
+        self.assertTrue(
+            self.bst_sequences_tree_test4.check_subtree_10(
+                self.bst_sequences_tree_test4, self.bst_sequences_tree_test5
+            )
+        )
+
+        self.bst_sequences_tree_test4 = BinarySearchTree()
+        self.bst_sequences_tree_test4.insert_multiple_elements([5, 2, 1, 3, 0])
+        self.assertFalse(
+            self.bst_sequences_tree_test4.check_subtree_10(
+                self.bst_sequences_tree_test4, self.bst_sequences_tree_test5
+            )
+        )
 
     def test_random_node_11(self):
         pass
@@ -481,10 +504,10 @@ class TestGraphs(unittest.TestCase):
         a = 123
         b = 456
         c = 789
-        
-        balance1 = 123^456
-        balance2 = 1^3 # (2) on the side OR if 123^456 is balanced...
-        balance3 = 7^9 # (8) on the side
+
+        balance1 = 123 ^ 456
+        balance2 = 1 ^ 3  # (2) on the side OR if 123^456 is balanced...
+        balance3 = 7 ^ 9  # (8) on the side
         pass
 
 
