@@ -502,9 +502,12 @@ class TestGraphs(unittest.TestCase):
         """
 
         self.bst_sequences_tree_test4 = BinarySearchTree()
-        self.bst_sequences_tree_test4.insert_multiple_elements([2, 1, 3, 0])
-        self.bst_sequences_tree_test4.get_random_node()
-
+        elements = [2, 1, 3, 0, -1, 5, 4]
+        self.bst_sequences_tree_test4.insert_multiple_elements(elements)
+        sorted_elements = sorted(elements)
+        for itr, element in enumerate(sorted_elements):
+            self.assertEqual(self.bst_sequences_tree_test4.get_random_node(itr), element)
+        
     def test_paths_with_sum_12(self):
         pass
     def test_nine_balls(self):

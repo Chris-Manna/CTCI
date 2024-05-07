@@ -949,12 +949,13 @@ class BinarySearchTree:
     # so we delete the size of the left subtree from random_int as we navigate to the right side
     # return the current root as it is the 5th element
     # this will take log(n) to get to the random node
-    def get_random_node(self):
+    def get_random_node(self, random_int = None):
         random.seed(1)
-        random_int = random.randint(0,self.root.size_of_subtree) - 1
+        if random_int == None: 
+            random_int = random.randint(0,self.root.size_of_subtree) - 1
         element_at_random_index = self.get_node_using_random_number(self.root, random_int)
-        print(f"element_at_random_index: {element_at_random_index}")
-        return element_at_random_index
+        # print(f"element_at_random_index: {element_at_random_index}")
+        return element_at_random_index.name
         
     def get_node_using_random_number(self, node, random_int):
         root_size = node.size_of_subtree
@@ -966,11 +967,11 @@ class BinarySearchTree:
         if node.right != None:
             right_tree_size = node.right.size_of_subtree
         
-        print(f"random_int: {random_int}")
-        print(f"root_size: {root_size}")
-        print(f"left_tree_size: {left_tree_size}")
-        print(f"right_tree_size: {right_tree_size}")
-        print(f"current index: root_size: {root_size} - right_tree_size: {right_tree_size} - 1 = {root_size - right_tree_size - 1}")
+        # print(f"random_int: {random_int}")
+        # print(f"root_size: {root_size}")
+        # print(f"left_tree_size: {left_tree_size}")
+        # print(f"right_tree_size: {right_tree_size}")
+        # print(f"current index: root_size: {root_size} - right_tree_size: {right_tree_size} - 1 = {root_size - right_tree_size - 1}")
 
         if (root_size - right_tree_size - 1) == random_int:
             return node
