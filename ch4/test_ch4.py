@@ -501,13 +501,12 @@ class TestGraphs(unittest.TestCase):
         for getRandomNode, and explain how you would implement the rest of the methods.
         """
 
-        pass
-
-    def test_paths_with_sum_12(self):
         self.bst_sequences_tree_test4 = BinarySearchTree()
         self.bst_sequences_tree_test4.insert_multiple_elements([2, 1, 3, 0])
         self.bst_sequences_tree_test4.get_random_node()
 
+    def test_paths_with_sum_12(self):
+        pass
     def test_nine_balls(self):
         123456789
         a = 123
