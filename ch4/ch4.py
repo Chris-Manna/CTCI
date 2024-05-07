@@ -978,3 +978,6 @@ class BinarySearchTree:
         if (root_size - right_tree_size - 1) < random_int:
             return self.get_node_using_random_number(node.right, random_int - left_tree_size - 1)
         return self.get_node_using_random_number(node.left, random_int)
+    
+    def paths_with_sum_12(self):
+        pass
