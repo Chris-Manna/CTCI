@@ -932,3 +932,11 @@ class BinarySearchTree:
         all_nodes += [node.name]
 
         return all_nodes
+    
+    # use a random number generator to get an integer number between 0 and the size of the tree - 1. 
+    # This integer would represent the index of an inorder traversal list of elements from the tree
+    # each subtree would have the size of its subtree
+    # using the size of the subtree on both sides, I would use their values to get to node at random index
+    def get_random_node(self):
+
+        pass
