@@ -1,7 +1,6 @@
-def triple_step(total_steps, step=0, paths=0):
+def triple_step(total_steps):
 
     easy_dict = {0: 0, 1: 1, 2: 2, 3: 4}
-    total_steps -= step
 
     if total_steps <= 3:
         return easy_dict[total_steps]
