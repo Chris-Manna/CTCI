@@ -38,8 +38,8 @@ class TestGraphs(unittest.TestCase):
         print(f"8 steps: {stairs.triple_step(8)}")
         print(f"9 steps: {stairs.triple_step(9)}")
         print(f"10 steps: {stairs.triple_step(10)}")
-        # for i in (range(11,200)):
-        #     print(f"{i} steps: {stairs.triple_step(i)}")
+        for i in (range(11,200)):
+            print(f"{i} steps: {stairs.triple_step(i)}")
 
 
 if __name__ == "__main__":

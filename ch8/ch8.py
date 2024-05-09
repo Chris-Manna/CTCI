@@ -20,6 +20,13 @@ class Stairs:
 
         if total_steps <= 3:
             return memo[total_steps]
+        # paths:   1
+        # paths:   1+1,         2
+        # paths:   1+1+1,       1+2, 2+1,                                                 3
+        # paths:   1+1+1+1,     1+1+2, 1+2+1, 2+1+1,                2+2,                  1+3, 3+1
+        # paths:   1+1+1+1+1,   1+1+1+2, 1+1+2+1, 1+2+1+1, 2+1+1+1, 2+2+1,2+1+2, 1+2+2,   1+1+3, 1+3+1, 3+1+1,    3+2, 2+3
+        
+        # [0,1,2,4]
 
         return (
             self.triple_step_memo(memo[total_steps - 3], memo) # self.triple_step_memo(memo[6-3], [0,1,2,4])
