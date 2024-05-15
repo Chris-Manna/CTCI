@@ -27,7 +27,7 @@ class TestGraphs(unittest.TestCase):
         # self.assertEqual(stairs.triple_step(4), 7)
 
         # paths on staircase with 5 steps
-        # 1+1+1+1+1, 
+        # 1+1+1+1+1,
         # 1+1+1+2, 1+1+2+1, 1+2+1+1, 2+1+1+1,
         # 1+2+2,   2+1+2,     2+2+1
         # 1+1+3, 1+3+1, 3+1+1,
@@ -38,35 +38,37 @@ class TestGraphs(unittest.TestCase):
         print(f"8 steps: {stairs.triple_step(8)}")
         print(f"9 steps: {stairs.triple_step(9)}")
         print(f"10 steps: {stairs.triple_step(10)}")
-        for i in (range(11,200)):
+        for i in range(11, 200):
             print(f"{i} steps: {stairs.triple_step(i)}")
-    
+
     def test_towers_of_hanoi_86(self):
-        # Towers of Hanoi: 
-        # In the classic problem of the Towers of Hanoi, you have 3 towers and N disks of
-        # different sizes which can slide onto any tower. The puzzle starts with disks sorted in ascending order
-        # of size from top to bottom (i.e., each disk sits on top of an even larger one). You have the following
-        # constraints:
+        # Towers of Hanoi:
+        # In the classic problem of the Towers of Hanoi, you have
+        # 3 towers and N disks of different sizes which can slide onto any tower.
+        # The puzzle starts with disks sorted in ascending order of size from top to bottom
+        #   (i.e., each disk sits on top of an even larger one).
+        # You have the following constraints:
         # (1) Only one disk can be moved at a time.
         # (2) A disk is slid off the top of one tower onto another tower.
         # (3) A disk cannot be placed on top of a smaller disk.
         # Write a program to move the disks from the first tower to the last using stacks.
         # Hints: #744, #224, #250, #272, #318
-        
+
         def hint744(self):
             pass
-        
+
         def hint224(self):
             pass
-        
+
         def hint250(self):
             pass
-        
+
         def hint272(self):
             pass
-        
+
         def hint318(self):
             pass
+
         pass
 
 
