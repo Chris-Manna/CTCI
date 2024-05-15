@@ -52,14 +52,19 @@ class TestGraphs(unittest.TestCase):
         # (3) A disk cannot be placed on top of a smaller disk.
         # Write a program to move the disks from the first tower to the last using stacks.
         # Hints: #744, #224, #250, #272, #318
+        
         def hint744(self):
             pass
+        
         def hint224(self):
             pass
+        
         def hint250(self):
             pass
+        
         def hint272(self):
             pass
+        
         def hint318(self):
             pass
         pass
