@@ -20,11 +20,15 @@ class Stairs:
 
         if total_steps <= 3:
             return memo[total_steps]
-        # paths:   1
-        # paths:   1+1,         2
-        # paths:   1+1+1,       1+2, 2+1,                                                 3
-        # paths:   1+1+1+1,     1+1+2, 1+2+1, 2+1+1,                2+2,                  1+3, 3+1
-        # paths:   1+1+1+1+1,   1+1+1+2, 1+1+2+1, 1+2+1+1, 2+1+1+1, 2+2+1,2+1+2, 1+2+2,   1+1+3, 1+3+1, 3+1+1,    3+2, 2+3
+        # 1 paths:   1
+        # 2 paths:   1+1,           2
+        # 3 paths:   1+1+1,         1+2, 2+1,                                                 3
+        # 4 paths:   1+1+1+1,       1+1+2, 1+2+1, 2+1+1,                2+2,                  1+3, 3+1
+        # 5 paths:   1+1+1+1+1,     1+1+1+2, 1+1+2+1, 1+2+1+1, 2+1+1+1, 2+2+1,2+1+2, 1+2+2,   1+1+3, 1+3+1, 3+1+1,    3+2, 2+3
+        # 7 paths:   1+1+1+1+1+1,   1+1+1+1+2, 1+1+2+1, 1+2+1+1, 2+1+1+1, 2+2+1,2+1+2, 1+2+2,   1+1+3, 1+3+1, 3+1+1,    3+2, 2+3
+        # 8 paths: 
+        # 9 paths: 
+
         
         # [0,1,2,4]
 
@@ -33,3 +37,10 @@ class Stairs:
             + self.triple_step_memo(memo[total_steps - 2], memo)
             + self.triple_step_memo(memo[total_steps - 1], memo)
         )
+
+def towers_of_hanoi():
+    tower1 = None
+    tower2 = None
+    tower3 = None
+    
+    pass
